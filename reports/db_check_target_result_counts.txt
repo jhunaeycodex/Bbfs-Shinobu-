@@ -1,0 +1,15 @@
+       code       |                 name                 | is_active | total_result | tanggal_awal | tanggal_akhir 
+------------------+--------------------------------------+-----------+--------------+--------------+---------------
+ sgp-singapore    | SGP | Singapore [NOT-SOURCE-HIDDEN]  | f         |         1155 | 2023-04-10   | 2026-06-07
+ singapore        | Singapore                            | t         |           20 | 2026-05-16   | 2026-06-14
+ singapore-25     | Singapore 25                         | t         |           10 | 2026-05-15   | 2026-06-14
+ tennesse-mid     | Tennesse Mid                         | t         |           28 | 2026-05-15   | 2026-06-14
+ tennesse-midday  | Tennesse Midday [NOT-SOURCE-HIDDEN]  | f         |         1389 | 2022-08-22   | 2026-06-10
+ tennesse-mor     | Tennesse Mor                         | t         |           26 | 2026-05-15   | 2026-06-14
+ tennesse-morning | Tennesse Morning [NOT-SOURCE-HIDDEN] | f         |         1363 | 2022-09-16   | 2026-06-09
+ texas-eve        | Texas Eve                            | t         |           27 | 2026-05-15   | 2026-06-14
+ texas-evening    | Texas Evening [NOT-SOURCE-HIDDEN]    | f         |         1388 | 2022-08-22   | 2026-06-10
+ texas-mor        | Texas Mor                            | t         |           27 | 2026-05-15   | 2026-06-14
+ texas-morning    | Texas Morning [NOT-SOURCE-HIDDEN]    | f         |         1388 | 2022-08-22   | 2026-06-09
+(11 rows)
+
