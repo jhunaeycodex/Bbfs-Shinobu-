@@ -1,0 +1,338 @@
+AUDIT FRONTEND DINAMIS MEMBACA API DATABASE
+Generated: 2026-06-15 14:41:40 WIB
+Mode: READ ONLY
+
+=== 1. FILE UTAMA WEBSITE ===
+EXISTS|index.html|495821 bytes|2026-06-15 10:54:33.922584451 +0700
+MISSING|result-center.html
+MISSING|auto-arsip.html
+EXISTS|data.js|3480 bytes|2026-06-14 11:14:12.000000000 +0700
+EXISTS|result-card-live.js|6334 bytes|2026-06-14 22:05:26.048944619 +0700
+
+=== 2. SCRIPT TAG DI INDEX ===
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+
+=== 3. CEK API CALL LITERAL DI FILE FRONTEND ===
+--- /api/ references ---
+/var/www/jhunaey.my.id/manual-fetch.html:281:    const res = await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/manual-fetch.html:328:    const res = await fetch('/api/market-aliases?source_url='+encodeURIComponent(source),{cache:'no-store'});
+/var/www/jhunaey.my.id/manual-fetch.html:351:  const j = await api('/api/market-aliases/sync-from-source','POST',{source_url:document.getElementById('source').value.trim()});
+/var/www/jhunaey.my.id/manual-fetch.html:380:    const j = await apiWithTimeout('/api/manual-fetch/date-range','POST',payload,180000);
+/var/www/jhunaey.my.id/manual-fetch.html:394:  const j = await api('/api/manual-fetch/date-range-all','POST',p);
+/var/www/jhunaey.my.id/manual-fetch.html:399:  const j = await apiGet('/api/manual-fetch/date-range-status');
+/var/www/jhunaey.my.id/manual-fetch.html:424:  const j = await api('/api/manual-result/add','POST',p);
+/var/www/jhunaey.my.id/manual-fetch.html:442:  const j = await api('/api/manual-result/edit','PUT',p);
+/var/www/jhunaey.my.id/manual-fetch.html:451:  const j = await api('/api/manual-result/delete','DELETE',{market_code:p.market_code,draw_date:p.draw_date});
+/var/www/jhunaey.my.id/manual-fetch.html:459:  const j = await apiGet('/api/results/latest?limit=1&market_code='+encodeURIComponent(m));
+/var/www/jhunaey.my.id/manual-fetch.html:481:  const url = '/api/manual-result/list?limit='+encodeURIComponent(limit)+(m?'&market_code='+encodeURIComponent(m):'');
+/var/www/jhunaey.my.id/result-card-live.js:2:const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+/var/www/jhunaey.my.id/result-card-live.js:32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+/var/www/jhunaey.my.id/bbfs-next-draw.html:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:247:  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:255:  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:262:  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:270:  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+/var/www/jhunaey.my.id/bbfs-next-draw.html:275:  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+/var/www/jhunaey.my.id/bbfs-home-final.js:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.js:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:163:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:242:  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:250:  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:257:  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:265:  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:270:  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:247:  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:255:  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:262:  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:270:  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:275:  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_113805.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_113805.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:247:  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:255:  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:262:  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:270:  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:275:  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_114007.bak:2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_114007.bak:3:  const MARKET_API = "/api/markets";
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:247:  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:255:  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:262:  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:270:  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:275:  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+
+--- fetch( references ---
+/var/www/jhunaey.my.id/manual-fetch.html:242:  const res = await fetch(url,{
+/var/www/jhunaey.my.id/manual-fetch.html:255:    const res = await fetch(url,{
+/var/www/jhunaey.my.id/manual-fetch.html:274:  const res = await fetch(url,{headers:{'Authorization':'Bearer '+token()},cache:'no-store'});
+/var/www/jhunaey.my.id/manual-fetch.html:281:    const res = await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/manual-fetch.html:328:    const res = await fetch('/api/market-aliases?source_url='+encodeURIComponent(source),{cache:'no-store'});
+/var/www/jhunaey.my.id/result-card-live.js:31:async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+/var/www/jhunaey.my.id/result-card-live.js:32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+/var/www/jhunaey.my.id/bbfs-next-draw.html:159:  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:163:  const r=await fetch(url,{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.html:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-home-final.js:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.js:417:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:381:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:381:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:400:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:417:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:154:  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:158:  const r=await fetch(url,{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:163:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:417:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:159:  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:163:  const r=await fetch(url,{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_113805.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_113805.bak:417:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:159:  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:163:  const r=await fetch(url,{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_113805.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_114007.bak:217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_final_20260615_114007.bak:417:      const r = await fetch(url, { cache: "no-store" });
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:159:  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:163:  const r=await fetch(url,{cache:'no-store'});
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_final_20260615_114007.bak:168:    const r=await fetch('/api/markets',{cache:'no-store'});
+
+--- XMLHttpRequest references ---
+
+=== 4. CEK STATIC / HARDCODE RESULT DI FRONTEND ===
+--- files data/result/json/csv/js ---
+/var/www/jhunaey.my.id/data.js|3480 bytes|2026-06-14 11:14
+/var/www/jhunaey.my.id/result-card-live.js|6334 bytes|2026-06-14 22:05
+
+--- hardcode keywords ---
+KEYWORD=all_results
+KEYWORD=staticResults
+KEYWORD=hardcode
+/var/www/jhunaey.my.id/index.html.backup-mobile:343:  // Replace obvious hardcoded sample result if present in text nodes.
+KEYWORD=window.__
+KEYWORD=const results
+KEYWORD=let results
+KEYWORD=resultData
+KEYWORD=marketResults
+KEYWORD=manualResults
+KEYWORD=localStorage
+/var/www/jhunaey.my.id/manual-fetch.html:291:    const saved = localStorage.getItem('manual_fetch_market');
+/var/www/jhunaey.my.id/manual-fetch.html:301:        localStorage.setItem('manual_fetch_market', e.target.value);
+/var/www/jhunaey.my.id/result-card-live.js:31:async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+/var/www/jhunaey.my.id/bbfs-next-draw.html:173:    const saved=localStorage.getItem('bbfs_final_market')||localStorage.getItem('bbfs_next_market')||localStorage.getItem('bbfs_market')||'';
+/var/www/jhunaey.my.id/bbfs-next-draw.html:176:    sel.onchange=()=>{localStorage.setItem('bbfs_final_market',sel.value);loadLatest()};
+/var/www/jhunaey.my.id/bbfs-next-draw.html:245:  localStorage.setItem('bbfs_final_market',market);
+/var/www/jhunaey.my.id/bbfs-home-final.js:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.js:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.js:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.js:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.js:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.js:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.js:431:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.js:432:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:395:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_hold_candidate_20260615_103806.bak:396:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:395:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_renderhold_candidate_20260615_104122.bak:396:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:414:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_force_hold_candidate_20260615_104305.bak:415:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:431:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_audit_digits_flat_20260615_104932.bak:432:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:168:    const saved=localStorage.getItem('bbfs_final_market')||localStorage.getItem('bbfs_next_market')||localStorage.getItem('bbfs_market')||'';
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:171:    sel.onchange=()=>{localStorage.setItem('bbfs_final_market',sel.value);loadLatest()};
+/var/www/jhunaey.my.id/bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak:240:  localStorage.setItem('bbfs_final_market',market);
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:28:    return localStorage.getItem("bbfs_result_card_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:29:      || localStorage.getItem("bbfs_final_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:30:      || localStorage.getItem("bbfs_next_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:31:      || localStorage.getItem("bbfs_market")
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:235:        localStorage.setItem("bbfs_result_card_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:236:        localStorage.setItem("bbfs_final_market", select.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:431:        localStorage.setItem("bbfs_result_card_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-home-final.before_gate_v2_20260615_113249.bak:432:        localStorage.setItem("bbfs_final_market", ev.target.value);
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:173:    const saved=localStorage.getItem('bbfs_final_market')||localStorage.getItem('bbfs_next_market')||localStorage.getItem('bbfs_market')||'';
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:176:    sel.onchange=()=>{localStorage.setItem('bbfs_final_market',sel.value);loadLatest()};
+/var/www/jhunaey.my.id/bbfs-next-draw.before_gate_v2_20260615_113249.bak:245:  localStorage.setItem('bbfs_final_market',market);
+
+=== 5. RINGKASAN FILE DATA.JS ===
+data.js_size=3480
+data.js_first_60_lines:
+window.BBFS_DATABASE_DATA = {
+  "generated_at": "2026-06-14 11:14:12",
+  "database_source": "bbfs_database_v1_engine.sqlite",
+  "summary": {
+    "markets": 57,
+    "result_rows": 86933,
+    "date_min": "2022-01-02",
+    "date_max": "2026-06-08",
+    "latest_market_slug": "georgia-midday",
+    "latest_market_name": "Georgia Midday"
+  },
+  "latest_result": {
+    "market_id": 7,
+    "market_slug": "georgia-midday",
+    "market_name": "Georgia Midday",
+    "date": "2026-06-08",
+    "result_number": "1840",
+    "as_digit": "1",
+    "kop_digit": "8",
+    "kepala_digit": "4",
+    "ekor_digit": "0",
+    "target_3d": "840",
+    "target_2d": "40"
+  },
+  "prediction": {
+    "next_draw_date": "2026-06-09",
+    "bbfs": "5423089",
+    "excluded_digits": "716",
+    "poltar": {
+      "as": "4",
+      "kop": "2",
+      "kepala": "5",
+      "ekor": "0",
+      "target_3d": "250",
+      "target_2d": "50"
+    },
+    "ranking_2d": [
+      {
+        "rank_no": 1,
+        "number": "54",
+        "score": 78.631407
+      },
+      {
+        "rank_no": 2,
+        "number": "45",
+        "score": 76.26669
+      },
+      {
+        "rank_no": 3,
+        "number": "25",
+        "score": 75.699351
+      },
+      {
+        "rank_no": 4,
+        "number": "52",
+        "score": 73.965401
+      },
+      {
+        "rank_no": 5,
+        "number": "53",
+
+data.js_api_refs:
+
+=== 6. RINGKASAN FILE RESULT-CARD-LIVE.JS ===
+result-card-live.js_size=6334
+result-card-live.js_api_refs:
+2:const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+31:async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+result-card-live.js_first_120_lines:
+(function(){
+const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+const $=id=>document.getElementById(id);
+function to4D(v){const d=String(v||"").replace(/\D/g,"");return d?d.slice(-4).padStart(4,"0"):"----"}
+function dateOnly(v){return v?String(v).slice(0,10):"-"}
+function dateID(v){const d=dateOnly(v);if(!/^\d{4}-\d{2}-\d{2}$/.test(d))return d;const a=d.split("-"),b=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];return Number(a[2])+" "+b[Number(a[1])-1]+" "+a[0]}
+function timeID(v){const m=String(v||"").match(/(\d{1,2}):(\d{2})/);return m?m[1].padStart(2,"0")+":"+m[2]+" WIB":""}
+function addStyle(){if($("bbfs-result-card-style"))return;const s=document.createElement("style");s.id="bbfs-result-card-style";s.textContent=`
+.bbfs-result-card-live{position:absolute;left:3.35%;top:52.15%;width:28.65%;height:29.9%;z-index:80;box-sizing:border-box;padding:1.05% 1.2%;overflow:hidden;border-radius:12px;border:1px solid rgba(255,183,72,.78);background:radial-gradient(circle at 25% 25%,rgba(170,15,0,.40),transparent 44%),linear-gradient(180deg,rgba(18,2,0,.98),rgba(4,0,0,.97));box-shadow:inset 0 0 24px rgba(255,64,16,.12),0 0 18px rgba(255,80,0,.26);color:#fff0bd;font-family:Georgia,"Times New Roman",serif;text-shadow:0 2px 2px #000}
+.bbfs-result-card-live *{box-sizing:border-box}
+.bbfs-result-card-title{font-size:clamp(12px,1.45vw,22px);font-weight:900;color:#fff4c9;display:flex;align-items:center;gap:.42em;line-height:1;margin-bottom:.45em;text-transform:uppercase}
+.bbfs-result-card-title .icon{color:#ff2b1c;text-shadow:0 0 10px rgba(255,50,18,.9)}
+.bbfs-result-card-select{width:100%;border-radius:8px;border:1px solid rgba(255,194,84,.68);background:rgba(9,0,0,.88);color:#ffe6a2;padding:.42em .55em;font-size:clamp(9px,.9vw,13px);font-weight:700;margin-bottom:.48em;outline:none}
+.bbfs-result-card-label{color:#e9c98c;font-size:clamp(8px,.82vw,12px);margin-bottom:.16em}
+.bbfs-result-card-period{display:inline-block;color:#fff5c7;border:1px solid rgba(255,185,72,.42);border-radius:999px;background:rgba(0,0,0,.38);padding:.15em .62em;font-size:clamp(9px,.9vw,13px);margin-bottom:.35em}
+.bbfs-result-card-market{color:#ffcb74;font-size:clamp(8px,.78vw,11px);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.08em}
+.bbfs-result-card-number{font-family:Impact,Georgia,serif;font-size:clamp(38px,5.55vw,82px);line-height:.96;letter-spacing:.055em;color:#fff8df;text-shadow:0 0 8px rgba(255,255,255,.9),0 0 18px rgba(255,52,18,.92),0 4px 0 rgba(80,0,0,.9);margin:.04em 0 .08em}
+.bbfs-result-card-bottom{display:grid;grid-template-columns:1fr auto;gap:.5em;align-items:end;color:#e8d1a0;font-size:clamp(8px,.82vw,12px)}
+.bbfs-result-card-bottom b{color:#fff3bf}
+.bbfs-result-card-refresh{border:1px solid rgba(255,190,72,.52);background:rgba(98,8,3,.88);color:#ffe6a2;border-radius:999px;padding:.25em .62em;font-size:clamp(8px,.72vw,10px);font-weight:800}
+`;document.head.appendChild(s)}
+function stage(){return document.querySelector(".stage")||document.querySelector(".dashboard-stage")||document.body}
+function make(){if($("bbfs-result-card-live"))return;addStyle();const st=stage();if(st!==document.body&&getComputedStyle(st).position==="static")st.style.position="relative";const c=document.createElement("section");c.id="bbfs-result-card-live";c.className="bbfs-result-card-live";c.innerHTML=`
+<div class="bbfs-result-card-title"><span class="icon">☯</span> RESULT TERBARU</div>
+<select id="bbfs-result-card-select" class="bbfs-result-card-select"><option value="">Memuat pasaran...</option></select>
+<div class="bbfs-result-card-label">Periode:</div>
+<div id="bbfs-result-card-period" class="bbfs-result-card-period">-</div>
+<div id="bbfs-result-card-market" class="bbfs-result-card-market">-</div>
+<div id="bbfs-result-card-number" class="bbfs-result-card-number">----</div>
+<div class="bbfs-result-card-bottom"><div><div>Terakhir diperbarui:</div><div><b id="bbfs-result-card-updated">-</b></div><div>2D: <b id="bbfs-result-card-2d">-</b> · 3D: <b id="bbfs-result-card-3d">-</b></div></div><button id="bbfs-result-card-refresh" class="bbfs-result-card-refresh" type="button">REFRESH</button></div>`;st.appendChild(c);$("bbfs-result-card-refresh").onclick=loadLatest}
+async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+async function boot(){make();await loadMarkets();await loadLatest();setInterval(loadLatest,60000)}
+document.readyState==="loading"?document.addEventListener("DOMContentLoaded",boot):boot();
+})();
+
+=== 7. LIVE HTML RESPONSE REFERENCES ===
+URL=https://jhunaey.my.id/
+status_or_size=495821
+script_refs:
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+api_refs_in_html:
+
+URL=https://jhunaey.my.id/result-center.html
+status_or_size=495821
+script_refs:
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+api_refs_in_html:
+
+URL=https://jhunaey.my.id/auto-arsip.html
+status_or_size=495821
+script_refs:
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+api_refs_in_html:
+
+=== 8. KESIMPULAN OTOMATIS AWAL ===
+frontend_files_with_api_refs=15
+frontend_files_with_fetch_refs=15
+frontend_static_candidate_files=2
+MANUAL_REVIEW_REQUIRED: jika halaman utama memakai /api/public/bbfs-final-dashboard dan /api/results/latest maka dinamis; jika data.js berisi data result statis maka harus dikunci/dihapus dari sumber data tampilan.
