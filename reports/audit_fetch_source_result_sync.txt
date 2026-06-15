@@ -1,0 +1,327 @@
+AUDIT RESULT SINKRON DENGAN SOURCE FETCH
+Generated: 2026-06-15 15:19:41 WIB
+Mode: READ ONLY - tidak fetch update, tidak hapus, tidak ubah data
+
+=== 1. TUJUAN AUDIT ===
+Cek apakah result database memiliki jejak source/fetch yang jelas, market aktif punya source URL/mapping, dan API/result frontend membaca database hasil fetch.
+Catatan: audit ini tidak membandingkan ulang ke website sumber eksternal secara live agar tidak menulis/mengubah data.
+
+=== 2. DATABASE RESULT SUMMARY ===
+ total_results | valid_4d | invalid_4d |  min_date  |  max_date  
+---------------+----------+------------+------------+------------
+        151865 |   151799 |         66 | 2022-01-02 | 2026-06-15
+(1 row)
+
+ active_results 
+----------------
+          86225
+(1 row)
+
+ inactive_archive_results 
+--------------------------
+                    65640
+(1 row)
+
+
+=== 3. SOURCE FIELD COVERAGE DI result_draws ===
+ total_rows | blank_source | has_source 
+------------+--------------+------------
+     151865 |            0 |     151865
+(1 row)
+
+             source_family             | rows  
+---------------------------------------+-------
+ csv-import                            | 86839
+ csv-import|merge_all_inactive_history | 54134
+ csv-import|merge_inactive_history     |  8170
+ manual-date-range                     |  2654
+ manual-fix-30-days                    |    66
+ manual-add                            |     2
+(6 rows)
+
+
+=== 4. SOURCE COVERAGE ACTIVE ONLY ===
+ active_rows | active_blank_source | active_has_source 
+-------------+---------------------+-------------------
+       86225 |                   0 |             86225
+(1 row)
+
+        code        |        name        | total_rows | blank_source | has_source |  min_date  |  max_date  
+--------------------+--------------------+------------+--------------+------------+------------+------------
+ florida-eve        | Florida Eve        |       1626 |            0 |       1626 | 2022-01-02 | 2026-06-15
+ georgia-eve        | Georgia Eve        |       1626 |            0 |       1626 | 2022-01-02 | 2026-06-15
+ michigan-eve       | Michigan Eve       |       1626 |            0 |       1626 | 2022-01-02 | 2026-06-15
+ carolina-eve       | Carolina Eve       |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ florida-mid        | Florida Mid        |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ maryland-eve       | Maryland Eve       |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ newyork-eve        | Newyork Eve        |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ oregon-04-00-wib   | Oregon 04:00 Wib   |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ oregon-07-00-wib   | Oregon 07:00 Wib   |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ oregon-10-00-wib   | Oregon 10:00 Wib   |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ tennesse-eve       | Tennesse Eve       |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ washington-mid     | Washington Mid     |       1625 |            0 |       1625 | 2022-01-03 | 2026-06-15
+ carolina-day       | Carolina Day       |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-15
+ georgia-night      | Georgia Night      |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-14
+ illinois-mid       | Illinois Mid       |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-15
+ kentucky-mid       | Kentucky Mid       |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-14
+ michigan-mid       | Michigan Mid       |       1624 |            0 |       1624 | 2022-01-04 | 2026-06-15
+ missouri-eve       | Missouri Eve       |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-15
+ missouri-mid       | Missouri Mid       |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-15
+ totomacau-13       | Toto Macau 13      |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-14
+ totomacau-16       | Toto Macau 16      |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-14
+ virginia-night     | Virginia Night     |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-14
+ washington-eve     | Washington Eve     |       1624 |            0 |       1624 | 2022-01-03 | 2026-06-15
+ bullseye           | Bullseye           |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ cambodia           | Cambodia           |       1623 |            0 |       1623 | 2022-01-03 | 2026-06-14
+ georgia-mid        | Georgia Mid        |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ illinois-eve       | Illinois Eve       |       1623 |            0 |       1623 | 2022-01-03 | 2026-06-14
+ indiana-eve        | Indiana Eve        |       1623 |            0 |       1623 | 2022-01-03 | 2026-06-14
+ indiana-mid        | Indiana Mid        |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-15
+ japan              | Japan              |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ kentucky-eve       | Kentucky Eve       |       1623 |            0 |       1623 | 2022-01-03 | 2026-06-14
+ maryland-mid       | Maryland Mid       |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ oregon-13-00-wib   | Oregon 13:00 Wib   |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ sydney             | Sydney             |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ taiwan             | Taiwan             |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-14
+ virginia-day       | Virginia Day       |       1623 |            0 |       1623 | 2022-01-04 | 2026-06-15
+ china              | China              |       1622 |            0 |       1622 | 2022-01-04 | 2026-06-14
+ totomacau-19       | Toto Macau 19      |       1622 |            0 |       1622 | 2022-01-04 | 2026-06-14
+ totomacau-22       | Toto Macau 22      |       1622 |            0 |       1622 | 2022-01-04 | 2026-06-14
+ hongkong           | Hongkong           |       1621 |            0 |       1621 | 2022-01-04 | 2026-06-14
+ newjersey-mid      | Newjersey Mid      |       1621 |            0 |       1621 | 2022-01-04 | 2026-06-15
+ newjersey-eve      | Newjersey Eve      |       1618 |            0 |       1618 | 2022-01-08 | 2026-06-14
+ totomacau-00       | Toto Macau 00      |       1394 |            0 |       1394 | 2022-08-22 | 2026-06-15
+ tennesse-mid       | Tennesse Mid       |       1393 |            0 |       1393 | 2022-08-22 | 2026-06-14
+ texas-mor          | Texas Mor          |       1393 |            0 |       1393 | 2022-08-22 | 2026-06-14
+ texas-day          | Texas Day          |       1392 |            0 |       1392 | 2022-08-22 | 2026-06-14
+ texas-eve          | Texas Eve          |       1392 |            0 |       1392 | 2022-08-22 | 2026-06-14
+ texas-night        | Texas Night        |       1392 |            0 |       1392 | 2022-08-22 | 2026-06-14
+ pcso               | Pcso               |       1373 |            0 |       1373 | 2022-09-11 | 2026-06-14
+ tennesse-mor       | Tennesse Mor       |       1368 |            0 |       1368 | 2022-09-16 | 2026-06-14
+ california         | California         |       1323 |            0 |       1323 | 2022-10-31 | 2026-06-14
+ ohio-eve           | Ohio Eve           |       1214 |            0 |       1214 | 2023-02-18 | 2026-06-15
+ ohio-mid           | Ohio Mid           |       1213 |            0 |       1213 | 2023-02-18 | 2026-06-14
+ singapore          | Singapore          |       1159 |            0 |       1159 | 2023-04-10 | 2026-06-14
+ totomacau-23       | Toto Macau 23      |       1049 |            0 |       1049 | 2023-08-01 | 2026-06-14
+ delaware-day       | Delaware Day       |         32 |            0 |         32 | 2026-05-15 | 2026-06-15
+ delaware-night     | Delaware Night     |         32 |            0 |         32 | 2026-05-15 | 2026-06-15
+ pennsylvania-day   | Pennsylvania Day   |         32 |            0 |         32 | 2026-05-15 | 2026-06-15
+ atlanta            | Atlanta            |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ buffalo4d          | Buffalo4d          |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ germany            | Germany            |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ kingkong-17        | Kingkong 17        |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ kingston           | Kingston           |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ korea              | Korea              |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ kupang             | Kupang             |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ moscow             | Moscow             |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ munchen            | Munchen            |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ newyork-mid        | Newyork Mid        |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ nusa-toto          | Nusa Toto          |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ oslo-pools         | Oslo Pools         |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ phoenix4d          | Phoenix4d          |         31 |            0 |         31 | 2026-05-15 | 2026-06-14
+ rhode-island       | Rhode Island       |         31 |            0 |         31 | 2026-05-15 | 2026-06-15
+ bogota             | Bogota             |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ boston             | Boston             |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ jakarta            | Jakarta            |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ nusa               | Nusa               |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ pennsylvania-eve   | Pennsylvania Eve   |         30 |            0 |         30 | 2026-05-15 | 2026-06-15
+ portland           | Portland           |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ thailand-lotteries | Thailand Lotteries |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+ vietnam            | Vietnam            |         30 |            0 |         30 | 2026-05-15 | 2026-06-14
+(80 rows)
+
+
+=== 5. MARKET SOURCE URL / OFFICIAL URL COVERAGE ===
+Kolom yang tersedia pada markets:
+  column_name  |        data_type         
+---------------+--------------------------
+ id            | uuid
+ code          | text
+ name          | text
+ timezone      | text
+ is_active     | boolean
+ display_order | integer
+ created_at    | timestamp with time zone
+ updated_at    | timestamp with time zone
+(8 rows)
+
+
+Kolom yang tersedia pada market_profiles jika ada:
+  column_name  |        data_type         
+---------------+--------------------------
+ market_id     | uuid
+ result_digits | integer
+ schedule_note | text
+ meta          | jsonb
+ updated_at    | timestamp with time zone
+(5 rows)
+
+
+URL-like columns aktif pada markets:
+ERROR:  column "official_url" does not exist
+LINE 1: SELECT code,name,is_active,official_url,source_url,website_u...
+                                   ^
+markets tidak punya salah satu kolom official_url/source_url/website_url
+
+=== 6. FETCH / IMPORT TABLE COVERAGE ===
+          table_name           
+-------------------------------
+ import_batches
+ import_errors
+ market_source_alias_conflicts
+ market_source_aliases
+ market_source_sync_notes
+ source_fetch_errors
+ source_fetch_runs
+ source_market_aliases
+ source_market_schedules
+(9 rows)
+
+
+TABLE_EXISTS|import_batches
+ rows 
+------
+    1
+(1 row)
+
+                  id                  |  filename   |  status   | total_rows | success_rows | error_rows |          created_at           |          finished_at          
+--------------------------------------+-------------+-----------+------------+--------------+------------+-------------------------------+-------------------------------
+ 7f2a78f4-b67c-4f2d-88d0-e9f653541f9d | results.csv | completed |      87088 |        87088 |          0 | 2026-06-14 20:07:34.064207+07 | 2026-06-14 20:12:02.475414+07
+(1 row)
+
+TABLE_EXISTS|import_errors
+ rows 
+------
+    0
+(1 row)
+
+ id | batch_id | row_number | row_payload | error_message | created_at 
+----+----------+------------+-------------+---------------+------------
+(0 rows)
+
+TABLE_EXISTS|market_source_aliases
+ rows 
+------
+   91
+(1 row)
+
+                  id                  | source_name  | source_value | source_code  |         canonical_market_id          | canonical_market_code | canonical_market_name |                          source_url                           | is_active |             notes             |          created_at           |          updated_at           
+--------------------------------------+--------------+--------------+--------------+--------------------------------------+-----------------------+-----------------------+---------------------------------------------------------------+-----------+-------------------------------+-------------------------------+-------------------------------
+ fcc931d4-6905-4c3c-affc-448d66f2a3a8 | maryland-eve | maryland-eve | maryland-eve | 2affb42f-0019-4f31-b84c-8684823f6d4f | maryland-eve          | Maryland Eve          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |                               | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ fc5caf46-6d7c-45d0-a9b4-4bf9ace49e08 | carolina-eve | carolina-eve | carolina-eve | c24d82e4-8e78-4f9a-b4fb-1b0c95cd6cdb | carolina-eve          | Carolina Eve          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |                               | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ fc03cb10-639f-405a-84e8-cd78a99a36ff | kentucky-eve | kentucky-eve | kentucky-eve | 60f32ba5-822c-4834-a77b-2004620803d5 | kentucky-eve          | Kentucky Eve          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |                               | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ fa7d1194-ed8e-4059-b084-662b2e78fa22 | ohio-mid     | ohio-mid     | ohio-mid     | 538534ba-80e2-4d72-8841-f0dbb16ad884 | ohio-mid              | Ohio Mid              | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |                               | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ f9a37048-01c1-4ee0-8383-cf98ee45b229 | oregon3      | oregon3      | oregon3      | 0c965a55-5b82-4093-a4e4-abff8265c5d7 | oregon-04-00-wib      | Oregon 04:00 Wib      | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         | explicit Oregon alias mapping | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+(5 rows)
+
+TABLE_EXISTS|source_market_aliases
+ rows 
+------
+    0
+(1 row)
+
+ id | source_name | source_market_code | source_market_name | market_id | created_at 
+----+-------------+--------------------+--------------------+-----------+------------
+(0 rows)
+
+
+=== 7. ACTIVE LATEST DB VS API ===
+LATEST_SOURCE_CHECK|singapore|DB=2026-06-14|4048|manual-date-range|API=2026-06-14|4048|MATCH
+LATEST_SOURCE_CHECK|florida-eve|DB=2026-06-15|1250|manual-date-range|API=2026-06-15|1250|MATCH
+LATEST_SOURCE_CHECK|ohio-eve|DB=2026-06-15|4429|manual-date-range|API=2026-06-15|4429|MATCH
+LATEST_SOURCE_CHECK|totomacau-22|DB=2026-06-14|6481|manual-date-range|API=2026-06-14|6481|MATCH
+LATEST_SOURCE_CHECK|taiwan|DB=2026-06-14|6353|manual-date-range|API=2026-06-14|6353|MATCH
+LATEST_SOURCE_CHECK|tennesse-eve|DB=2026-06-15|9547|manual-date-range|API=2026-06-15|9547|MATCH
+LATEST_SOURCE_CHECK|texas-eve|DB=2026-06-14|7099|manual-date-range|API=2026-06-14|7099|MATCH
+
+=== 8. ACTIVE LATEST SOURCE FAMILY ===
+   source_family    | active_latest_markets 
+--------------------+-----------------------
+ manual-date-range  |                    82
+ manual-fix-30-days |                     4
+ manual-add         |                     2
+(3 rows)
+
+ code | name | draw_date | result | source 
+------+------+-----------+--------+--------
+(0 rows)
+
+
+=== 9. FETCH CODE PATH EVIDENCE ===
+manual fetch routes:
+161:      source_url,
+168:    ON CONFLICT (source_url, source_code)
+191:async function fetchSourceMarketOptions(sourceUrl) {
+248:  const options = await fetchSourceMarketOptions(sourceUrl);
+250:    source_url: sourceUrl,
+269:    const before = await client.query('SELECT id FROM market_source_aliases WHERE source_url = $1 AND source_code = $2', [sourceUrl, resolved.source_code]);
+335:app.get('/api/market-aliases', async (req, res) => {
+337:    const sourceUrl = String(req.query.source_url || '').trim();
+339:    const where = sourceUrl ? 'WHERE a.source_url = $1' : '';
+352:        a.source_url,
+368:app.get('/api/market-aliases/conflicts', async (req, res) => {
+379:        source_url,
+398:app.post('/api/market-aliases/sync-from-source', requireAdminToken, async (req, res) => {
+399:  const sourceUrl = String(req.body.source_url || SOURCE_MARKET_URL).trim() || SOURCE_MARKET_URL;
+582:try { require('./manual_fetch_routes')(app, pool); console.log('Manual fetch routes enabled'); } catch (e) { console.error('Manual fetch routes failed:', e.message); }
+625:// Manual fetch by selected date range
+626:app.post('/api/manual-fetch/date-range', requireAdminToken, async (req, res) => {
+629:  const sourceUrl = String(req.body.source_url || '').trim();
+637:      error: 'source_url, market, date_from, dan date_to wajib diisi.'
+641:  const script = '/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js';
+687:app.post('/api/manual-fetch/date-range-all', requireAdminToken, async (req, res) => {
+691:  const sourceUrl = String(req.body.source_url || '').trim();
+698:      error: 'source_url, date_from, dan date_to wajib diisi.'
+702:  const statusFile = '/opt/bbfs-shinobi/manual_fetch_date_status.json';
+703:  const logFile = '/opt/bbfs-shinobi/manual_fetch_date.log';
+704:  const script = '/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js';
+710:      source_url: sourceUrl,
+744:app.get('/api/manual-fetch/date-range-status', requireAdminToken, async (req, res) => {
+747:  const statusFile = '/opt/bbfs-shinobi/manual_fetch_date_status.json';
+748:  const logFile = '/opt/bbfs-shinobi/manual_fetch_date.log';
+771:app.get('/api/manual-result/all-by-market', requireAdminToken, async (req, res) => {
+817:app.get('/api/manual-result/list', requireAdminToken, async (req, res) => {
+858:app.post('/api/manual-result/add', requireAdminToken, async (req, res) => {
+953:app.put('/api/manual-result/edit', requireAdminToken, async (req, res) => {
+1033:app.delete('/api/manual-result/delete', requireAdminToken, async (req, res) => {
+
+insert/update result_draws routes:
+126:    ON CONFLICT (market_id) DO NOTHING
+134:    ON CONFLICT (code)
+168:    ON CONFLICT (source_url, source_code)
+434:    ON CONFLICT (code)
+446:    ON CONFLICT (market_id) DO NOTHING
+531:      INSERT INTO result_draws (market_id, draw_date, result, source)
+533:      ON CONFLICT (market_id, draw_date)
+880:        ON CONFLICT (code)
+888:        ON CONFLICT (market_id) DO NOTHING
+907:        INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+983:        UPDATE result_draws
+1061:        DELETE FROM result_draws
+1785:    ON CONFLICT (market_id, next_draw_date)
+
+=== 10. FRONTEND FETCH SOURCE UI EVIDENCE ===
+FILE=manual-fetch.html
+281:    const res = await fetch('/api/markets',{cache:'no-store'});
+328:    const res = await fetch('/api/market-aliases?source_url='+encodeURIComponent(source),{cache:'no-store'});
+351:  const j = await api('/api/market-aliases/sync-from-source','POST',{source_url:document.getElementById('source').value.trim()});
+359:    source_url: document.getElementById('source').value.trim(),
+380:    const j = await apiWithTimeout('/api/manual-fetch/date-range','POST',payload,180000);
+394:  const j = await api('/api/manual-fetch/date-range-all','POST',p);
+399:  const j = await apiGet('/api/manual-fetch/date-range-status');
+459:  const j = await apiGet('/api/results/latest?limit=1&market_code='+encodeURIComponent(m));
+FILE=result-card-live.js
+2:const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+FILE=bbfs-home-final.js
+3:  const MARKET_API = "/api/markets";
+
+=== 11. RISIKO SINKRON SOURCE ===
+Jika blank_source > 0: data ada di DB tetapi tidak semua row memiliki label source.
+Jika active latest source blank: latest result aktif perlu audit sumber/import batch.
+Jika market source_url kosong: fetch masih bisa jalan lewat input manual source, tapi mapping sumber resmi belum terkunci di DB.
+
+=== 12. KESIMPULAN FLAG ===
+NO_WRITE_DONE=true
+SOURCE_SYNC_AUDIT_ONLY=true
+NEXT_SAFE_STEP=review blank source, active latest source, and source_url coverage; then decide whether to lock source mapping table.
