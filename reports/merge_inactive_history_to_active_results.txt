@@ -1,0 +1,55 @@
++ echo 'MERGE INACTIVE HISTORY TO ACTIVE RESULTS'
+MERGE INACTIVE HISTORY TO ACTIVE RESULTS
++ echo 'Generated: 2026-06-15 13:36:21 WIB'
+Generated: 2026-06-15 13:36:21 WIB
++ echo 'Backup table: result_draws_merge_backup_20260615_133621'
+Backup table: result_draws_merge_backup_20260615_133621
++ echo 'Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_133621.csv'
+Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_133621.csv
++ echo 'Mode: insert missing historical rows to active markets; do not delete inactive rows'
+Mode: insert missing historical rows to active markets; do not delete inactive rows
++ echo
+
++ echo '=== TARGET MAPPING ==='
+=== TARGET MAPPING ===
++ echo 'tennesse-evening  -> tennesse-eve'
+tennesse-evening  -> tennesse-eve
++ echo 'tennesse-midday   -> tennesse-mid'
+tennesse-midday   -> tennesse-mid
++ echo 'tennesse-morning  -> tennesse-mor'
+tennesse-morning  -> tennesse-mor
++ echo 'texas-evening     -> texas-eve'
+texas-evening     -> texas-eve
++ echo 'texas-morning     -> texas-mor'
+texas-morning     -> texas-mor
++ echo 'sgp-singapore     -> singapore'
+sgp-singapore     -> singapore
++ echo
+
++ echo '=== BEFORE COUNTS ==='
+=== BEFORE COUNTS ===
++ sudo -u postgres psql -d bbfs_production -c 'SELECT m.code,m.name,m.is_active,COUNT(r.id) AS total_result,COUNT(r.id) FILTER (WHERE r.result ~ '\''^[0-9]{4}$'\'') AS valid_4d,MIN(r.draw_date) AS tanggal_awal,MAX(r.draw_date) AS tanggal_akhir FROM markets m LEFT JOIN result_draws r ON r.market_id=m.id WHERE m.code IN ('\''tennesse-evening'\'','\''tennesse-midday'\'','\''tennesse-morning'\'','\''texas-evening'\'','\''texas-morning'\'','\''sgp-singapore'\'','\''tennesse-eve'\'','\''tennesse-mid'\'','\''tennesse-mor'\'','\''texas-eve'\'','\''texas-mor'\'','\''singapore'\'') GROUP BY m.id,m.code,m.name,m.is_active ORDER BY m.code;'
+       code       |                 name                 | is_active | total_result | valid_4d | tanggal_awal | tanggal_akhir 
+------------------+--------------------------------------+-----------+--------------+----------+--------------+---------------
+ sgp-singapore    | SGP | Singapore [NOT-SOURCE-HIDDEN]  | f         |         1155 |     1155 | 2023-04-10   | 2026-06-07
+ singapore        | Singapore                            | t         |           20 |       20 | 2026-05-16   | 2026-06-14
+ tennesse-eve     | Tennesse Eve                         | t         |           32 |       32 | 2026-05-15   | 2026-06-15
+ tennesse-evening | Tennesse Evening [NOT-SOURCE-HIDDEN] | f         |         1620 |     1620 | 2022-01-03   | 2026-06-10
+ tennesse-mid     | Tennesse Mid                         | t         |           28 |       28 | 2026-05-15   | 2026-06-14
+ tennesse-midday  | Tennesse Midday [NOT-SOURCE-HIDDEN]  | f         |         1389 |     1389 | 2022-08-22   | 2026-06-10
+ tennesse-mor     | Tennesse Mor                         | t         |           26 |       25 | 2026-05-15   | 2026-06-14
+ tennesse-morning | Tennesse Morning [NOT-SOURCE-HIDDEN] | f         |         1363 |     1363 | 2022-09-16   | 2026-06-09
+ texas-eve        | Texas Eve                            | t         |           27 |       27 | 2026-05-15   | 2026-06-14
+ texas-evening    | Texas Evening [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 | 2022-08-22   | 2026-06-10
+ texas-mor        | Texas Mor                            | t         |           27 |       26 | 2026-05-15   | 2026-06-14
+ texas-morning    | Texas Morning [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 | 2022-08-22   | 2026-06-09
+(12 rows)
+
++ echo
+
++ echo '=== CREATE BACKUP TABLE + CSV ==='
+=== CREATE BACKUP TABLE + CSV ===
++ sudo -u postgres psql -d bbfs_production -v backup_table=result_draws_merge_backup_20260615_133621 -c 'CREATE TABLE "result_draws_merge_backup_20260615_133621" AS SELECT r.*,m.code AS market_code,m.name AS market_name,m.is_active AS market_is_active,now() AS backed_up_at FROM result_draws r JOIN markets m ON m.id=r.market_id WHERE m.code IN ('\''tennesse-evening'\'','\''tennesse-midday'\'','\''tennesse-morning'\'','\''texas-evening'\'','\''texas-morning'\'','\''sgp-singapore'\'','\''tennesse-eve'\'','\''tennesse-mid'\'','\''tennesse-mor'\'','\''texas-eve'\'','\''texas-mor'\'','\''singapore'\'');'
+SELECT 8463
++ sudo -u postgres psql -d bbfs_production -c '\copy (SELECT * FROM "result_draws_merge_backup_20260615_133621") TO '\''/opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_133621.csv'\'' CSV HEADER'
+/opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_133621.csv: Permission denied
