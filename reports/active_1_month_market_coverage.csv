@@ -1,0 +1,89 @@
+code,name,rows_1m,dates_with_result,missing_calendar_days,blank_source_rows,min_date,max_date,source_families
+singapore-25,Singapore 25,9,9,22,0,2026-05-19,2026-06-14,"manual-date-range, manual-fix-30-days"
+jepang,Jepang,25,25,6,0,2026-05-16,2026-06-14,manual-date-range
+kingkong-23,Kingkong 23,27,27,4,0,2026-05-16,2026-06-14,manual-date-range
+lima,Lima,27,27,4,0,2026-05-16,2026-06-14,manual-date-range
+singapore,Singapore,27,27,4,0,2026-05-16,2026-06-14,"csv-import|merge_inactive_history, manual-date-range"
+freetown,Freetown,28,28,3,0,2026-05-16,2026-06-15,manual-date-range
+hongkong,Hongkong,28,28,3,0,2026-05-16,2026-06-14,manual-date-range
+mongolia,Mongolia,28,28,3,0,2026-05-16,2026-06-14,manual-date-range
+north-korea,North Korea,28,28,3,0,2026-05-16,2026-06-14,manual-date-range
+bogota,Bogota,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+boston,Boston,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+cambodia,Cambodia,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+china,China,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+illinois-eve,Illinois Eve,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+indiana-eve,Indiana Eve,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+jakarta,Jakarta,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+kentucky-eve,Kentucky Eve,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+newjersey-eve,Newjersey Eve,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+nusa,Nusa,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+pennsylvania-eve,Pennsylvania Eve,29,29,2,0,2026-05-16,2026-06-15,manual-date-range
+portland,Portland,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+texas-day,Texas Day,29,29,2,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+texas-eve,Texas Eve,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_inactive_history, manual-date-range"
+texas-night,Texas Night,29,29,2,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+thailand-lotteries,Thailand Lotteries,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+totomacau-19,Toto Macau 19,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+totomacau-22,Toto Macau 22,29,29,2,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+vietnam,Vietnam,29,29,2,0,2026-05-16,2026-06-14,manual-date-range
+wisconsin,Wisconsin,29,29,2,0,2026-05-16,2026-06-15,manual-date-range
+atlanta,Atlanta,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+buffalo4d,Buffalo4d,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+bullseye,Bullseye,30,30,1,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+california,California,30,30,1,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+carolina-day,Carolina Day,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+georgia-mid,Georgia Mid,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+georgia-night,Georgia Night,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+germany,Germany,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+illinois-mid,Illinois Mid,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+indiana-mid,Indiana Mid,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+japan,Japan,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+kentucky-mid,Kentucky Mid,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+kingkong-17,Kingkong 17,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+kingston,Kingston,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+korea,Korea,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+kupang,Kupang,30,30,1,0,2026-05-16,2026-06-15,"manual-add, manual-date-range"
+maryland-mid,Maryland Mid,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+missouri-eve,Missouri Eve,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+missouri-mid,Missouri Mid,30,30,1,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"
+moscow,Moscow,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+munchen,Munchen,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+newyork-mid,Newyork Mid,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+nusa-toto,Nusa Toto,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+ohio-mid,Ohio Mid,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+oregon-13-00-wib,Oregon 13:00 Wib,30,30,1,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+oslo-pools,Oslo Pools,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+pcso,Pcso,30,30,1,0,2026-05-16,2026-06-14,"csv-import, manual-date-range, manual-fix-30-days"
+phoenix4d,Phoenix4d,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+rhode-island,Rhode Island,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+sydney,Sydney,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+taiwan,Taiwan,30,30,1,0,2026-05-16,2026-06-14,"csv-import, manual-date-range"
+tennesse-mid,Tennesse Mid,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_inactive_history, manual-date-range"
+tennesse-mor,Tennesse Mor,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_inactive_history, manual-date-range, manual-fix-30-days"
+texas-mor,Texas Mor,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_inactive_history, manual-date-range, manual-fix-30-days"
+totomacau-13,Toto Macau 13,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+totomacau-16,Toto Macau 16,30,30,1,0,2026-05-16,2026-06-14,"csv-import|merge_all_inactive_history, manual-date-range"
+totomacau-23,Toto Macau 23,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+virginia-day,Virginia Day,30,30,1,0,2026-05-16,2026-06-15,manual-date-range
+virginia-night,Virginia Night,30,30,1,0,2026-05-16,2026-06-14,manual-date-range
+washington-eve,Washington Eve,30,30,1,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"
+carolina-eve,Carolina Eve,31,31,0,0,2026-05-16,2026-06-15,"manual-add, manual-date-range"
+delaware-day,Delaware Day,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+delaware-night,Delaware Night,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+florida-eve,Florida Eve,31,31,0,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"
+florida-mid,Florida Mid,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+georgia-eve,Georgia Eve,31,31,0,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"
+maryland-eve,Maryland Eve,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+michigan-eve,Michigan Eve,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+michigan-mid,Michigan Mid,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+newjersey-mid,Newjersey Mid,31,31,0,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"
+newyork-eve,Newyork Eve,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+ohio-eve,Ohio Eve,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+oregon-04-00-wib,Oregon 04:00 Wib,31,31,0,0,2026-05-16,2026-06-15,"csv-import, manual-date-range"
+oregon-07-00-wib,Oregon 07:00 Wib,31,31,0,0,2026-05-16,2026-06-15,"csv-import, manual-date-range"
+oregon-10-00-wib,Oregon 10:00 Wib,31,31,0,0,2026-05-16,2026-06-15,"csv-import, manual-date-range"
+pennsylvania-day,Pennsylvania Day,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+tennesse-eve,Tennesse Eve,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+totomacau-00,Toto Macau 00,31,31,0,0,2026-05-16,2026-06-15,manual-date-range
+washington-mid,Washington Mid,31,31,0,0,2026-05-16,2026-06-15,"csv-import|merge_all_inactive_history, manual-date-range"

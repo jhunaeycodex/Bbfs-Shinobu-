@@ -1,0 +1,345 @@
+AUDIT 1 BULAN DATA RESULT PER PASARAN
+Generated: 2026-06-15 15:27:17 WIB
+Mode: READ ONLY - tidak fetch update, tidak hapus, tidak ubah data
+Window: CURRENT_DATE - 30 sampai CURRENT_DATE
+
+=== 1. DEFINISI SINKRON 1 BULAN ===
+Sinkron yang dicek: setiap active market punya data result dalam window 1 bulan, source label tidak kosong, latest DB cocok dengan API, dan mapping source tersedia jika ada.
+Catatan: pasar yang memang belum tersedia 1 bulan akan muncul sebagai kurang/missing; audit ini belum membandingkan live ke website sumber eksternal.
+
+=== 2. SUMMARY ACTIVE MARKET 1 BULAN ===
+ active_markets | total_rows_1m | zero_rows_1m | markets_with_30_plus_dates | markets_below_30_dates | markets_with_blank_source 
+----------------+---------------+--------------+----------------------------+------------------------+---------------------------
+             88 |          2596 |            0 |                         59 |                     29 |                         0
+(1 row)
+
+
+=== 3. DETAIL PER PASARAN ACTIVE 1 BULAN ===
+        code        |        name        | rows_1m | dates_with_result | missing_calendar_days | blank_source_rows |  min_date  |  max_date  |                             source_families                              
+--------------------+--------------------+---------+-------------------+-----------------------+-------------------+------------+------------+--------------------------------------------------------------------------
+ singapore-25       | Singapore 25       |       9 |                 9 |                    22 |                 0 | 2026-05-19 | 2026-06-14 | manual-date-range, manual-fix-30-days
+ jepang             | Jepang             |      25 |                25 |                     6 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ kingkong-23        | Kingkong 23        |      27 |                27 |                     4 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ lima               | Lima               |      27 |                27 |                     4 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ singapore          | Singapore          |      27 |                27 |                     4 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_inactive_history, manual-date-range
+ freetown           | Freetown           |      28 |                28 |                     3 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ hongkong           | Hongkong           |      28 |                28 |                     3 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ mongolia           | Mongolia           |      28 |                28 |                     3 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ north-korea        | North Korea        |      28 |                28 |                     3 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ bogota             | Bogota             |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ boston             | Boston             |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ cambodia           | Cambodia           |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ china              | China              |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ illinois-eve       | Illinois Eve       |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ indiana-eve        | Indiana Eve        |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ jakarta            | Jakarta            |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ kentucky-eve       | Kentucky Eve       |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ newjersey-eve      | Newjersey Eve      |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ nusa               | Nusa               |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ pennsylvania-eve   | Pennsylvania Eve   |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ portland           | Portland           |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ texas-day          | Texas Day          |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ texas-eve          | Texas Eve          |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_inactive_history, manual-date-range
+ texas-night        | Texas Night        |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ thailand-lotteries | Thailand Lotteries |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ totomacau-19       | Toto Macau 19      |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ totomacau-22       | Toto Macau 22      |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ vietnam            | Vietnam            |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ wisconsin          | Wisconsin          |      29 |                29 |                     2 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ atlanta            | Atlanta            |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ buffalo4d          | Buffalo4d          |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ bullseye           | Bullseye           |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ california         | California         |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ carolina-day       | Carolina Day       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ georgia-mid        | Georgia Mid        |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ georgia-night      | Georgia Night      |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ germany            | Germany            |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ illinois-mid       | Illinois Mid       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ indiana-mid        | Indiana Mid        |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ japan              | Japan              |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ kentucky-mid       | Kentucky Mid       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ kingkong-17        | Kingkong 17        |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ kingston           | Kingston           |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ korea              | Korea              |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ kupang             | Kupang             |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-add, manual-date-range
+ maryland-mid       | Maryland Mid       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ missouri-eve       | Missouri Eve       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ missouri-mid       | Missouri Mid       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+ moscow             | Moscow             |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ munchen            | Munchen            |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ newyork-mid        | Newyork Mid        |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ nusa-toto          | Nusa Toto          |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ ohio-mid           | Ohio Mid           |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ oregon-13-00-wib   | Oregon 13:00 Wib   |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ oslo-pools         | Oslo Pools         |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ pcso               | Pcso               |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range, manual-fix-30-days
+ phoenix4d          | Phoenix4d          |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ rhode-island       | Rhode Island       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ sydney             | Sydney             |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ taiwan             | Taiwan             |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import, manual-date-range
+ tennesse-mid       | Tennesse Mid       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_inactive_history, manual-date-range
+ tennesse-mor       | Tennesse Mor       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_inactive_history, manual-date-range, manual-fix-30-days
+ texas-mor          | Texas Mor          |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_inactive_history, manual-date-range, manual-fix-30-days
+ totomacau-13       | Toto Macau 13      |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ totomacau-16       | Toto Macau 16      |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | csv-import|merge_all_inactive_history, manual-date-range
+ totomacau-23       | Toto Macau 23      |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ virginia-day       | Virginia Day       |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ virginia-night     | Virginia Night     |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-14 | manual-date-range
+ washington-eve     | Washington Eve     |      30 |                30 |                     1 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+ carolina-eve       | Carolina Eve       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-add, manual-date-range
+ delaware-day       | Delaware Day       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ delaware-night     | Delaware Night     |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ florida-eve        | Florida Eve        |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+ florida-mid        | Florida Mid        |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ georgia-eve        | Georgia Eve        |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+ maryland-eve       | Maryland Eve       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ michigan-eve       | Michigan Eve       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ michigan-mid       | Michigan Mid       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ newjersey-mid      | Newjersey Mid      |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+ newyork-eve        | Newyork Eve        |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ ohio-eve           | Ohio Eve           |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ oregon-04-00-wib   | Oregon 04:00 Wib   |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import, manual-date-range
+ oregon-07-00-wib   | Oregon 07:00 Wib   |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import, manual-date-range
+ oregon-10-00-wib   | Oregon 10:00 Wib   |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import, manual-date-range
+ pennsylvania-day   | Pennsylvania Day   |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ tennesse-eve       | Tennesse Eve       |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ totomacau-00       | Toto Macau 00      |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | manual-date-range
+ washington-mid     | Washington Mid     |      31 |                31 |                     0 |                 0 | 2026-05-16 | 2026-06-15 | csv-import|merge_all_inactive_history, manual-date-range
+(88 rows)
+
+
+=== 4. PASARAN ACTIVE YANG KURANG DARI 30 TANGGAL RESULT DALAM 1 BULAN ===
+        code        |        name        | rows_1m | dates_with_result |  min_date  |  max_date  
+--------------------+--------------------+---------+-------------------+------------+------------
+ singapore-25       | Singapore 25       |       9 |                 9 | 2026-05-19 | 2026-06-14
+ jepang             | Jepang             |      25 |                25 | 2026-05-16 | 2026-06-14
+ kingkong-23        | Kingkong 23        |      27 |                27 | 2026-05-16 | 2026-06-14
+ lima               | Lima               |      27 |                27 | 2026-05-16 | 2026-06-14
+ singapore          | Singapore          |      27 |                27 | 2026-05-16 | 2026-06-14
+ freetown           | Freetown           |      28 |                28 | 2026-05-16 | 2026-06-15
+ hongkong           | Hongkong           |      28 |                28 | 2026-05-16 | 2026-06-14
+ mongolia           | Mongolia           |      28 |                28 | 2026-05-16 | 2026-06-14
+ north-korea        | North Korea        |      28 |                28 | 2026-05-16 | 2026-06-14
+ bogota             | Bogota             |      29 |                29 | 2026-05-16 | 2026-06-14
+ boston             | Boston             |      29 |                29 | 2026-05-16 | 2026-06-14
+ cambodia           | Cambodia           |      29 |                29 | 2026-05-16 | 2026-06-14
+ china              | China              |      29 |                29 | 2026-05-16 | 2026-06-14
+ illinois-eve       | Illinois Eve       |      29 |                29 | 2026-05-16 | 2026-06-14
+ indiana-eve        | Indiana Eve        |      29 |                29 | 2026-05-16 | 2026-06-14
+ jakarta            | Jakarta            |      29 |                29 | 2026-05-16 | 2026-06-14
+ kentucky-eve       | Kentucky Eve       |      29 |                29 | 2026-05-16 | 2026-06-14
+ newjersey-eve      | Newjersey Eve      |      29 |                29 | 2026-05-16 | 2026-06-14
+ nusa               | Nusa               |      29 |                29 | 2026-05-16 | 2026-06-14
+ pennsylvania-eve   | Pennsylvania Eve   |      29 |                29 | 2026-05-16 | 2026-06-15
+ portland           | Portland           |      29 |                29 | 2026-05-16 | 2026-06-14
+ texas-day          | Texas Day          |      29 |                29 | 2026-05-16 | 2026-06-14
+ texas-eve          | Texas Eve          |      29 |                29 | 2026-05-16 | 2026-06-14
+ texas-night        | Texas Night        |      29 |                29 | 2026-05-16 | 2026-06-14
+ thailand-lotteries | Thailand Lotteries |      29 |                29 | 2026-05-16 | 2026-06-14
+ totomacau-19       | Toto Macau 19      |      29 |                29 | 2026-05-16 | 2026-06-14
+ totomacau-22       | Toto Macau 22      |      29 |                29 | 2026-05-16 | 2026-06-14
+ vietnam            | Vietnam            |      29 |                29 | 2026-05-16 | 2026-06-14
+ wisconsin          | Wisconsin          |      29 |                29 | 2026-05-16 | 2026-06-15
+(29 rows)
+
+
+=== 5. MISSING DATE SAMPLE PER PASARAN KURANG ===
+        code        |        name        | missing_count |                                                                                                                          missing_dates_sample                                                                                                                          
+--------------------+--------------------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ singapore-25       | Singapore 25       |            22 | 2026-05-16, 2026-05-17, 2026-05-18, 2026-05-20, 2026-05-21, 2026-05-23, 2026-05-24, 2026-05-25, 2026-05-27, 2026-05-28, 2026-05-30, 2026-05-31, 2026-06-01, 2026-06-03, 2026-06-04, 2026-06-06, 2026-06-07, 2026-06-08, 2026-06-10, 2026-06-11, 2026-06-13, 2026-06-15
+ jepang             | Jepang             |             6 | 2026-05-22, 2026-05-26, 2026-05-29, 2026-06-02, 2026-06-07, 2026-06-15
+ kingkong-23        | Kingkong 23        |             4 | 2026-05-19, 2026-06-07, 2026-06-12, 2026-06-15
+ lima               | Lima               |             4 | 2026-05-31, 2026-06-07, 2026-06-09, 2026-06-15
+ singapore          | Singapore          |             4 | 2026-06-08, 2026-06-09, 2026-06-12, 2026-06-15
+ freetown           | Freetown           |             3 | 2026-05-23, 2026-05-31, 2026-06-11
+ hongkong           | Hongkong           |             3 | 2026-06-08, 2026-06-09, 2026-06-15
+ mongolia           | Mongolia           |             3 | 2026-05-21, 2026-05-31, 2026-06-15
+ north-korea        | North Korea        |             3 | 2026-05-20, 2026-05-22, 2026-06-15
+ bogota             | Bogota             |             2 | 2026-05-22, 2026-06-15
+ boston             | Boston             |             2 | 2026-06-10, 2026-06-15
+ cambodia           | Cambodia           |             2 | 2026-06-08, 2026-06-15
+ china              | China              |             2 | 2026-06-13, 2026-06-15
+ illinois-eve       | Illinois Eve       |             2 | 2026-06-11, 2026-06-15
+ indiana-eve        | Indiana Eve        |             2 | 2026-06-13, 2026-06-15
+ jakarta            | Jakarta            |             2 | 2026-05-23, 2026-06-15
+ kentucky-eve       | Kentucky Eve       |             2 | 2026-06-13, 2026-06-15
+ newjersey-eve      | Newjersey Eve      |             2 | 2026-06-13, 2026-06-15
+ nusa               | Nusa               |             2 | 2026-06-11, 2026-06-15
+ pennsylvania-eve   | Pennsylvania Eve   |             2 | 2026-05-19, 2026-06-10
+ portland           | Portland           |             2 | 2026-06-02, 2026-06-15
+ texas-day          | Texas Day          |             2 | 2026-06-08, 2026-06-15
+ texas-eve          | Texas Eve          |             2 | 2026-06-08, 2026-06-15
+ texas-night        | Texas Night        |             2 | 2026-06-08, 2026-06-15
+ thailand-lotteries | Thailand Lotteries |             2 | 2026-06-05, 2026-06-15
+ totomacau-19       | Toto Macau 19      |             2 | 2026-06-11, 2026-06-15
+ totomacau-22       | Toto Macau 22      |             2 | 2026-06-13, 2026-06-15
+ vietnam            | Vietnam            |             2 | 2026-05-29, 2026-06-15
+ wisconsin          | Wisconsin          |             2 | 2026-06-09, 2026-06-11
+ atlanta            | Atlanta            |             1 | 2026-05-18
+ buffalo4d          | Buffalo4d          |             1 | 2026-06-15
+ bullseye           | Bullseye           |             1 | 2026-06-15
+ california         | California         |             1 | 2026-06-15
+ carolina-day       | Carolina Day       |             1 | 2026-06-11
+ georgia-mid        | Georgia Mid        |             1 | 2026-06-15
+ georgia-night      | Georgia Night      |             1 | 2026-06-15
+ germany            | Germany            |             1 | 2026-05-22
+ illinois-mid       | Illinois Mid       |             1 | 2026-06-11
+ indiana-mid        | Indiana Mid        |             1 | 2026-06-13
+ japan              | Japan              |             1 | 2026-06-15
+ kentucky-mid       | Kentucky Mid       |             1 | 2026-06-15
+ kingkong-17        | Kingkong 17        |             1 | 2026-06-15
+ kingston           | Kingston           |             1 | 2026-05-18
+ korea              | Korea              |             1 | 2026-06-15
+ kupang             | Kupang             |             1 | 2026-06-05
+ maryland-mid       | Maryland Mid       |             1 | 2026-06-15
+ missouri-eve       | Missouri Eve       |             1 | 2026-06-11
+ missouri-mid       | Missouri Mid       |             1 | 2026-06-11
+ moscow             | Moscow             |             1 | 2026-05-25
+ munchen            | Munchen            |             1 | 2026-06-15
+ newyork-mid        | Newyork Mid        |             1 | 2026-06-15
+ nusa-toto          | Nusa Toto          |             1 | 2026-06-15
+ ohio-mid           | Ohio Mid           |             1 | 2026-06-15
+ oregon-13-00-wib   | Oregon 13:00 Wib   |             1 | 2026-06-15
+ oslo-pools         | Oslo Pools         |             1 | 2026-06-15
+ pcso               | Pcso               |             1 | 2026-06-15
+ phoenix4d          | Phoenix4d          |             1 | 2026-06-15
+ rhode-island       | Rhode Island       |             1 | 2026-06-10
+ sydney             | Sydney             |             1 | 2026-06-15
+ taiwan             | Taiwan             |             1 | 2026-06-15
+ tennesse-mid       | Tennesse Mid       |             1 | 2026-06-15
+ tennesse-mor       | Tennesse Mor       |             1 | 2026-06-15
+ texas-mor          | Texas Mor          |             1 | 2026-06-15
+ totomacau-13       | Toto Macau 13      |             1 | 2026-06-15
+ totomacau-16       | Toto Macau 16      |             1 | 2026-06-15
+ totomacau-23       | Toto Macau 23      |             1 | 2026-06-15
+ virginia-day       | Virginia Day       |             1 | 2026-06-11
+ virginia-night     | Virginia Night     |             1 | 2026-06-15
+ washington-eve     | Washington Eve     |             1 | 2026-06-13
+(69 rows)
+
+
+=== 6. LATEST DB VS API SAMPLE ===
+LATEST_1M_CHECK|singapore|DB=2026-06-14|4048|manual-date-range|API=2026-06-14|4048|MATCH
+LATEST_1M_CHECK|florida-eve|DB=2026-06-15|1250|manual-date-range|API=2026-06-15|1250|MATCH
+LATEST_1M_CHECK|ohio-eve|DB=2026-06-15|4429|manual-date-range|API=2026-06-15|4429|MATCH
+LATEST_1M_CHECK|totomacau-22|DB=2026-06-14|6481|manual-date-range|API=2026-06-14|6481|MATCH
+LATEST_1M_CHECK|taiwan|DB=2026-06-14|6353|manual-date-range|API=2026-06-14|6353|MATCH
+LATEST_1M_CHECK|tennesse-eve|DB=2026-06-15|9547|manual-date-range|API=2026-06-15|9547|MATCH
+LATEST_1M_CHECK|texas-eve|DB=2026-06-14|7099|manual-date-range|API=2026-06-14|7099|MATCH
+
+=== 7. SOURCE MAPPING COVERAGE PER ACTIVE MARKET ===
+        code        |        name        | alias_rows | active_alias_rows |                          source_urls                          
+--------------------+--------------------+------------+-------------------+---------------------------------------------------------------
+ atlanta            | Atlanta            |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ bogota             | Bogota             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ boston             | Boston             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ buffalo4d          | Buffalo4d          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ bullseye           | Bullseye           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ california         | California         |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ cambodia           | Cambodia           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ carolina-day       | Carolina Day       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ carolina-eve       | Carolina Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ china              | China              |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ delaware-day       | Delaware Day       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ delaware-night     | Delaware Night     |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ florida-eve        | Florida Eve        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ florida-mid        | Florida Mid        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ freetown           | Freetown           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ georgia-eve        | Georgia Eve        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ georgia-mid        | Georgia Mid        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ georgia-night      | Georgia Night      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ germany            | Germany            |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ hongkong           | Hongkong           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ illinois-eve       | Illinois Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ illinois-mid       | Illinois Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ indiana-eve        | Indiana Eve        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ indiana-mid        | Indiana Mid        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ jakarta            | Jakarta            |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ japan              | Japan              |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ jepang             | Jepang             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kentucky-eve       | Kentucky Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kentucky-mid       | Kentucky Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kingkong-17        | Kingkong 17        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kingkong-23        | Kingkong 23        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kingston           | Kingston           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ korea              | Korea              |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ kupang             | Kupang             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ lima               | Lima               |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ maryland-eve       | Maryland Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ maryland-mid       | Maryland Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ michigan-eve       | Michigan Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ michigan-mid       | Michigan Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ missouri-eve       | Missouri Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ missouri-mid       | Missouri Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ mongolia           | Mongolia           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ moscow             | Moscow             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ munchen            | Munchen            |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ newjersey-eve      | Newjersey Eve      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ newjersey-mid      | Newjersey Mid      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ newyork-eve        | Newyork Eve        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ newyork-mid        | Newyork Mid        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ north-korea        | North Korea        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ nusa               | Nusa               |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ nusa-toto          | Nusa Toto          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ ohio-eve           | Ohio Eve           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ ohio-mid           | Ohio Mid           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ oregon-04-00-wib   | Oregon 04:00 Wib   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ oregon-07-00-wib   | Oregon 07:00 Wib   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ oregon-10-00-wib   | Oregon 10:00 Wib   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ oregon-13-00-wib   | Oregon 13:00 Wib   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ oslo-pools         | Oslo Pools         |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ pcso               | Pcso               |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ pennsylvania-day   | Pennsylvania Day   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ pennsylvania-eve   | Pennsylvania Eve   |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ phoenix4d          | Phoenix4d          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ portland           | Portland           |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ rhode-island       | Rhode Island       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ singapore          | Singapore          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ singapore-25       | Singapore 25       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ sydney             | Sydney             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ taiwan             | Taiwan             |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ tennesse-eve       | Tennesse Eve       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ tennesse-mid       | Tennesse Mid       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ tennesse-mor       | Tennesse Mor       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ texas-day          | Texas Day          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ texas-eve          | Texas Eve          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ texas-mor          | Texas Mor          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ texas-night        | Texas Night        |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ thailand-lotteries | Thailand Lotteries |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-00       | Toto Macau 00      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-13       | Toto Macau 13      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-16       | Toto Macau 16      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-19       | Toto Macau 19      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-22       | Toto Macau 22      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ totomacau-23       | Toto Macau 23      |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ vietnam            | Vietnam            |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ virginia-day       | Virginia Day       |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ virginia-night     | Virginia Night     |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ washington-eve     | Washington Eve     |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ washington-mid     | Washington Mid     |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+ wisconsin          | Wisconsin          |          1 |                 1 | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel
+(88 rows)
+
+
+=== 8. SOURCE FAMILY 1 BULAN ACTIVE ===
+             source_family             | rows_1m | markets 
+---------------------------------------+---------+---------
+ manual-date-range                     |    2426 |      88
+ csv-import                            |     120 |      10
+ csv-import|merge_all_inactive_history |      22 |      15
+ csv-import|merge_inactive_history     |      22 |       5
+ manual-fix-30-days                    |       4 |       4
+ manual-add                            |       2 |       2
+(6 rows)
+
+
+=== 9. EXPORT CSV DETAIL ===
+COPY 88
+COPY 132
+-rw-r--r-- 1 postgres postgres 7.4K Jun 15 15:27 /opt/bbfs-github-sync/reports/active_1_month_market_coverage.csv
+-rw-r--r-- 1 postgres postgres 4.3K Jun 15 15:27 /opt/bbfs-github-sync/reports/active_1_month_missing_dates.csv
+
+=== 10. KESIMPULAN FLAG ===
+NO_WRITE_DONE=true
+ONE_MONTH_PER_MARKET_AUDIT=true
+SYNC_RULE=active market should have roughly 30 dates in the last month, no blank source, and latest API must match DB.
