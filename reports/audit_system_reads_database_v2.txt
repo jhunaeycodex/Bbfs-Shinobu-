@@ -1,0 +1,194 @@
+AUDIT SISTEM MEMBACA DATABASE - V2 RINGKAS
+Generated: 2026-06-15 14:34:49 WIB
+Mode: READ ONLY
+
+=== SERVICE ===
+bbfs-backend=active
+nginx=active
+
+=== DB SUMMARY ===
+markets|139|88
+results|151865|151799|66|2022-01-02|2026-06-15
+
+=== DB_LATEST_BY_MARKET ===
+DB|singapore|2026-06-14|4048
+DB|florida-eve|2026-06-15|1250
+DB|ohio-eve|2026-06-15|4429
+DB|totomacau-22|2026-06-14|6481
+DB|taiwan|2026-06-14|6353
+
+=== API_LATEST_BY_MARKET ===
+API|singapore|2026-06-14|4048
+API|florida-eve|2026-06-15|1250
+API|ohio-eve|2026-06-15|4429
+API|totomacau-22|2026-06-14|6481
+API|taiwan|2026-06-14|6353
+
+=== RESULT_API_DB_MATCH_EXPECTATION ===
+Compare DB_LATEST_BY_MARKET with API_LATEST_BY_MARKET. Same date+result means result API reads DB.
+
+=== BBFS_API_CHECK ===
+URL=https://jhunaey.my.id/api/public/bbfs-final-dashboard?limit=5
+  File "<string>", line 1
+    import sys,json; raw=sys.stdin.read(); print(raw[:1200].replace('\n',' '));\ntry:\n d=json.loads(raw); print('JSON_OK keys='+','.join(d.keys()) if isinstance(d,dict) else 'JSON_OK list')\nexcept Exception as e: print('JSON_ERROR '+str(e))
+                                                                                ^
+SyntaxError: unexpected character after line continuation character
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 114, in apport_excepthook
+    report["ExecutableTimestamp"] = str(int(os.stat(binary).st_mtime))
+                                            ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/bbfs-github-sync/-c'
+
+Original exception was:
+  File "<string>", line 1
+    import sys,json; raw=sys.stdin.read(); print(raw[:1200].replace('\n',' '));\ntry:\n d=json.loads(raw); print('JSON_OK keys='+','.join(d.keys()) if isinstance(d,dict) else 'JSON_OK list')\nexcept Exception as e: print('JSON_ERROR '+str(e))
+                                                                                ^
+SyntaxError: unexpected character after line continuation character
+
+URL=https://jhunaey.my.id/api/public/bbfs-final-dashboard?market_code=singapore&limit=3
+  File "<string>", line 1
+    import sys,json; raw=sys.stdin.read(); print(raw[:1200].replace('\n',' '));\ntry:\n d=json.loads(raw); print('JSON_OK keys='+','.join(d.keys()) if isinstance(d,dict) else 'JSON_OK list')\nexcept Exception as e: print('JSON_ERROR '+str(e))
+                                                                                ^
+SyntaxError: unexpected character after line continuation character
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 114, in apport_excepthook
+    report["ExecutableTimestamp"] = str(int(os.stat(binary).st_mtime))
+                                            ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/bbfs-github-sync/-c'
+
+Original exception was:
+  File "<string>", line 1
+    import sys,json; raw=sys.stdin.read(); print(raw[:1200].replace('\n',' '));\ntry:\n d=json.loads(raw); print('JSON_OK keys='+','.join(d.keys()) if isinstance(d,dict) else 'JSON_OK list')\nexcept Exception as e: print('JSON_ERROR '+str(e))
+                                                                                ^
+SyntaxError: unexpected character after line continuation character
+
+
+=== BACKEND_DATABASE_REFERENCES ===
+result_draws_refs=18
+/opt/bbfs-shinobi/backend/schema.sql:97:CREATE TABLE IF NOT EXISTS result_draws (
+/opt/bbfs-shinobi/backend/schema.sql:205:    result_draw_id UUID NOT NULL REFERENCES result_draws(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:239:CREATE INDEX IF NOT EXISTS idx_result_draws_market_date ON result_draws(market_id, draw_date DESC);
+/opt/bbfs-shinobi/backend/schema.sql:240:CREATE INDEX IF NOT EXISTS idx_result_draws_date ON result_draws(draw_date DESC);
+/opt/bbfs-shinobi/backend/server.js:292:        (SELECT COUNT(*)::int FROM result_draws) AS results,
+/opt/bbfs-shinobi/backend/server.js:488:    FROM result_draws r
+/opt/bbfs-shinobi/backend/server.js:531:      INSERT INTO result_draws (market_id, draw_date, result, source)
+/opt/bbfs-shinobi/backend/server.js:571:      (SELECT COUNT(*)::int FROM result_draws) AS total_results,
+/opt/bbfs-shinobi/backend/server.js:572:      (SELECT MAX(draw_date) FROM result_draws) AS latest_draw_date,
+/opt/bbfs-shinobi/backend/server.js:795:      FROM result_draws r
+/opt/bbfs-shinobi/backend/server.js:845:      FROM result_draws r
+/opt/bbfs-shinobi/backend/server.js:893:        FROM result_draws
+/opt/bbfs-shinobi/backend/server.js:907:        INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/server.js:983:        UPDATE result_draws
+/opt/bbfs-shinobi/backend/server.js:1061:        DELETE FROM result_draws
+/opt/bbfs-shinobi/backend/server.js:1677:    FROM result_draws
+/opt/bbfs-shinobi/backend/server.js:1720:      data_source: 'PostgreSQL result_draws, result valid 4D Prize 1.',
+/opt/bbfs-shinobi/backend/server.js:1876:      FROM result_draws
+/opt/bbfs-shinobi/backend/server.js:2084:        FROM result_draws r
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:136:          INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:489:          FROM result_draws
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:494:          INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.js:224:      const old = await client.query('SELECT result FROM result_draws WHERE market_id=$1 AND draw_date=$2', [marketId, row.draw_date]);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.js:227:        INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.backup.20260614_203357.js:265:          'SELECT result FROM result_draws WHERE market_id = $1 AND draw_date = $2',
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.backup.20260614_203357.js:270:          INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.js.backup_20260614_203835:174:      const old = await client.query('SELECT result FROM result_draws WHERE market_id = $1 AND draw_date = $2', [marketId, row.draw_date]);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.js.backup_20260614_203835:177:        INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+/opt/bbfs-shinobi/backend/scripts/backup/auto_fetch_results_20260614_204120.js:242:        'SELECT result FROM result_draws WHERE market_id = $1 AND draw_date = $2',
+/opt/bbfs-shinobi/backend/scripts/backup/auto_fetch_results_20260614_204120.js:247:        INSERT INTO result_draws (market_id, draw_date, result, source, raw_payload)
+bbfs_refs=17
+/opt/bbfs-shinobi/backend/schema.sql:142:CREATE TABLE IF NOT EXISTS prediction_runs (
+/opt/bbfs-shinobi/backend/schema.sql:155:CREATE TABLE IF NOT EXISTS bbfs_predictions (
+/opt/bbfs-shinobi/backend/schema.sql:157:    run_id UUID NOT NULL REFERENCES prediction_runs(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:164:CREATE TABLE IF NOT EXISTS poltar_predictions (
+/opt/bbfs-shinobi/backend/schema.sql:166:    run_id UUID NOT NULL REFERENCES prediction_runs(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:173:CREATE TABLE IF NOT EXISTS ranking_2d_predictions (
+/opt/bbfs-shinobi/backend/schema.sql:175:    run_id UUID NOT NULL REFERENCES prediction_runs(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:183:CREATE TABLE IF NOT EXISTS ranking_3d_predictions (
+/opt/bbfs-shinobi/backend/schema.sql:185:    run_id UUID NOT NULL REFERENCES prediction_runs(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:193:CREATE TABLE IF NOT EXISTS digit_scores (
+/opt/bbfs-shinobi/backend/schema.sql:195:    run_id UUID NOT NULL REFERENCES prediction_runs(id) ON DELETE CASCADE,
+/opt/bbfs-shinobi/backend/schema.sql:202:CREATE TABLE IF NOT EXISTS prediction_evaluations (
+/opt/bbfs-shinobi/backend/schema.sql:204:    run_id UUID REFERENCES prediction_runs(id) ON DELETE SET NULL,
+/opt/bbfs-shinobi/backend/schema.sql:206:    bbfs_hit BOOLEAN,
+/opt/bbfs-shinobi/backend/schema.sql:241:CREATE INDEX IF NOT EXISTS idx_prediction_runs_market_date ON prediction_runs(market_id, target_date DESC);
+/opt/bbfs-shinobi/backend/schema.sql:266:GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bbfs_user;
+/opt/bbfs-shinobi/backend/schema.sql:267:GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bbfs_user;
+/opt/bbfs-shinobi/backend/schema.sql:268:ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO bbfs_user;
+/opt/bbfs-shinobi/backend/schema.sql:269:ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO bbfs_user;
+/opt/bbfs-shinobi/backend/package.json:2:  "name": "bbfs-shinobi-backend",
+/opt/bbfs-shinobi/backend/package-lock.json:2:  "name": "bbfs-shinobi-backend",
+/opt/bbfs-shinobi/backend/package-lock.json:8:      "name": "bbfs-shinobi-backend",
+/opt/bbfs-shinobi/backend/.env:3:DATABASE_URL=postgresql://bbfs_user:GANTI_PASSWORD_KUAT@127.0.0.1:5432/bbfs_production
+/opt/bbfs-shinobi/backend/.env:4:ADMIN_API_TOKEN=bbfs_shinobi_admin_token_sementara
+/opt/bbfs-shinobi/backend/server.js:18:  connectionString: process.env.DATABASE_URL,
+/opt/bbfs-shinobi/backend/server.js:288:    const db = await pool.query('SELECT NOW() AS now');
+/opt/bbfs-shinobi/backend/server.js:289:    const counts = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:298:      service: 'bbfs-shinobi-backend',
+/opt/bbfs-shinobi/backend/server.js:314:    const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:343:    const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:370:    const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:431:  const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:443:  await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:449:  await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:474:  const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:543:      VALUES ('result_draw', $1, 'upsert', 'success', 'Result saved and ready for prediction sync')
+/opt/bbfs-shinobi/backend/server.js:568:  const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:573:      (SELECT COUNT(*)::int FROM prediction_runs) AS prediction_runs
+/opt/bbfs-shinobi/backend/server.js:641:  const script = '/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js';
+/opt/bbfs-shinobi/backend/server.js:644:    cwd: '/opt/bbfs-shinobi/backend',
+/opt/bbfs-shinobi/backend/server.js:649:      NODE_PATH: '/opt/bbfs-shinobi/backend/node_modules'
+/opt/bbfs-shinobi/backend/server.js:702:  const statusFile = '/opt/bbfs-shinobi/manual_fetch_date_status.json';
+/opt/bbfs-shinobi/backend/server.js:703:  const logFile = '/opt/bbfs-shinobi/manual_fetch_date.log';
+/opt/bbfs-shinobi/backend/server.js:704:  const script = '/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js';
+/opt/bbfs-shinobi/backend/server.js:719:    cwd: '/opt/bbfs-shinobi/backend',
+/opt/bbfs-shinobi/backend/server.js:724:      NODE_PATH: '/opt/bbfs-shinobi/backend/node_modules',
+/opt/bbfs-shinobi/backend/server.js:747:  const statusFile = '/opt/bbfs-shinobi/manual_fetch_date_status.json';
+/opt/bbfs-shinobi/backend/server.js:748:  const logFile = '/opt/bbfs-shinobi/manual_fetch_date.log';
+/opt/bbfs-shinobi/backend/server.js:782:    const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:832:    const result = await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:1101:// 2D/3D candidate rankings from BBFS digits only, confidence, prediction gate,
+/opt/bbfs-shinobi/backend/server.js:1104:  await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:1105:    CREATE TABLE IF NOT EXISTS bbfs_final_next_draw_predictions (
+/opt/bbfs-shinobi/backend/server.js:1114:      bbfs_digits TEXT NOT NULL DEFAULT '',
+/opt/bbfs-shinobi/backend/server.js:1117:      prediction_status TEXT NOT NULL DEFAULT 'BBFS_UNAVAILABLE',
+/opt/bbfs-shinobi/backend/server.js:1119:      can_show_prediction BOOLEAN NOT NULL DEFAULT FALSE,
+/opt/bbfs-shinobi/backend/server.js:1132:  await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:1133:    CREATE INDEX IF NOT EXISTS idx_bbfs_final_next_draw_market_date
+/opt/bbfs-shinobi/backend/server.js:1134:    ON bbfs_final_next_draw_predictions (market_id, next_draw_date DESC)
+/opt/bbfs-shinobi/backend/server.js:1137:  await pool.query(`
+/opt/bbfs-shinobi/backend/server.js:1138:    CREATE INDEX IF NOT EXISTS idx_bbfs_final_next_draw_status
+/opt/bbfs-shinobi/backend/server.js:1139:    ON bbfs_final_next_draw_predictions (prediction_status, can_show_prediction)
+/opt/bbfs-shinobi/backend/server.js:1307:  const bbfsDigits = scoredDigits.slice(0, 7).map(x => x.digit).join('');
+/opt/bbfs-shinobi/backend/server.js:1308:  const excludedDigits = digits.filter(d => !bbfsDigits.includes(d)).join('');
+/opt/bbfs-shinobi/backend/server.js:1316:    return bbfsDigits.split('')
+/opt/bbfs-shinobi/backend/server.js:1324:    for (const kepala of bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1325:      for (const ekor of bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1355:    for (const kop of bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1356:      for (const kepala of bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1357:        for (const ekor of bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1394:    bbfsDigits,
+/opt/bbfs-shinobi/backend/server.js:1407:      detected_digits: scoredDigits.filter(x => x.twin_score > 0 && bbfsDigits.includes(x.digit)).slice(0, 5).map(x => x.digit)
+/opt/bbfs-shinobi/backend/server.js:1410:      digits: scoredDigits.filter(x => x.miss_score > 0 && bbfsDigits.includes(x.digit)).map(x => x.digit)
+/opt/bbfs-shinobi/backend/server.js:1413:      top_digits: scoredDigits.filter(x => bbfsDigits.includes(x.digit)).slice(0, 3).map(x => x.digit)
+/opt/bbfs-shinobi/backend/server.js:1418:function finalEvaluateCoverage(draws, bbfsDigits) {
+/opt/bbfs-shinobi/backend/server.js:1419:  const set = new Set(bbfsDigits.split(''));
+/opt/bbfs-shinobi/backend/server.js:1437:    bbfs_4d_hits: hit4d,
+/opt/bbfs-shinobi/backend/server.js:1438:    bbfs_3d_hits: hit3d,
+/opt/bbfs-shinobi/backend/server.js:1439:    bbfs_2d_hits: hit2d,
+/opt/bbfs-shinobi/backend/server.js:1440:    bbfs_4d_rate: sample ? Number((hit4d / sample).toFixed(4)) : 0,
+
+=== FRONTEND_API_REFERENCES ===
+grep: Unmatched ( or \(
+api_refs=0
+grep: Unmatched ( or \(
+static_result_files=
+/var/www/jhunaey.my.id/data.js
+/var/www/jhunaey.my.id/result-card-live.js
