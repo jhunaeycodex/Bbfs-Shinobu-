@@ -1,0 +1,79 @@
+LOCK FRONTEND DYNAMIC - NO STATIC RESULT SOURCE
+Generated: 2026-06-15 14:46:17 WIB
+Mode: WRITE - backup lalu nonaktifkan data.js static bila tidak dipakai aktif
+Web dir: /var/www/jhunaey.my.id
+Backup dir: /var/www/jhunaey.my.id/backups/frontend_dynamic_lock_20260615_144617
+
+=== 1. BACKUP FILE PENTING ===
+BACKUP|index.html|OK
+BACKUP|data.js|OK
+BACKUP|result-card-live.js|OK
+BACKUP|bbfs-home-final.js|OK
+BACKUP|menu-direct-links.js|OK
+
+=== 2. CEK REFERENSI AKTIF KE data.js ===
+Tidak ada referensi aktif ke data.js di HTML/JS utama.
+
+=== 3. NONAKTIFKAN data.js STATIC JIKA AMAN ===
+data.js lama dipindah ke backup. data.js baru dibuat sebagai stub API_DATABASE_ONLY.
+
+=== 4. FILE FISIK UNTUK URL FALLBACK ===
+SYMLINK_CREATED|result-center.html -> index.html
+SYMLINK_CREATED|auto-arsip.html -> index.html
+
+=== 5. BERSIHKAN BACKUP .bak DARI WEB ROOT LANGSUNG ===
+MOVED_BACKUP_FILE|bbfs-home-final.before_audit_digits_flat_20260615_104932.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_force_hold_candidate_20260615_104305.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_gate_v2_20260615_113249.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_gate_v2_final_20260615_113805.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_gate_v2_final_20260615_114007.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_hold_candidate_20260615_103806.bak
+MOVED_BACKUP_FILE|bbfs-home-final.before_renderhold_candidate_20260615_104122.bak
+MOVED_BACKUP_FILE|bbfs-next-draw.before_audit_digits_flat_20260615_104932.bak
+MOVED_BACKUP_FILE|bbfs-next-draw.before_gate_v2_20260615_113249.bak
+MOVED_BACKUP_FILE|bbfs-next-draw.before_gate_v2_final_20260615_113805.bak
+MOVED_BACKUP_FILE|bbfs-next-draw.before_gate_v2_final_20260615_114007.bak
+MOVED_BACKUP_FILE|index.before_audit_digits_flat_20260615_104932.bak
+MOVED_BACKUP_FILE|index.before_force_hold_candidate_20260615_104305.bak
+MOVED_BACKUP_FILE|index.before_gate_v2_20260615_113249.bak
+MOVED_BACKUP_FILE|index.html.backup-mobile
+backup_files_moved=15
+
+=== 6. VERIFIKASI SCRIPT TAG LIVE ===
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+
+=== 7. VERIFIKASI API REFS LIVE JS ===
+result-card-live.js refs:
+2:const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+31:async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+
+bbfs-home-final.js refs:
+2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+3:  const MARKET_API = "/api/markets";
+217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+417:      const r = await fetch(url, { cache: "no-store" });
+
+=== 8. VERIFIKASI STATIC CANDIDATES SETELAH LOCK ===
+/var/www/jhunaey.my.id/data.js|226 bytes|2026-06-15 14:46
+/var/www/jhunaey.my.id/result-card-live.js|6334 bytes|2026-06-14 22:05
+
+data.js content:
+// BBFS Shinobi static data disabled.
+// Frontend locked to API/database source only.
+// Do not place result/prediction arrays here.
+window.BBFS_STATIC_DATA_DISABLED = true;
+window.BBFS_DATA_SOURCE_LOCK = 'API_DATABASE_ONLY';
+
+=== 9. LIVE URL CHECK ===
+URL_CHECK|https://jhunaey.my.id/|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/result-center.html|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/auto-arsip.html|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/data.js|http=200|bytes=226
+
+=== 10. KESIMPULAN ===
+DATA_JS_ACTION=DISABLE_DATA_JS
+FRONTEND_LOCK_EXPECTATION: index memakai result-card-live.js dan bbfs-home-final.js; kedua file memakai /api dan fetch no-store; data.js static dinonaktifkan jika tidak ada referensi aktif.
