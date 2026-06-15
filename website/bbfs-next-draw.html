@@ -208,11 +208,11 @@ function render(data){
     document.getElementById('rank2d').innerHTML=(rank2||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('');
     document.getElementById('rank3d').innerHTML=(rank3||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('');
   }else{
-    document.getElementById('bbfs').innerHTML='';
+    document.getElementById('bbfs').innerHTML=digitsHtml(bbfs.audit_digits||data.audit_digits||data.payload?.bbfs?.audit_digits||data.bbfs_digits||'');
     document.getElementById('excluded').textContent='Kandidat ditahan oleh Prediction Gate. Audit BBFS: '+(bbfs.audit_digits||data.audit_digits||data.payload?.bbfs?.audit_digits||'-');
     document.getElementById('poltar').textContent='HOLD';
-    document.getElementById('rank2d').innerHTML='<tr><td colspan="3">Ranking ditahan.</td></tr>';
-    document.getElementById('rank3d').innerHTML='<tr><td colspan="3">Ranking ditahan.</td></tr>';
+    document.getElementById('rank2d').innerHTML=(rank2||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('')||'<tr><td colspan="3">Ranking belum tersedia.</td></tr>';
+    document.getElementById('rank3d').innerHTML=(rank3||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('')||'<tr><td colspan="3">Ranking belum tersedia.</td></tr>';
   }
 
   document.getElementById('tms').innerHTML=
