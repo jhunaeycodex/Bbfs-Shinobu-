@@ -6,6 +6,8 @@ node_modules/
 *.zip
 *.sql
 *.bak
+*.backup*
+*.prepatch*
 backup/
 backups/
 .DS_Store

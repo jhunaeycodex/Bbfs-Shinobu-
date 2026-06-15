@@ -10,3 +10,4 @@ Catatan:
 - node_modules tidak disimpan di GitHub
 - database dump tidak disimpan di GitHub
 - token/password tidak disimpan di GitHub
+- full backend tetap ada di VPS dan backup server

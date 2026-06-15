@@ -1496,7 +1496,7 @@ function finalGate(draws, latestDrawDate, score, holdout) {
   const topConcentration = Number((score.scoredDigits.slice(0, 3).reduce((a, b) => a + b.total_score, 0) / Math.max(score.scoredDigits.reduce((a, b) => a + b.total_score, 0), 1)).toFixed(4));
 
   if (draws.length < 5) errors.push('BBFS_FAILED: result valid kurang dari 5.');
-  if (draws.length < 20) errors.push('BBFS_INCOMPLETE: data kurang dari 20 result valid.');
+  if (draws.length < 20) warnings.push('DATA_WARNING: data kurang dari 20 result valid.');
   if (freshDays > 14) errors.push('BBFS_BLOCKED_BY_DATA_CUTOFF: latest result lebih dari 14 hari.');
   if (!/^[0-9]{7}$/.test(score.bbfsDigits) || finalUniqueDigits(score.bbfsDigits).length !== 7) {
     errors.push('BBFS_BLOCKED_BY_SCHEMA_ERROR: BBFS bukan 7 digit unik.');
@@ -1531,7 +1531,7 @@ function finalGate(draws, latestDrawDate, score, holdout) {
     }
 
     if (holdout.bbfs_2d_rate < 0.35 && holdout.bbfs_3d_rate < 0.20) {
-      errors.push('BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah.');
+      warnings.push('PREDICTION_GATE_WARNING: holdout 2D/3D rendah, tampilkan sebagai WASPADA.');
     }
 
     if (holdout.bbfs_4d_rate < 0.20) {
@@ -1592,6 +1592,33 @@ function finalGate(draws, latestDrawDate, score, holdout) {
 
   confidence = Number(Math.max(0, Math.min(99, confidence)).toFixed(2));
 
+  // Gate V2:
+  // HOLD hanya untuk error fatal.
+  // Warning tidak mengunci BBFS, hanya menentukan AMAN/WASPADA.
+  if (canShow) {
+    if (confidence >= 45) {
+      predictionStatus = 'BBFS_READY';
+      userStatus = 'AMAN';
+    } else {
+      predictionStatus = 'BBFS_READY_WITH_WARNING';
+      userStatus = 'WASPADA';
+    }
+  }
+
+  // BBFS Gate V2:
+  // - HOLD hanya untuk error fatal.
+  // - Warning tidak mengunci BBFS.
+  // - Status AMAN/WASPADA ditentukan dari confidence akhir.
+  if (canShow) {
+    if (confidence >= 55) {
+      predictionStatus = 'BBFS_READY';
+      userStatus = 'AMAN';
+    } else {
+      predictionStatus = 'BBFS_READY_WITH_WARNING';
+      userStatus = 'WASPADA';
+    }
+  }
+
   return {
     prediction_status: predictionStatus,
     user_status: userStatus,
@@ -1612,7 +1639,7 @@ function finalGate(draws, latestDrawDate, score, holdout) {
     prediction_gate: {
       errors,
       warnings,
-      rule: 'Candidate BBFS boleh tampil hanya jika can_show_prediction = true.'
+      rule: 'BBFS tampil jika tidak ada error fatal; warning hanya mengubah status AMAN/WASPADA.'
     },
     confidence_calibration: {
       value: confidence,
@@ -1704,7 +1731,7 @@ async function finalGeneratePrediction(marketCodeInput, inputLimit, forcedNextDa
       target_3d: 'KOP-KEPALA-EKOR; kandidat ranking hanya dari digit BBFS.',
       target_2d: 'KEPALA-EKOR; kandidat ranking hanya dari digit BBFS.',
       data_source: 'PostgreSQL result_draws, result valid 4D Prize 1.',
-      display_gate: 'Frontend hanya boleh menampilkan kandidat jika can_show_prediction = true.'
+      display_gate: 'Frontend menampilkan BBFS jika tidak ada error fatal; warning hanya memberi status AMAN/WASPADA.'
     },
     market,
     input_limit: draws.length,
