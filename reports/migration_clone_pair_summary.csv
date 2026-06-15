@@ -1,0 +1,42 @@
+old_code,new_code,old_name,new_name,old_rows,new_rows,same_date_same_result,same_date_conflict_result
+toto-macau-13,totomacau-13,Toto Macau 13 [NOT-SOURCE-HIDDEN],Toto Macau 13,1624,1624,1624,0
+toto-macau-16,totomacau-16,Toto Macau 16 [NOT-SOURCE-HIDDEN],Toto Macau 16,1624,1624,1624,0
+toto-macau-19,totomacau-19,Toto Macau 19 [NOT-SOURCE-HIDDEN],Toto Macau 19,1622,1622,1622,0
+toto-macau-22,totomacau-22,Toto Macau 22 [NOT-SOURCE-HIDDEN],Toto Macau 22,1622,1622,1622,0
+florida-evening,florida-eve,Florida Evening [NOT-SOURCE-HIDDEN],Florida Eve,1621,1626,1621,0
+georgia-evening,georgia-eve,Georgia Evening [NOT-SOURCE-HIDDEN],Georgia Eve,1621,1626,1621,0
+michigan-evening,michigan-eve,Michigan Evening [NOT-SOURCE-HIDDEN],Michigan Eve,1621,1626,1621,0
+illinois-evening,illinois-eve,Illinois Evening [NOT-SOURCE-HIDDEN],Illinois Eve,1620,1623,1620,0
+illinois-midday,illinois-mid,Illinois Midday [NOT-SOURCE-HIDDEN],Illinois Mid,1620,1624,1620,0
+indiana-evening,indiana-eve,Indiana Evening [NOT-SOURCE-HIDDEN],Indiana Eve,1620,1623,1620,0
+kentucky-evening,kentucky-eve,Kentucky Evening [NOT-SOURCE-HIDDEN],Kentucky Eve,1620,1623,1620,0
+kentucky-midday,kentucky-mid,Kentucky Midday [NOT-SOURCE-HIDDEN],Kentucky Mid,1620,1624,1620,0
+maryland-evening,maryland-eve,Maryland Evening [NOT-SOURCE-HIDDEN],Maryland Eve,1620,1625,1620,0
+missouri-evening,missouri-eve,Missouri Evening [NOT-SOURCE-HIDDEN],Missouri Eve,1620,1624,1620,0
+missouri-midday,missouri-mid,Missouri Midday [NOT-SOURCE-HIDDEN],Missouri Mid,1620,1624,1620,0
+new-york-evening,newyork-eve,New York Evening [NOT-SOURCE-HIDDEN],Newyork Eve,1620,1625,1620,0
+north-carolina-day,carolina-day,North Carolina Day [NOT-SOURCE-HIDDEN],Carolina Day,1620,1624,1620,0
+north-carolina-evening,carolina-eve,North Carolina Evening [NOT-SOURCE-HIDDEN],Carolina Eve,1620,1625,1620,0
+tennesse-evening,tennesse-eve,Tennesse Evening [NOT-SOURCE-HIDDEN],Tennesse Eve,1620,1625,1620,0
+washington-dc-evening,washington-eve,Washington Dc Evening [NOT-SOURCE-HIDDEN],Washington Eve,1620,1624,1620,0
+washington-dc-midday,washington-mid,Washington Dc Midday [NOT-SOURCE-HIDDEN],Washington Mid,1620,1625,1620,0
+chinapools,china,Chinapools [NOT-SOURCE-HIDDEN],China,1619,1622,1619,0
+florida-midday,florida-mid,Florida Midday [NOT-SOURCE-HIDDEN],Florida Mid,1620,1625,1619,1
+indiana-midday,indiana-mid,Indiana Midday [NOT-SOURCE-HIDDEN],Indiana Mid,1619,1623,1619,0
+magnum-cambodia,cambodia,Magnum Cambodia [NOT-SOURCE-HIDDEN],Cambodia,1619,1623,1619,0
+maryland-midday,maryland-mid,Maryland Midday [NOT-SOURCE-HIDDEN],Maryland Mid,1619,1623,1619,0
+michigan-midday,michigan-mid,Michigan Midday [NOT-SOURCE-HIDDEN],Michigan Mid,1619,1624,1619,0
+sydney-lotto,sydney,Sydney Lotto [NOT-SOURCE-HIDDEN],Sydney,1619,1623,1619,0
+georgia-midday,georgia-mid,Georgia Midday [NOT-SOURCE-HIDDEN],Georgia Mid,1618,1623,1618,0
+hongkong-lotto,hongkong,Hongkong Lotto [NOT-SOURCE-HIDDEN],Hongkong,1616,1621,1616,0
+new-jersey-midday,newjersey-mid,New Jersey Midday [NOT-SOURCE-HIDDEN],Newjersey Mid,1616,1621,1616,0
+new-jersey-evening,newjersey-eve,New Jersey Evening [NOT-SOURCE-HIDDEN],Newjersey Eve,1615,1618,1615,0
+toto-macau-00,totomacau-00,Toto Macau 00 [NOT-SOURCE-HIDDEN],Toto Macau 00,1393,1394,1393,0
+tennesse-midday,tennesse-mid,Tennesse Midday [NOT-SOURCE-HIDDEN],Tennesse Mid,1389,1393,1389,0
+texas-evening,texas-eve,Texas Evening [NOT-SOURCE-HIDDEN],Texas Eve,1388,1392,1388,0
+texas-morning,texas-mor,Texas Morning [NOT-SOURCE-HIDDEN],Texas Mor,1388,1393,1388,0
+tennesse-morning,tennesse-mor,Tennesse Morning [NOT-SOURCE-HIDDEN],Tennesse Mor,1363,1368,1363,0
+ohio-evening,ohio-eve,Ohio Evening [NOT-SOURCE-HIDDEN],Ohio Eve,1209,1214,1209,0
+ohio-midday,ohio-mid,Ohio Midday [NOT-SOURCE-HIDDEN],Ohio Mid,1208,1213,1208,0
+sgp-singapore,singapore,SGP | Singapore [NOT-SOURCE-HIDDEN],Singapore,1155,1159,1155,0
+toto-macau-23,totomacau-23,Toto Macau 23 [NOT-SOURCE-HIDDEN],Toto Macau 23,1049,1049,1048,1
