@@ -1,0 +1,53 @@
+AUDIT SISTEM BBFS DAN RESULT MEMBACA DATABASE
+Generated: 2026-06-15 14:29:24 WIB
+Mode: READ ONLY - tidak mengubah database
+
+=== 1. SERVICE STATUS ===
+active
+active
+
+=== 2. DATABASE COUNTS ===
+ total_markets | active_markets 
+---------------+----------------
+           139 |             88
+(1 row)
+
+ total_results | valid_4d | invalid_4d | tanggal_awal | tanggal_akhir 
+---------------+----------+------------+--------------+---------------
+        151865 |   151799 |         66 | 2022-01-02   | 2026-06-15
+(1 row)
+
+     code     |     name      | total_result | tanggal_awal | tanggal_akhir 
+--------------+---------------+--------------+--------------+---------------
+ florida-eve  | Florida Eve   |         1626 | 2022-01-02   | 2026-06-15
+ ohio-eve     | Ohio Eve      |         1214 | 2023-02-18   | 2026-06-15
+ singapore    | Singapore     |         1159 | 2023-04-10   | 2026-06-14
+ taiwan       | Taiwan        |         1623 | 2022-01-04   | 2026-06-14
+ totomacau-22 | Toto Macau 22 |         1622 | 2022-01-04   | 2026-06-14
+(5 rows)
+
+
+=== 3. DB LATEST RESULT SAMPLE ===
+    code     |    name     | draw_date  | result |                               source                               
+-------------+-------------+------------+--------+--------------------------------------------------------------------
+ florida-eve | Florida Eve | 2026-06-15 | 1250   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-14 | 5244   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-13 | 3405   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-12 | 3447   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-11 | 7404   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-10 | 4606   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-09 | 0415   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-08 | 8553   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-07 | 9542   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-06 | 4101   | csv-import|merge_all_inactive_history:florida-evening->florida-eve
+ florida-eve | Florida Eve | 2026-06-05 | 9865   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-04 | 4928   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-03 | 5338   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-02 | 2640   | manual-date-range
+ florida-eve | Florida Eve | 2026-06-01 | 7046   | manual-date-range
+(15 rows)
+
+
+=== 4. API RESULT SAMPLE - HARUS SAMA DENGAN DB LATEST ===
+--- API latest for singapore ---
+{"ok":true,"data":[{"id":"19368b1f-7512-4565-8ec4-eb56e6af4002","market_code":"singapore","market_name":"Singapore","draw_date":"2026-06-14","result":"4048","result_4d":"4048","result_2d":"48","result_3d":"048","result_time":"17:45:00","source":"manual-date-range","created_at":"2026-06-14T14:21:44.013Z","updated_at":"2026-06-14T19:32:20.244Z"},{"id":"ecbbe679-70b3-4be5-b6e9-2add4ae13d14","market_code":"singapore","market_name":"Singapore","draw_date":"2026-06-13","result":"5478","result_4d":"5478","result_2d":"78","result_3d":"478","result_time":"17:45:00","source":"manual-date-range","created_at":"2026-06-14T14:21:44.020Z","updated_at":"2026-06-14T19:32:20.247Z"},{"id":"6e906c74-e39f-4b45-b9a8-040152c7d3f8","market_code":"singapore","market_name":"Singapore","draw_date":"2026-06-11","result":"7776","result_4d":"7776","result_2d":"76","result_3d":"776","result_time":"17:45:00","source":"manual-date-range","created_at":"2026-06-14T14:21:44.025Z","updated_at":"2026-06-14T19:32:20.250Z"},{"id":"5a97ebf0-e703-40db-9325-34996df1a60c","market_code":"singapore","market_name":"Singapore","draw_date":"2026-06-10","result":"1622","result_4d":"1622","result_2d":"22","result_3d":"622","result_time":"17:45:00","source":"manual-date-range","created_at":"2026-06-14T14:21:44.028Z","updated_at":"2026-06-14T19:32:20.256Z"},{"id":"b2f4a1ea-18f6-4e77-8887-4368ef17f9f6","market_code":"singapore","market_name":"Singapore","draw_date":"2026-06-07","result":"0735","result_4d":"0735","result_2d":"35"
