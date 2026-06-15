@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BBFS Database Export / Import</title>
+  <style>
+    :root{--bg:#07111f;--card:#0d1b2e;--line:#22334d;--text:#e9f2ff;--muted:#9fb2cc;--accent:#5cc8ff;--ok:#31d07b;--warn:#ffd166;--bad:#ff6b6b;--btn:#12365a;--btn2:#1d4c78}
+    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#07111f,#091827);color:var(--text)}
+    header{padding:22px 18px;border-bottom:1px solid var(--line);background:rgba(8,18,32,.86);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+    h1{margin:0 0 8px;font-size:22px;letter-spacing:.2px}.sub{color:var(--muted);font-size:13px;line-height:1.45}.wrap{max-width:1180px;margin:0 auto;padding:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:rgba(13,27,46,.92);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+    .full{grid-column:1/-1}h2{font-size:17px;margin:0 0 12px}.row{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:center;margin:10px 0}label{color:var(--muted);font-size:13px}
+    input,select,textarea{width:100%;background:#081525;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;outline:none}textarea{min-height:230px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.42;resize:vertical}
+    input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(92,200,255,.12)}button{background:var(--btn);color:var(--text);border:1px solid #2b5d8d;border-radius:10px;padding:10px 12px;cursor:pointer;font-weight:700}button:hover{background:var(--btn2)}button.danger{border-color:#743039;background:#391722}button.danger:hover{background:#51202e}.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{display:inline-block;border:1px solid var(--line);background:#081525;border-radius:999px;padding:5px 9px;color:var(--muted);font-size:12px;margin:3px}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+    pre{white-space:pre-wrap;word-break:break-word;background:#07111f;border:1px solid var(--line);border-radius:12px;padding:12px;min-height:120px;max-height:360px;overflow:auto;font-size:12px;line-height:1.45}.small{font-size:12px;color:var(--muted);line-height:1.45}.tableWrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;white-space:nowrap}th{background:#09182a;color:#b7c8dd;position:sticky;top:0}tr:hover td{background:#0b1e34}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.wrap{padding:12px}header{position:static}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="padding:0">
+      <h1>BBFS Database Export / Import</h1>
+      <div class="sub">Halaman khusus admin untuk export result dan import CSV secara aman. Import memakai endpoint manual-result/add sehingga data lama tidak dioverwrite; tanggal yang sudah ada akan menjadi konflik/skip.</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card full">
+      <h2>1. Admin Token</h2>
+      <div class="row"><label>Bearer Token</label><input id="adminToken" type="password" autocomplete="off" placeholder="Isi ADMIN_API_TOKEN" /></div>
+      <div class="btns">
+        <button onclick="saveToken()">Simpan Token di Browser</button>
+        <button onclick="clearToken()" class="danger">Hapus Token</button>
+      </div>
+      <p class="small">Token dikirim sebagai <b>Authorization: Bearer ...</b>. Jangan buka halaman ini untuk publik. Letakkan hanya untuk admin.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>2. Export Result Per Pasaran</h2>
+        <div class="row"><label>Market Code</label><input id="exportMarket" placeholder="contoh: pennsylvania-day" /></div>
+        <div class="btns">
+          <button onclick="exportMarketCsv()">Export CSV</button>
+          <button onclick="previewMarket()">Preview</button>
+        </div>
+        <p class="small">Export memakai endpoint <code>/api/manual-result/all-by-market</code>. Output CSV: <code>market_code,draw_date,result_4d,result_time,source</code>.</p>
+      </div>
+
+      <div class="card">
+        <h2>3. Template CSV Import</h2>
+        <div class="btns">
+          <button onclick="downloadTemplate()">Download Template</button>
+          <button onclick="fillExample()">Isi Contoh Pennsylvania Day</button>
+          <button onclick="clearCsv()" class="danger">Kosongkan</button>
+        </div>
+        <p class="small">Kolom wajib: <code>market_code,draw_date,result_4d</code>. Kolom opsional: <code>market_name,result_time,source</code>. Wild Ball jangan dimasukkan ke result utama.</p>
+      </div>
+
+      <div class="card full">
+        <h2>4. Import CSV Aman</h2>
+        <textarea id="csvInput" spellcheck="false" placeholder="market_code,draw_date,result_4d,result_time,source&#10;pennsylvania-day,2026-06-14,9998,,lottery.net"></textarea>
+        <div class="btns">
+          <button onclick="parseCsvPreview()">Cek CSV</button>
+          <button onclick="importCsv(false)">Import Safe: Insert Missing Only</button>
+          <button onclick="downloadParsedCsv()">Download CSV Bersih</button>
+        </div>
+        <div id="summary" class="small" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card full">
+        <h2>5. Preview Data</h2>
+        <div class="tableWrap"><table id="previewTable"><thead><tr><th>#</th><th>Market</th><th>Tanggal</th><th>Result 4D</th><th>Jam</th><th>Source</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+      </div>
+
+      <div class="card full">
+        <h2>6. Log</h2>
+        <pre id="log">Siap.</pre>
+      </div>
+    </section>
+  </main>
+
+<script>
+const $ = id => document.getElementById(id);
+const API_ALL_BY_MARKET = '/api/manual-result/all-by-market';
+const API_ADD = '/api/manual-result/add';
+let parsedRows = [];
+
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('bbfs_admin_token') || '';
+  if (saved) $('adminToken').value = saved;
+});
+
+function log(msg, type=''){
+  const now = new Date().toLocaleString('id-ID');
+  $('log').textContent += `\n[${now}] ${type ? type.toUpperCase()+': ' : ''}${msg}`;
+  $('log').scrollTop = $('log').scrollHeight;
+}
+function token(){ return $('adminToken').value.trim(); }
+function authHeaders(extra={}){
+  const t = token();
+  if(!t) throw new Error('Admin token belum diisi.');
+  return { Authorization: 'Bearer ' + t, ...extra };
+}
+function saveToken(){ localStorage.setItem('bbfs_admin_token', token()); log('Token disimpan di browser lokal.'); }
+function clearToken(){ localStorage.removeItem('bbfs_admin_token'); $('adminToken').value=''; log('Token dihapus dari browser.'); }
+function clean4d(v){ const d=String(v||'').replace(/\D/g,''); return d.length>=4 ? d.slice(0,4) : d.padStart(4,'0'); }
+function validDate(v){ return /^\d{4}-\d{2}-\d{2}$/.test(String(v||'')); }
+function csvEscape(v){ const s=String(v??''); return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; }
+function download(name, text, mime='text/csv;charset=utf-8'){
+  const blob = new Blob([text], {type:mime});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 500);
+}
+function splitCsvLine(line){
+  const out=[]; let cur='', quote=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i], n=line[i+1];
+    if(c==='"' && quote && n==='"'){ cur+='"'; i++; continue; }
+    if(c==='"'){ quote=!quote; continue; }
+    if(c===',' && !quote){ out.push(cur.trim()); cur=''; continue; }
+    cur+=c;
+  }
+  out.push(cur.trim()); return out;
+}
+function parseCsv(text){
+  const lines = String(text||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  if(!lines.length) return [];
+  const header = splitCsvLine(lines[0]).map(x=>x.toLowerCase().trim());
+  const hasHeader = header.includes('market_code') && (header.includes('result_4d') || header.includes('result'));
+  const rows=[];
+  const start = hasHeader ? 1 : 0;
+  const idx = name => header.indexOf(name);
+  for(let i=start;i<lines.length;i++){
+    const cells = splitCsvLine(lines[i]);
+    let row;
+    if(hasHeader){
+      row = {
+        market_code: cells[idx('market_code')] || '',
+        market_name: cells[idx('market_name')] || '',
+        draw_date: cells[idx('draw_date')] || cells[idx('date')] || '',
+        result_4d: cells[idx('result_4d')] || cells[idx('result')] || '',
+        result_time: cells[idx('result_time')] || cells[idx('time')] || '',
+        source: cells[idx('source')] || 'html-db-export-import'
+      };
+    } else {
+      row = { market_code:cells[0]||'', draw_date:cells[1]||'', result_4d:cells[2]||'', result_time:cells[3]||'', source:cells[4]||'html-db-export-import' };
+    }
+    row.market_code = String(row.market_code||'').trim().toLowerCase();
+    row.draw_date = String(row.draw_date||'').trim();
+    row.result_4d = clean4d(row.result_4d);
+    row.status = (!row.market_code || !validDate(row.draw_date) || !/^\d{4}$/.test(row.result_4d)) ? 'INVALID' : 'READY';
+    rows.push(row);
+  }
+  const unique = new Map();
+  for(const r of rows){ unique.set(`${r.market_code}|${r.draw_date}`, r); }
+  return [...unique.values()].sort((a,b)=>a.market_code.localeCompare(b.market_code)||b.draw_date.localeCompare(a.draw_date));
+}
+function renderPreview(rows){
+  const tbody = $('previewTable').querySelector('tbody');
+  tbody.innerHTML = rows.slice(0,1000).map((r,i)=>`<tr><td>${i+1}</td><td>${r.market_code||''}</td><td>${r.draw_date||''}</td><td>${r.result_4d||''}</td><td>${r.result_time||''}</td><td>${r.source||''}</td><td>${r.status||''}</td></tr>`).join('');
+}
+function parseCsvPreview(){
+  parsedRows = parseCsv($('csvInput').value);
+  renderPreview(parsedRows);
+  const invalid = parsedRows.filter(r=>r.status==='INVALID').length;
+  $('summary').innerHTML = `<span class="pill">Total: ${parsedRows.length}</span><span class="pill ${invalid?'bad':'ok'}">Invalid: ${invalid}</span><span class="pill ok">Ready: ${parsedRows.length-invalid}</span>`;
+  log(`CSV dicek. total=${parsedRows.length}, invalid=${invalid}`);
+}
+async function previewMarket(){
+  const market = $('exportMarket').value.trim().toLowerCase();
+  if(!market) return alert('Isi market code dulu.');
+  const r = await fetch(`${API_ALL_BY_MARKET}?market_code=${encodeURIComponent(market)}`, {headers:authHeaders()});
+  const j = await r.json();
+  if(!j.ok) throw new Error(j.error||'Gagal ambil data market');
+  const rows = (j.data||[]).map(x=>({market_code:x.market_code,draw_date:x.draw_date,result_4d:x.result_4d,result_time:x.result_time||'',source:x.source||'',status:'DB'}));
+  renderPreview(rows);
+  $('summary').innerHTML = `<span class="pill">${market}</span><span class="pill ok">${rows.length} row DB</span>`;
+  log(`Preview ${market}: ${rows.length} row.`);
+}
+async function exportMarketCsv(){
+  const market = $('exportMarket').value.trim().toLowerCase();
+  if(!market) return alert('Isi market code dulu.');
+  const r = await fetch(`${API_ALL_BY_MARKET}?market_code=${encodeURIComponent(market)}`, {headers:authHeaders()});
+  const j = await r.json();
+  if(!j.ok) throw new Error(j.error||'Gagal export');
+  const header = ['market_code','draw_date','result_4d','result_time','source'];
+  const body = (j.data||[]).map(x=>[x.market_code,x.draw_date,x.result_4d,x.result_time||'',x.source||''].map(csvEscape).join(',')).join('\n');
+  download(`${market}_export_${new Date().toISOString().slice(0,10)}.csv`, header.join(',')+'\n'+body+'\n');
+  log(`Export ${market}: ${j.data.length} row.`);
+}
+async function importCsv(){
+  if(!parsedRows.length) parseCsvPreview();
+  const ready = parsedRows.filter(r=>r.status==='READY');
+  if(!ready.length) return alert('Tidak ada row valid untuk import.');
+  if(!confirm(`Import ${ready.length} row? Mode aman: data lama tidak dioverwrite.`)) return;
+  let added=0, exists=0, failed=0;
+  for(const row of ready){
+    try{
+      const payload = {market_code:row.market_code, market_name:row.market_name||'', draw_date:row.draw_date, result:row.result_4d, result_time:row.result_time||''};
+      const r = await fetch(API_ADD, {method:'POST', headers:authHeaders({'Content-Type':'application/json'}), body:JSON.stringify(payload)});
+      const j = await r.json().catch(()=>({ok:false,error:'JSON response gagal'}));
+      if(r.status===409){ exists++; row.status='EXISTS'; }
+      else if(j.ok){ added++; row.status='ADDED'; }
+      else { failed++; row.status='FAILED: '+(j.error||r.status); }
+    }catch(e){ failed++; row.status='FAILED: '+e.message; }
+    if((added+exists+failed)%25===0) renderPreview(parsedRows);
+  }
+  renderPreview(parsedRows);
+  $('summary').innerHTML = `<span class="pill ok">Added: ${added}</span><span class="pill warn">Exists/Skip: ${exists}</span><span class="pill bad">Failed: ${failed}</span>`;
+  log(`Import selesai. added=${added}, exists=${exists}, failed=${failed}`);
+}
+function downloadTemplate(){
+  download('bbfs_result_import_template.csv', 'market_code,draw_date,result_4d,result_time,source\npennsylvania-day,2026-06-14,9998,,lottery.net\n');
+}
+function downloadParsedCsv(){
+  if(!parsedRows.length) parseCsvPreview();
+  const header=['market_code','draw_date','result_4d','result_time','source'];
+  const body=parsedRows.map(r=>[r.market_code,r.draw_date,r.result_4d,r.result_time||'',r.source||'html-db-export-import'].map(csvEscape).join(',')).join('\n');
+  download('bbfs_result_import_clean.csv', header.join(',')+'\n'+body+'\n');
+}
+function clearCsv(){ $('csvInput').value=''; parsedRows=[]; renderPreview([]); $('summary').textContent=''; log('CSV input dikosongkan.'); }
+function fillExample(){
+  $('csvInput').value = 'market_code,draw_date,result_4d,result_time,source\npennsylvania-day,2026-06-14,9998,,lottery.net/pennsylvania/pick-4-day/numbers\npennsylvania-day,2026-06-13,5193,,lottery.net/pennsylvania/pick-4-day/numbers\npennsylvania-day,2026-06-12,4090,,lottery.net/pennsylvania/pick-4-day/numbers\n';
+  parseCsvPreview();
+}
+</script>
+</body>
+</html>
