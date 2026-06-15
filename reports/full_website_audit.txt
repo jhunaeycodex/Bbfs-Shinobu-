@@ -1,0 +1,148 @@
+BBFS FULL WEBSITE AUDIT
+Generated: 2026-06-15 12:22:50 WIB
+
+=== 1. SERVICE CHECK ===
+bbfs-backend: active
+nginx: active
+2026/06/15 12:22:50 [warn] 53030#53030: conflicting server name "jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:22:50 [warn] 53030#53030: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:22:50 [warn] 53030#53030: conflicting server name "jhunaey.my.id" on 0.0.0.0:443, ignored
+2026/06/15 12:22:50 [warn] 53030#53030: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:443, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== 2. FILE EXISTENCE CHECK ===
+OK   /var/www/jhunaey.my.id/index.html
+OK   /var/www/jhunaey.my.id/bbfs-home-final.js
+OK   /var/www/jhunaey.my.id/bbfs-next-draw.html
+OK   /var/www/jhunaey.my.id/manual-fetch.html
+MISS /var/www/jhunaey.my.id/result-center.html
+MISS /var/www/jhunaey.my.id/auto-arsip.html
+OK   /var/www/jhunaey.my.id/data.js
+
+=== 3. BACKEND SYNTAX CHECK ===
+-- node --check server.js
+-- node --check manual_fetch_routes.js
+-- node --check market_alias.js
+-- node --check scripts/manual_fetch_date_range_worker.js
+-- node --check scripts/fetch_all_manual_job.js
+
+=== 4. FRONTEND JS SYNTAX CHECK ===
+-- node --check bbfs-home-final.js
+-- node --check data.js
+
+=== 5. HTTP PAGE CHECK ===
+home                               200 bytes=495821 https://jhunaey.my.id/
+bbfs-next-draw                     200 bytes=14714 https://jhunaey.my.id/bbfs-next-draw.html
+manual-fetch                       200 bytes=19257 https://jhunaey.my.id/manual-fetch.html
+result-center                      200 bytes=495821 https://jhunaey.my.id/result-center.html
+auto-arsip                         200 bytes=495821 https://jhunaey.my.id/auto-arsip.html
+
+=== 6. API CHECK ===
+api-markets                        200 bytes=13099 http://127.0.0.1:3001/api/markets
+api-results-latest                 200 bytes=6440 http://127.0.0.1:3001/api/results/latest?market_code=taiwan
+api-bbfs-dashboard                 200 bytes=55639 http://127.0.0.1:3001/api/public/bbfs-final-dashboard?limit=5
+api-manual-status                  401 bytes=35 http://127.0.0.1:3001/api/manual-fetch/date-range-status
+
+=== 7. API JSON PARSE CHECK ===
+-- http://127.0.0.1:3001/api/markets
+JSON_OK
+-- http://127.0.0.1:3001/api/public/bbfs-final-dashboard?limit=5
+JSON_OK
+-- http://127.0.0.1:3001/api/manual-fetch/date-range-status
+JSON_OK
+
+=== 8. DATABASE SUMMARY ===
+ active_markets 
+----------------
+             88
+(1 row)
+
+ inactive_markets 
+------------------
+               51
+(1 row)
+
+ result_total 
+--------------
+        89561
+(1 row)
+
+ invalid_result_4d 
+-------------------
+                66
+(1 row)
+
+
+=== 9. ACTIVE MARKET LATEST RESULT BEHIND ===
+ code | name | latest_tanggal 
+------+------+----------------
+(0 rows)
+
+
+=== 10. BBFS ACTIVE STATUS ===
+ user_status |    prediction_status    | can_show_prediction | jumlah | avg_confidence | min_confidence | max_confidence 
+-------------+-------------------------+---------------------+--------+----------------+----------------+----------------
+ AMAN        | BBFS_READY              | t                   |     38 |          56.39 |          45.84 |          73.98
+ WASPADA     | BBFS_READY_WITH_WARNING | t                   |     50 |          31.91 |          11.11 |          44.86
+(2 rows)
+
+
+=== 11. ACTIVE HOLD DETAIL ===
+ name | code | user_status | prediction_status | can_show_prediction | confidence | errors 
+------+------+-------------+-------------------+---------------------+------------+--------
+(0 rows)
+
+
+=== 12. DUPLICATE ACTIVE MARKET CODE/NAME ===
+ code | count 
+------+-------
+(0 rows)
+
+ name_key | count 
+----------+-------
+(0 rows)
+
+
+=== 13. SOURCE ALIAS COVERAGE ===
+ active_markets | active_with_alias 
+----------------+-------------------
+             88 |                88
+(1 row)
+
+
+=== 14. TODO/FIXME SEARCH ===
+/var/www/jhunaey.my.id/manual-fetch.html:283:    if(!j.ok) throw new Error('API markets gagal');
+/var/www/jhunaey.my.id/manual-fetch.html:330:    if(!j.ok) throw new Error('API alias gagal');
+/var/www/jhunaey.my.id/bbfs-next-draw.html:170:    if(!j.ok)throw new Error('API markets gagal');
+/var/www/jhunaey.my.id/bbfs-home-final.js:220:      if (!j.ok || !Array.isArray(j.data)) throw new Error("API markets gagal");
+/var/www/jhunaey.my.id/bbfs-home-final.js:420:      if (!j.ok) throw new Error(j.error || "API BBFS Final gagal");
+/opt/bbfs-shinobi/backend/server.js:582:try { require('./manual_fetch_routes')(app, pool); console.log('Manual fetch routes enabled'); } catch (e) { console.error('Manual fetch routes failed:', e.message); }
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:32:    throw new Error('Result tidak valid: ' + value);
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:49:  throw new Error('Tanggal tidak valid: ' + value);
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:81:    console.error('Pakai: node scripts/import_results_csv.js /path/results.csv');
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:119:        if (!pasaran) throw new Error('Kolom pasaran kosong');
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:120:        if (!tanggal) throw new Error('Kolom tanggal kosong');
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:121:        if (!result) throw new Error('Kolom result kosong');
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:156:          console.error('Row ' + (i + 2) + ': ' + error.message);
+/opt/bbfs-shinobi/backend/scripts/import_results_csv.js:201:  console.error('IMPORT GAGAL:', error.message);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:424:        console.error(`Market ${opt.code} gagal: ${error.message}`);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:477:          throw new Error('Data source tidak lengkap');
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:533:        console.error(`Row error: ${error.message}`);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results_playwright_killed.js:582:  console.error('AUTO FETCH GAGAL:', error.message);
+/opt/bbfs-shinobi/backend/scripts/auto_fetch_results.js:303:  console.error('AUTO FETCH GAGAL:', err.message);
+/opt/bbfs-shinobi/backend/scripts/inspect_source_assets.js:41:  console.error(e.message);
+/opt/bbfs-shinobi/backend/scripts/find_source_endpoint.js:124:  console.error('FATAL=' + err.stack);
+/opt/bbfs-shinobi/backend/scripts/backup/auto_fetch_results_20260614_204120.js:324:  console.error('AUTO FETCH GAGAL:', err.message);
+/opt/bbfs-shinobi/backend/scripts/fetch_all_manual_job.js:64:  if (u.protocol !== 'https:') throw new Error('URL harus https.');
+/opt/bbfs-shinobi/backend/scripts/fetch_all_manual_job.js:65:  if (!/^prediksi\d+\.angka-alexis\.pro$/i.test(u.hostname)) throw new Error('Domain sumber tidak diizinkan.');
+/opt/bbfs-shinobi/backend/scripts/fetch_all_manual_job.js:231:    if (!selectExists) throw new Error('Dropdown #selectpasaran tidak ditemukan.');
+/opt/bbfs-shinobi/backend/scripts/fix_30_days_all_markets.js:242:    throw new Error('Dropdown #selectpasaran tidak ditemukan. Link sumber tidak cocok.');
+/opt/bbfs-shinobi/backend/scripts/fix_30_days_all_markets.js:311:  console.error('GAGAL:', error.message);
+/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js:306:    throw new Error('Tanggal awal dan tanggal akhir wajib diisi format YYYY-MM-DD.');
+/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js:310:    throw new Error('Tanggal awal tidak boleh lebih besar dari tanggal akhir.');
+/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js:350:  if (!selectCount) throw new Error('Dropdown #selectpasaran tidak ditemukan.');
+/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js:363:    throw new Error(ALL_MARKETS ? 'Tidak ada alias aktif yang cocok dari sumber.' : 'Alias aktif untuk pasaran canonical ini tidak ditemukan.');
+/opt/bbfs-shinobi/backend/scripts/manual_fetch_date_range_worker.js:469:  console.error(JSON.stringify(result, null, 2));
+/opt/bbfs-shinobi/backend/manual_fetch_routes.js:32:  if (u.protocol !== 'https:') throw new Error('URL harus https.');
+/opt/bbfs-shinobi/backend/manual_fetch_routes.js:33:  if (!/^prediksi\d+\.angka-alexis\.pro$/i.test(u.hostname)) throw new Error('Domain sumber tidak diizinkan. Pakai prediksiXX.angka-alexis.pro.');
