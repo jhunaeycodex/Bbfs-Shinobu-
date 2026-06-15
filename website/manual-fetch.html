@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- BBFS AUTO CACHE CONTROL -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manual Fetch & Result Editor BBFS</title>
+  <style>
+    body {
+      margin:0; min-height:100vh;
+      background:radial-gradient(circle at top,rgba(140,20,8,.38),transparent 34rem),linear-gradient(180deg,#210403,#050000);
+      color:#ffe5aa; font-family:Arial,sans-serif;
+    }
+    .wrap{width:min(1100px,calc(100vw - 22px));margin:18px auto 60px}
+    .box{border:1px solid rgba(255,185,70,.65);border-radius:16px;background:rgba(18,2,0,.84);padding:14px;margin:12px 0;box-shadow:0 0 18px rgba(255,76,0,.18)}
+    h1,h2{margin:0 0 10px;color:#fff2bd}
+    p{color:#d9b77c;line-height:1.45}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .grid3{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
+    label{display:block;font-size:13px;font-weight:800;color:#ffd889;margin-bottom:6px}
+    input,select,button{width:100%;box-sizing:border-box;border-radius:10px;padding:12px;font-size:15px;border:1px solid rgba(255,211,126,.86)}
+    input,select{background:#fff8ec;color:#1e0b00;font-weight:700}
+    button{background:linear-gradient(180deg,#c61e13,#760600);color:white;font-weight:900;cursor:pointer}
+    button.gold{background:linear-gradient(180deg,#c38313,#744400)}
+    button.dark{background:linear-gradient(180deg,#5b1009,#260200)}
+    button.danger{background:linear-gradient(180deg,#b80000,#520000)}
+    .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+    .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+    .kv{border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;background:rgba(255,255,255,.03)}
+    .kv b{display:block;color:#fff2bd;margin-bottom:4px}
+    pre{white-space:pre-wrap;overflow:auto;background:#030303;color:#c7ffc9;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.08);min-height:100px}
+    table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+    th,td{border-bottom:1px solid rgba(255,185,70,.18);padding:8px 6px;text-align:left}
+    th{color:#ffd889}
+    .mini{font-size:12px;color:#d9b77c}
+    @media(max-width:820px){.grid,.grid3,.actions{grid-template-columns:1fr}.wrap{width:calc(100vw - 16px);margin-top:10px}h1{font-size:22px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="box">
+    <h1>Manual Fetch & Result Editor BBFS</h1>
+    <p>Halaman ini untuk fetch manual, add result, edit result, hapus result, dan cek result terakhir. Result wajib 4D dari Prize 1.</p>
+
+    <label>Admin Token</label>
+    <input id="token" value="bbfs_shinobi_admin_token_sementara">
+  </div>
+
+  <div class="box">
+    <h2>Fetch Manual dari Sumber</h2>
+
+    <label>Link Sumber</label>
+    <input id="source" value="https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel">
+
+    <div class="grid">
+      <div>
+        <label>Pasaran</label>
+        <select id="fetch_market"><option value="">Memuat pasaran...</option></select>
+      </div>
+      <div>
+        <label>Tanggal Awal</label>
+        <input id="date_from" type="date">
+      </div>
+      <div>
+        <label>Tanggal Akhir</label>
+        <input id="date_to" type="date">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button onclick="fetchOne()">FETCH SATU</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="gold" onclick="fetchAll()">FETCH SEMUA PASARAN</button>
+      <button class="dark" onclick="checkFetchStatus()">CEK STATUS FETCH</button>
+      <button class="dark" onclick="loadList()">REFRESH LIST RESULT</button>
+      <button class="dark" onclick="location.href='/'">BERANDA</button>
+    </div>
+
+    <div class="actions">
+      <button class="gold" onclick="syncAliases()">SYNC ALIAS DARI SUMBER</button>
+      <button class="dark" onclick="loadAliases()">MUAT ALIAS MAPPING</button>
+      <button class="dark" onclick="refreshMarketContext()">REFRESH INFO PASARAN</button>
+      <button class="dark" onclick="loadMarkets()">RELOAD DROPDOWN</button>
+    </div>
+
+    <div class="meta">
+      <div class="kv"><b>Pasaran canonical dipilih</b><span id="selected_canonical">-</span></div>
+      <div class="kv"><b>Alias/source dipakai fetch</b><span id="selected_alias">-</span></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>Add / Edit / Delete Result</h2>
+    <div class="mini">Aturan: result wajib 4 digit. Add menolak data kalau tanggal sudah ada. Edit mengubah data yang sudah ada. Delete menghapus tanggal result.</div>
+
+    <div class="grid">
+      <div>
+        <label>Pasaran</label>
+        <select id="crud_market"><option value="">Memuat pasaran...</option></select>
+      </div>
+      <div>
+        <label>Tanggal Result</label>
+        <input id="crud_date" type="date">
+      </div>
+      <div>
+        <label>Result 4D</label>
+        <input id="crud_result" inputmode="numeric" maxlength="4" placeholder="7795">
+      </div>
+      <div>
+        <label>Jam Result</label>
+        <input id="crud_time" placeholder="00:40:00">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button onclick="addResult()">ADD RESULT</button>
+      <button class="gold" onclick="editResult()">EDIT RESULT</button>
+      <button class="danger" onclick="deleteResult()">HAPUS RESULT</button>
+      <button class="dark" onclick="loadLatestSelected()">CEK RESULT TERAKHIR</button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>Daftar Result</h2>
+    <div class="grid3">
+      <div>
+        <label>Filter Pasaran</label>
+        <select id="list_market"><option value="">Semua pasaran</option></select>
+      </div>
+      <div>
+        <label>Limit</label>
+        <input id="list_limit" type="number" value="30" min="1" max="200">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button onclick="loadList()">TAMPILKAN</button>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Pasaran</th><th>Tanggal</th><th>Result</th><th>Jam</th><th>Aksi</th></tr></thead>
+      <tbody id="result_rows"></tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>Alias Mapping</h2>
+    <div class="mini">Source alias disimpan terpisah. Dropdown tetap canonical market aktif.</div>
+    <table>
+      <thead><tr><th>Source Name</th><th>Source Value</th><th>Canonical</th><th>Aktif</th></tr></thead>
+      <tbody id="alias_rows"></tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>Output</h2>
+    <pre id="out">Siap.</pre>
+  </div>
+</div>
+
+<script>
+const out = document.getElementById('out');
+let aliasRows = [];
+let marketRows = [];
+
+function show(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+function parseLastJsonLine(text){
+  const rawText = String(text || '').trimEnd();
+  let idx = rawText.lastIndexOf('\n{');
+  while(idx !== -1){
+    const candidate = rawText.slice(idx + 1).trim();
+    try { return JSON.parse(candidate); } catch(e) {}
+    idx = rawText.lastIndexOf('\n{', idx - 1);
+  }
+  try { return JSON.parse(rawText); } catch(e) {}
+  return null;
+}
+function normalizeFetchResponse(j){
+  const direct = j && typeof j === 'object' ? j : {};
+  const fromStdout = direct.stdout ? parseLastJsonLine(direct.stdout) : null;
+  const parsed = direct.sample || direct.canonical_market_code ? direct : (fromStdout || {});
+  const sampleSource = Array.isArray(parsed.sample) ? parsed.sample : [];
+  return {
+    ok: Boolean(parsed.ok !== undefined ? parsed.ok : direct.ok),
+    status: parsed.status || direct.status || (parsed.ok ? 'completed' : 'failed'),
+    canonical_market_code: parsed.canonical_market_code || sampleSource[0]?.canonical_market_code || null,
+    canonical_market_name: parsed.canonical_market_name || sampleSource[0]?.canonical_market_name || null,
+    source_name: parsed.source_name || sampleSource[0]?.source_name || null,
+    source_value: parsed.source_value || sampleSource[0]?.source_value || null,
+    date_from: parsed.date_from || direct.date_from || null,
+    date_to: parsed.date_to || direct.date_to || null,
+    inserted: Number(parsed.inserted || 0),
+    updated: Number(parsed.updated || 0),
+    unchanged: Number(parsed.unchanged || 0),
+    conflicts: Number(parsed.conflicts || 0),
+    sample: sampleSource.slice(0, 20).map(row => ({
+      draw_date: row.draw_date,
+      result: row.result,
+      result_time: row.result_time
+    })),
+    debug_raw: direct.stdout && !parsed.sample ? direct.stdout : undefined
+  };
+}
+function showFetchSummary(j){
+  show(normalizeFetchResponse(j));
+}
+function showAddSummary(j){
+  if(!j || !j.ok){
+    show({
+      ok: false,
+      action: j?.action || 'failed',
+      error: j?.error || 'ADD RESULT gagal'
+    });
+    return;
+  }
+  show({
+    ok: true,
+    action: j.action || 'added',
+    market_code: j.market_code || j?.market?.code || null,
+    market_name: j.market_name || j?.market?.name || null,
+    draw_date: j.draw_date || j?.data?.draw_date || null,
+    result: j.result || j?.data?.result || null,
+    result_time: j.result_time || j?.data?.raw_payload?.result_time || ''
+  });
+}
+function token(){ return document.getElementById('token').value.trim(); }
+function today(){ return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
+function daysAgo(n){ const d=new Date(); d.setDate(d.getDate()-n); return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(d); }
+function clean4D(v){ return String(v||'').replace(/\D/g,'').slice(-4); }
+
+document.getElementById('date_to').value = today();
+document.getElementById('date_from').value = daysAgo(30);
+document.getElementById('crud_date').value = today();
+
+async function api(url, method, body){
+  const res = await fetch(url,{
+    method,
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+token()},
+    body: body ? JSON.stringify(body) : undefined
+  });
+  const text = await res.text();
+  try { return JSON.parse(text); } catch(e) { return {ok:false, raw:text}; }
+}
+
+async function apiWithTimeout(url, method, body, timeoutMs){
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(new DOMException('Request timed out', 'AbortError')), timeoutMs);
+  try{
+    const res = await fetch(url,{
+      method,
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token()},
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal
+    });
+    const text = await res.text();
+    try { return JSON.parse(text); } catch(e) { return {ok:false, raw:text}; }
+  }catch(e){
+    if(e && e.name === 'AbortError'){
+      return { ok:false, status:'timeout', error:'FETCH SATU timeout setelah '+Math.round(timeoutMs/1000)+' detik.' };
+    }
+    return { ok:false, status:'error', error:e.message };
+  }finally{
+    clearTimeout(timer);
+  }
+}
+
+async function apiGet(url){
+  const res = await fetch(url,{headers:{'Authorization':'Bearer '+token()},cache:'no-store'});
+  const text = await res.text();
+  try { return JSON.parse(text); } catch(e) { return {ok:false, raw:text}; }
+}
+
+async function loadMarkets(){
+  try{
+    const res = await fetch('/api/markets',{cache:'no-store'});
+    const j = await res.json();
+    if(!j.ok) throw new Error('API markets gagal');
+
+    marketRows = j.data || [];
+    const opts = marketRows.map(m=>'<option value="'+m.code+'">'+(m.name||m.code)+'</option>').join('');
+    document.getElementById('fetch_market').innerHTML = opts;
+    document.getElementById('crud_market').innerHTML = opts;
+    document.getElementById('list_market').innerHTML = '<option value="">Semua pasaran</option>' + opts;
+
+    const saved = localStorage.getItem('manual_fetch_market');
+    if(saved){
+      ['fetch_market','crud_market','list_market'].forEach(id=>{
+        const el=document.getElementById(id);
+        if([...el.options].some(o=>o.value===saved)) el.value=saved;
+      });
+    }
+
+    ['fetch_market','crud_market','list_market'].forEach(id=>{
+      document.getElementById(id).onchange = e => {
+        localStorage.setItem('manual_fetch_market', e.target.value);
+        if (id === 'fetch_market') refreshMarketContext();
+      };
+    });
+
+    refreshMarketContext();
+  }catch(e){ show('Gagal memuat pasaran: '+e.message); }
+}
+
+function selectedMarket(){
+  const code = document.getElementById('fetch_market').value;
+  return marketRows.find(m => m.code === code) || null;
+}
+
+function refreshMarketContext(){
+  const market = selectedMarket();
+  const alias = aliasRows.find(a => a.canonical_market_code === (market?.code || ''));
+
+  document.getElementById('selected_canonical').textContent = market ? ((market.name || market.code) + ' (' + market.code + ')') : '-';
+  document.getElementById('selected_alias').textContent = alias
+    ? (alias.source_name + ' / ' + alias.source_value + ' -> ' + alias.canonical_market_name)
+    : 'Belum ada alias aktif';
+}
+
+async function loadAliases(){
+  try{
+    const source = document.getElementById('source').value.trim();
+    const res = await fetch('/api/market-aliases?source_url='+encodeURIComponent(source),{cache:'no-store'});
+    const j = await res.json();
+    if(!j.ok) throw new Error('API alias gagal');
+
+    aliasRows = j.data || [];
+    document.getElementById('alias_rows').innerHTML = aliasRows.map(row =>
+      '<tr>'+
+      '<td>'+(row.source_name || '-')+'</td>'+
+      '<td>'+(row.source_value || '-')+'</td>'+
+      '<td>'+(row.canonical_market_name || '-')+'</td>'+
+      '<td>'+(row.is_active ? 'YA' : 'TIDAK')+'</td>'+
+      '</tr>'
+    ).join('');
+
+    refreshMarketContext();
+    show({ok:true,total:aliasRows.length,message:'Alias mapping dimuat.'});
+  }catch(e){
+    show('Gagal memuat alias: '+e.message);
+  }
+}
+
+async function syncAliases(){
+  show('Menyinkronkan alias dari sumber...');
+  const j = await api('/api/market-aliases/sync-from-source','POST',{source_url:document.getElementById('source').value.trim()});
+  show(j);
+  await loadAliases();
+  await loadMarkets();
+}
+
+function fetchPayload(){
+  return {
+    source_url: document.getElementById('source').value.trim(),
+    market: document.getElementById('fetch_market').value,
+    date_from: document.getElementById('date_from').value,
+    date_to: document.getElementById('date_to').value
+  };
+}
+
+async function fetchOne(){
+  const btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'FETCH SATU');
+  if(btn) btn.disabled = true;
+  try{
+    const payload = fetchPayload();
+    const marketLabel = selectedMarket();
+    show({
+      status: 'running',
+      message: 'Memproses fetch satu pasaran...',
+      market: marketLabel ? (marketLabel.name || marketLabel.code) : payload.market,
+      source_alias: aliasRows.find(a => a.canonical_market_code === payload.market)?.source_value || null,
+      date_from: payload.date_from,
+      date_to: payload.date_to
+    });
+    const j = await apiWithTimeout('/api/manual-fetch/date-range','POST',payload,180000);
+    if(j && j.ok) await loadList({silent:true});
+    showFetchSummary(j);
+  }catch(e){
+    show({ ok:false, status:'error', error:e.message });
+  }finally{
+    if(btn) btn.disabled = false;
+  }
+}
+
+async function fetchAll(){
+  show('Memulai fetch semua pasaran...');
+  const p = fetchPayload();
+  delete p.market;
+  const j = await api('/api/manual-fetch/date-range-all','POST',p);
+  show(j);
+}
+
+async function checkFetchStatus(){
+  const j = await apiGet('/api/manual-fetch/date-range-status');
+  show(j);
+}
+
+function crudPayload(){
+  const result = clean4D(document.getElementById('crud_result').value);
+  return {
+    market_code: document.getElementById('crud_market').value,
+    draw_date: document.getElementById('crud_date').value,
+    result,
+    result_time: document.getElementById('crud_time').value.trim()
+  };
+}
+
+function validateCrud(p){
+  if(!p.market_code) return 'Pasaran wajib dipilih.';
+  if(!p.draw_date) return 'Tanggal wajib diisi.';
+  if(!/^[0-9]{4}$/.test(p.result)) return 'Result wajib 4 digit.';
+  return '';
+}
+
+async function addResult(){
+  const p = crudPayload();
+  const err = validateCrud(p);
+  if(err) return show(err);
+  const j = await api('/api/manual-result/add','POST',p);
+  if(!j || !j.ok){
+    const duplicate = /sudah ada/i.test(String(j && j.error || ''));
+    show({
+      ok: false,
+      action: duplicate ? 'exists' : 'failed',
+      error: duplicate ? 'Result tanggal ini sudah ada, gunakan EDIT RESULT' : ((j && j.error) || 'ADD RESULT gagal')
+    });
+    return;
+  }
+  await loadList({silent:true});
+  showAddSummary(j);
+}
+
+async function editResult(){
+  const p = crudPayload();
+  const err = validateCrud(p);
+  if(err) return show(err);
+  const j = await api('/api/manual-result/edit','PUT',p);
+  show(j);
+  loadList();
+}
+
+async function deleteResult(){
+  const p = crudPayload();
+  if(!p.market_code || !p.draw_date) return show('Pasaran dan tanggal wajib diisi.');
+  if(!confirm('Hapus result '+p.market_code+' tanggal '+p.draw_date+'?')) return;
+  const j = await api('/api/manual-result/delete','DELETE',{market_code:p.market_code,draw_date:p.draw_date});
+  show(j);
+  loadList();
+}
+
+async function loadLatestSelected(){
+  const m = document.getElementById('crud_market').value;
+  if(!m) return show('Pilih pasaran dulu.');
+  const j = await apiGet('/api/results/latest?limit=1&market_code='+encodeURIComponent(m));
+  if(j.ok && j.data && j.data[0]){
+    const r = j.data[0];
+    document.getElementById('crud_date').value = String(r.draw_date).slice(0,10);
+    document.getElementById('crud_result').value = clean4D(r.result_4d || r.result);
+    document.getElementById('crud_time').value = r.result_time || '';
+  }
+  show(j);
+}
+
+function fillForm(row){
+  document.getElementById('crud_market').value = row.market_code;
+  document.getElementById('crud_date').value = row.draw_date;
+  document.getElementById('crud_result').value = clean4D(row.result_4d || row.result);
+  document.getElementById('crud_time').value = row.result_time || '';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function loadList(opts = {}){
+  const silent = Boolean(opts && opts.silent);
+  const m = document.getElementById('list_market').value;
+  const limit = document.getElementById('list_limit').value || 30;
+  const url = '/api/manual-result/list?limit='+encodeURIComponent(limit)+(m?'&market_code='+encodeURIComponent(m):'');
+  const j = await apiGet(url);
+  if(!j.ok){ show(j); return; }
+
+  const tbody = document.getElementById('result_rows');
+  tbody.innerHTML = j.data.map(row =>
+    '<tr>'+
+    '<td>'+row.market_name+'</td>'+
+    '<td>'+row.draw_date+'</td>'+
+    '<td><b>'+clean4D(row.result_4d||row.result)+'</b></td>'+
+    '<td>'+(row.result_time||'-')+'</td>'+
+    '<td><button class="dark" onclick=\''+ 'fillForm('+JSON.stringify(row).replace(/'/g,"&#39;")+')' +'\'>PILIH</button></td>'+
+    '</tr>'
+  ).join('');
+
+  if(!silent) show({ok:true,total:j.data.length,message:'Daftar result dimuat.'});
+}
+
+loadMarkets().then(loadList);
+loadAliases();
+</script>
+</body>
+</html>

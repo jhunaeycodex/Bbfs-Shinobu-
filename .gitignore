@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.env
+*.log
+*.tar.gz
+*.zip
+*.sql
+*.bak
+backup/
+backups/
+.DS_Store

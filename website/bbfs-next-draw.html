@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!-- BBFS AUTO CACHE CONTROL -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BBFS Final Next Draw</title>
+  <style>
+    body{margin:0;min-height:100vh;background:radial-gradient(circle at top,rgba(145,18,8,.38),transparent 34rem),linear-gradient(180deg,#170101,#030000);color:#ffe8ad;font-family:Arial,sans-serif}
+    .wrap{width:min(1180px,calc(100vw - 18px));margin:14px auto 60px}
+    .box{border:1px solid rgba(255,185,70,.62);border-radius:16px;background:rgba(18,2,0,.86);padding:14px;margin:12px 0;box-shadow:0 0 18px rgba(255,76,0,.16)}
+    h1,h2{margin:0 0 10px;color:#fff2bd}
+    .small,p{color:#d9b77c;line-height:1.45;font-size:13px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    a{color:#ffd889;font-weight:900;text-decoration:none}
+    .grid{display:grid;grid-template-columns:1.5fr .65fr .85fr;gap:10px}
+    .actions{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px}
+    label{display:block;font-size:13px;font-weight:900;color:#ffd889;margin-bottom:6px}
+    input,select,button{width:100%;box-sizing:border-box;border-radius:10px;padding:12px;font-size:15px;border:1px solid rgba(255,211,126,.86)}
+    input,select{background:#fff8ec;color:#190900;font-weight:800}
+    button{background:linear-gradient(180deg,#c61e13,#760600);color:white;font-weight:1000;cursor:pointer}
+    button.gold{background:linear-gradient(180deg,#c38313,#744400)}
+    button.dark{background:linear-gradient(180deg,#5b1009,#260200)}
+    button.green{background:linear-gradient(180deg,#0d8b3b,#04441d)}
+    .cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .card{border:1px solid rgba(255,185,70,.45);border-radius:16px;background:linear-gradient(180deg,rgba(26,4,1,.9),rgba(5,0,0,.84));padding:14px}
+    .full{grid-column:1/-1}
+    .digits{display:flex;flex-wrap:wrap;gap:8px;min-height:45px}
+    .digit{width:43px;height:43px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 22%,#fff2a8,#ff9b27 44%,#5b1003);color:#180300;font-weight:1000;font-size:23px;border:1px solid rgba(255,210,90,.95);box-shadow:0 0 14px rgba(255,91,0,.65)}
+    .big{font-size:32px;font-weight:1000;color:#fff4c9;letter-spacing:.08em}
+    .status{display:inline-block;border-radius:999px;padding:7px 11px;font-weight:1000;border:1px solid rgba(255,220,130,.75)}
+    .AMAN{background:#064b21;color:#bdffd4}.WASPADA{background:#684405;color:#fff1b0}.HOLD{background:#5b0602;color:#ffd0c7}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{border-bottom:1px solid rgba(255,185,70,.18);padding:8px 6px;text-align:left;vertical-align:top}
+    th{color:#ffd889}
+    pre{white-space:pre-wrap;overflow:auto;background:#030303;color:#c8ffca;padding:12px;border-radius:12px;min-height:90px}
+    @media(max-width:880px){.grid,.actions,.cards{grid-template-columns:1fr}.top{display:block}.wrap{width:calc(100vw - 14px);margin-top:8px}h1{font-size:22px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="box top">
+    <div>
+      <h1>BBFS Final Next Draw</h1>
+      <div class="small">Aturan final: BBFS 7 unik, Poltar dari BBFS, Ranking 2D/3D hanya dari BBFS, confidence, gate, holdout, anti-overfitting, evaluasi.</div>
+    </div>
+    <div><a href="/bbfs.html">BBFS</a> · <a href="/manual-fetch.html">Manual Fetch</a> · <a href="/">Beranda</a></div>
+  </div>
+
+  <div class="box">
+    <div class="grid">
+      <div>
+        <label>Pasaran</label>
+        <select id="market"><option value="">Memuat pasaran...</option></select>
+      </div>
+      <div>
+        <label>Jumlah result analisis</label>
+        <input id="limit" type="number" value="60" min="10" max="500">
+      </div>
+      <div>
+        <label>Admin Token</label>
+        <input id="token" value="bbfs_shinobi_admin_token_sementara">
+      </div>
+    </div>
+    <div class="actions">
+      <button onclick="generateOne()">GENERATE FINAL</button>
+      <button class="gold" onclick="generateAll()">GENERATE SEMUA</button>
+      <button class="green" onclick="evaluateNow()">EVALUASI NEXT DRAW</button>
+      <button class="dark" onclick="loadLatest()">LIHAT LATEST</button>
+      <button class="dark" onclick="location.href='/manual-fetch.html'">MANUAL RESULT</button>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Status Gate</h2>
+      <div id="userStatus" class="status HOLD">HOLD</div>
+      <div id="predictionStatus" class="small" style="margin-top:10px">-</div>
+      <div id="confidence" class="big">0%</div>
+    </div>
+
+    <div class="card">
+      <h2>Next Draw</h2>
+      <div id="nextDate" class="big">-</div>
+      <div id="basedOn" class="small">-</div>
+    </div>
+
+    <div class="card">
+      <h2>BBFS 7D</h2>
+      <div id="bbfs" class="digits"></div>
+      <div id="excluded" class="small" style="margin-top:10px">-</div>
+    </div>
+
+    <div class="card">
+      <h2>Poltar</h2>
+      <div id="poltar" class="big">-</div>
+      <div class="small">AS / KOP / KEPALA / EKOR · wajib dari BBFS</div>
+    </div>
+
+    <div class="card">
+      <h2>Twin / Miss / San</h2>
+      <div id="tms" class="small">-</div>
+    </div>
+
+    <div class="card">
+      <h2>Gate & Holdout</h2>
+      <div id="gateBox" class="small">-</div>
+    </div>
+
+    <div class="card">
+      <h2>Ranking 2D BBFS Only</h2>
+      <table><thead><tr><th>#</th><th>2D</th><th>Skor</th></tr></thead><tbody id="rank2d"></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>Ranking 3D BBFS Only</h2>
+      <table><thead><tr><th>#</th><th>3D</th><th>Skor</th></tr></thead><tbody id="rank3d"></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>Evaluasi</h2>
+      <div id="evalBox" class="small">Belum dievaluasi.</div>
+    </div>
+
+    <div class="card full">
+      <h2>Skor Digit</h2>
+      <table>
+        <thead><tr><th>Digit</th><th>Total</th><th>Freq</th><th>Recent</th><th>2D</th><th>3D</th><th>Gap</th><th>Twin</th><th>Miss</th></tr></thead>
+        <tbody id="scores"></tbody>
+      </table>
+    </div>
+
+    <div class="card full">
+      <h2>Latest Final Prediction</h2>
+      <table>
+        <thead><tr><th>Pasaran</th><th>Next Draw</th><th>Status</th><th>Conf</th><th>BBFS</th><th>Latest Result</th><th>Evaluasi</th></tr></thead>
+        <tbody id="latestRows"></tbody>
+      </table>
+    </div>
+
+    <div class="card full">
+      <h2>Output</h2>
+      <pre id="out">Siap.</pre>
+    </div>
+  </div>
+</div>
+
+<script>
+const out=document.getElementById('out');
+function show(x){out.textContent=typeof x==='string'?x:JSON.stringify(x,null,2)}
+function tok(){return document.getElementById('token').value.trim()}
+function d4(v){return String(v||'').replace(/\D/g,'').slice(-4).padStart(4,'0')}
+function digitsHtml(s){return String(s||'').split('').map(d=>'<span class="digit">'+d+'</span>').join('')}
+async function apiPost(url,body){
+  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+tok()},body:JSON.stringify(body||{})});
+  const t=await r.text();try{return JSON.parse(t)}catch(e){return{ok:false,raw:t}}
+}
+async function apiGet(url){
+  const r=await fetch(url,{cache:'no-store'});
+  const t=await r.text();try{return JSON.parse(t)}catch(e){return{ok:false,raw:t}}
+}
+async function loadMarkets(){
+  try{
+    const r=await fetch('/api/markets',{cache:'no-store'});
+    const j=await r.json();
+    if(!j.ok)throw new Error('API markets gagal');
+    const sel=document.getElementById('market');
+    sel.innerHTML=j.data.map(m=>'<option value="'+m.code+'">'+(m.name||m.code)+'</option>').join('');
+    const saved=localStorage.getItem('bbfs_final_market')||localStorage.getItem('bbfs_next_market')||localStorage.getItem('bbfs_market')||'';
+    if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;
+    if(!sel.value&&j.data[0])sel.value=j.data[0].code;
+    sel.onchange=()=>{localStorage.setItem('bbfs_final_market',sel.value);loadLatest()};
+  }catch(e){show('Gagal load market: '+e.message)}
+}
+function statusClass(s){return s==='AMAN'?'AMAN':(s==='WASPADA'?'WASPADA':'HOLD')}
+function render(data){
+  if(!data)return;
+  const p=data.payload||data;
+  const gate=p.gate||data.gate_json||{};
+  const can=!!(gate.can_show_prediction ?? data.can_show_prediction);
+  const user=gate.user_status||data.user_status||'HOLD';
+  const pred=gate.prediction_status||data.prediction_status||'-';
+  const confidence=Number(gate.confidence ?? data.confidence ?? 0);
+  const bbfs=p.bbfs||{digits:data.bbfs_digits||'',audit_digits:data.audit_digits||data.bbfs_digits||'',excluded_digits:data.excluded_digits,digit_scores:[]};
+  const poltar=p.poltar||data.poltar_json||{};
+  const rank2=p.ranking_2d||data.ranking_2d_json||[];
+  const rank3=p.ranking_3d||data.ranking_3d_json||[];
+  const based=p.based_on_latest_result||{draw_date:data.latest_result_date,result:data.latest_result};
+  const evalj=data.evaluation_json||p.evaluation_json||{status:'WAITING_RESULT'};
+
+  const us=document.getElementById('userStatus');
+  us.textContent=user;
+  us.className='status '+statusClass(user);
+
+  document.getElementById('predictionStatus').textContent=pred+(can?' · kandidat boleh tampil':' · kandidat diblokir');
+  document.getElementById('confidence').textContent=confidence.toFixed(2)+'%';
+  document.getElementById('nextDate').textContent=p.next_draw_date||data.next_draw_date||'-';
+  document.getElementById('basedOn').textContent='Acuan: '+(based.draw_date||'-')+' · '+(based.result||'-')+' · '+(based.result_time||'');
+
+  if(can){
+    document.getElementById('bbfs').innerHTML=digitsHtml(bbfs.digits||data.bbfs_digits||'');
+    document.getElementById('excluded').textContent='Buangan: '+(bbfs.excluded_digits||data.excluded_digits||'-');
+    document.getElementById('poltar').textContent=poltar.as?poltar.as.digit+'/'+poltar.kop.digit+'/'+poltar.kepala.digit+'/'+poltar.ekor.digit:'-';
+    document.getElementById('rank2d').innerHTML=(rank2||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('');
+    document.getElementById('rank3d').innerHTML=(rank3||[]).slice(0,10).map(x=>'<tr><td>'+x.rank+'</td><td>'+x.number+'</td><td>'+x.score+'</td></tr>').join('');
+  }else{
+    document.getElementById('bbfs').innerHTML='';
+    document.getElementById('excluded').textContent='Kandidat ditahan oleh Prediction Gate. Audit BBFS: '+(bbfs.audit_digits||data.audit_digits||data.payload?.bbfs?.audit_digits||'-');
+    document.getElementById('poltar').textContent='HOLD';
+    document.getElementById('rank2d').innerHTML='<tr><td colspan="3">Ranking ditahan.</td></tr>';
+    document.getElementById('rank3d').innerHTML='<tr><td colspan="3">Ranking ditahan.</td></tr>';
+  }
+
+  document.getElementById('tms').innerHTML=
+    '<b>Twin:</b> '+(((p.twin||{}).detected_digits||[]).join(', ')||'-')+'<br>'+
+    '<b>Miss:</b> '+(((p.miss||{}).digits||[]).join(', ')||'-')+'<br>'+
+    '<b>San:</b> '+(((p.san||{}).top_digits||[]).join(', ')||'-');
+
+  const h=gate.holdout||{};
+  const errs=((gate.prediction_gate||{}).errors||[]).join('<br>')||'-';
+  const warns=((gate.prediction_gate||{}).warnings||[]).join('<br>')||'-';
+  document.getElementById('gateBox').innerHTML=
+    '<b>Holdout:</b> '+(h.status||'-')+'<br>'+
+    '<b>4D:</b> '+(h.bbfs_4d_rate??'-')+' · <b>3D:</b> '+(h.bbfs_3d_rate??'-')+' · <b>2D:</b> '+(h.bbfs_2d_rate??'-')+'<br>'+
+    '<b>Error:</b><br>'+errs+'<br><b>Warning:</b><br>'+warns;
+
+  document.getElementById('evalBox').innerHTML=
+    '<b>Status:</b> '+(evalj.status||'WAITING_RESULT')+'<br>'+
+    '<b>Actual:</b> '+(evalj.actual_result||'-')+'<br>'+
+    '<b>BBFS Hit:</b> '+(evalj.bbfs_hit===true?'YA':evalj.bbfs_hit===false?'TIDAK':'-')+'<br>'+
+    '<b>2D:</b> '+(evalj.hit_2d?'YA rank '+evalj.hit_2d_rank:'-')+' · <b>3D:</b> '+(evalj.hit_3d?'YA rank '+evalj.hit_3d_rank:'-');
+
+  document.getElementById('scores').innerHTML=(bbfs.digit_scores||[]).map(x=>
+    '<tr><td>'+x.digit+'</td><td>'+x.total_score+'</td><td>'+x.frequency_count+'</td><td>'+x.recent_score+'</td><td>'+x.ranking_2d_score+'</td><td>'+x.ranking_3d_score+'</td><td>'+x.gap_score+'</td><td>'+x.twin_score+'</td><td>'+x.miss_score+'</td></tr>'
+  ).join('');
+}
+async function generateOne(){
+  const market=document.getElementById('market').value;
+  const limit=document.getElementById('limit').value||60;
+  if(!market)return show('Pilih pasaran dulu.');
+  localStorage.setItem('bbfs_final_market',market);
+  show('Generate BBFS final...');
+  const j=await apiPost('/api/bbfs/final/generate',{market_code:market,limit});
+  if(j.ok)render(j.data);
+  show(j);
+  loadLatestRows();
+}
+async function generateAll(){
+  const limit=document.getElementById('limit').value||60;
+  show('Generate semua pasaran. Tunggu sampai selesai...');
+  const j=await apiPost('/api/bbfs/final/generate-all',{limit});
+  show(j);
+  loadLatestRows();
+}
+async function evaluateNow(){
+  const market=document.getElementById('market').value;
+  show('Evaluasi next draw...');
+  const j=await apiPost('/api/bbfs/final/evaluate',market?{market_code:market}:{});
+  show(j);
+  loadLatest();
+  loadLatestRows();
+}
+async function loadLatest(){
+  const market=document.getElementById('market').value;
+  if(!market)return;
+  const j=await apiGet('/api/bbfs/final/latest?limit=1&market_code='+encodeURIComponent(market));
+  if(j.ok&&j.data&&j.data[0])render(j.data[0]);
+  show(j);
+}
+async function loadLatestRows(){
+  const j=await apiGet('/api/bbfs/final/latest?limit=40');
+  if(!j.ok){show(j);return}
+  document.getElementById('latestRows').innerHTML=j.data.map(x=>{
+    const ev=x.evaluation_json||{};
+    const bbfs=x.can_show_prediction?x.bbfs_digits:'HOLD';
+    return '<tr><td>'+x.market_name+'</td><td>'+x.next_draw_date+'</td><td>'+x.user_status+'<br><span class="small">'+x.prediction_status+'</span></td><td>'+Number(x.confidence).toFixed(2)+'%</td><td><b>'+bbfs+'</b></td><td>'+d4(x.latest_result)+'<br><span class="small">'+x.latest_result_date+'</span></td><td>'+(ev.status||'WAITING_RESULT')+'</td></tr>';
+  }).join('');
+}
+loadMarkets().then(()=>{loadLatest();loadLatestRows()});
+</script>
+</body>
+</html>

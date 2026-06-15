@@ -1,0 +1,103 @@
+{
+  "status": "synced_copy_created",
+  "original_files_modified": false,
+  "source_database": "/mnt/data/bbfs_synced_website_v1_work/engine/bbfs_database_v1_engine.sqlite",
+  "source_website_index": "/mnt/data/bbfs_synced_website_v1_work/site/index.html",
+  "output_folder": "/mnt/data/bbfs_shinobi_website_synced_v1",
+  "visual_policy": "Original index.html layout/background retained; sync layer injected non-destructively.",
+  "database_summary": {
+    "markets": 57,
+    "result_rows": 86933,
+    "date_min": "2022-01-02",
+    "date_max": "2026-06-08",
+    "latest_market_slug": "georgia-midday",
+    "latest_market_name": "Georgia Midday"
+  },
+  "latest_result": {
+    "market_id": 7,
+    "market_slug": "georgia-midday",
+    "market_name": "Georgia Midday",
+    "date": "2026-06-08",
+    "result_number": "1840",
+    "as_digit": "1",
+    "kop_digit": "8",
+    "kepala_digit": "4",
+    "ekor_digit": "0",
+    "target_3d": "840",
+    "target_2d": "40"
+  },
+  "prediction": {
+    "next_draw_date": "2026-06-09",
+    "bbfs": "5423089",
+    "excluded_digits": "716",
+    "poltar": {
+      "as": "4",
+      "kop": "2",
+      "kepala": "5",
+      "ekor": "0",
+      "target_3d": "250",
+      "target_2d": "50"
+    },
+    "ranking_2d": [
+      {
+        "rank_no": 1,
+        "number": "54",
+        "score": 78.631407
+      },
+      {
+        "rank_no": 2,
+        "number": "45",
+        "score": 76.26669
+      },
+      {
+        "rank_no": 3,
+        "number": "25",
+        "score": 75.699351
+      },
+      {
+        "rank_no": 4,
+        "number": "52",
+        "score": 73.965401
+      },
+      {
+        "rank_no": 5,
+        "number": "53",
+        "score": 67.967706
+      }
+    ],
+    "ranking_3d": [
+      {
+        "rank_no": 1,
+        "number": "254",
+        "score": 70.30848
+      },
+      {
+        "rank_no": 2,
+        "number": "524",
+        "score": 69.441505
+      },
+      {
+        "rank_no": 3,
+        "number": "245",
+        "score": 68.2173
+      },
+      {
+        "rank_no": 4,
+        "number": "425",
+        "score": 68.167967
+      },
+      {
+        "rank_no": 5,
+        "number": "452",
+        "score": 67.734479
+      }
+    ]
+  },
+  "counts": {
+    "markets": 57,
+    "result_rows": 86933,
+    "archive_rows_in_data_js": 8,
+    "ranking_2d_rows_in_data_js": 5,
+    "ranking_3d_rows_in_data_js": 5
+  }
+}
