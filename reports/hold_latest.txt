@@ -1,0 +1,39 @@
+BBFS HOLD LATEST REPORT
+Generated: 2026-06-15 11:46:01 WIB
+
+=== DISTRIBUSI LATEST PER PASARAN ===
+ user_status |        prediction_status        | can_show_prediction | jumlah | avg_confidence | min_confidence | max_confidence 
+-------------+---------------------------------+---------------------+--------+----------------+----------------+----------------
+ AMAN        | BBFS_READY                      | t                   |     38 |          56.39 |          45.84 |          73.98
+ HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      8 |          17.79 |          10.86 |          20.00
+ WASPADA     | BBFS_READY_WITH_WARNING         | t                   |     89 |          40.18 |          11.11 |          65.00
+(3 rows)
+
+
+=== DAFTAR HOLD LATEST ===
+                   name                   |         code         | user_status |        prediction_status        | can_show_prediction | confidence |          updated_at           
+------------------------------------------+----------------------+-------------+---------------------------------+---------------------+------------+-------------------------------
+ Hongkong Lotto [NOT-SOURCE-HIDDEN]       | hongkong-lotto       | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      10.86 | 2026-06-14 22:42:45.034175+07
+ Toto Macau 00 [NOT-SOURCE-HIDDEN]        | toto-macau-00        | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      16.37 | 2026-06-14 22:42:47.864403+07
+ Washington Dc Midday [NOT-SOURCE-HIDDEN] | washington-dc-midday | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      17.18 | 2026-06-14 22:42:48.468014+07
+ Toto Macau 16 [NOT-SOURCE-HIDDEN]        | toto-macau-16        | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      17.91 | 2026-06-14 22:42:48.120402+07
+ Missouri Evening [NOT-SOURCE-HIDDEN]     | missouri-evening     | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:46.033704+07
+ Toto Macau 13 [NOT-SOURCE-HIDDEN]        | toto-macau-13        | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:47.911565+07
+ Oregon9                                  | oregon9              | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-15 09:09:45.377224+07
+ Illinois Evening [NOT-SOURCE-HIDDEN]     | illinois-evening     | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:45.093843+07
+(8 rows)
+
+
+=== DETAIL ERROR GATE UNTUK HOLD ===
+                   name                   |         code         | confidence |                               errors                               |                                                   data_cutoff                                                    
+------------------------------------------+----------------------+------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------
+ Hongkong Lotto [NOT-SOURCE-HIDDEN]       | hongkong-lotto       |      10.86 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 7, "max_allowed_days": 14, "latest_result_date": "2026-06-07"}
+ Toto Macau 00 [NOT-SOURCE-HIDDEN]        | toto-macau-00        |      16.37 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 4, "max_allowed_days": 14, "latest_result_date": "2026-06-10"}
+ Washington Dc Midday [NOT-SOURCE-HIDDEN] | washington-dc-midday |      17.18 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 4, "max_allowed_days": 14, "latest_result_date": "2026-06-10"}
+ Toto Macau 16 [NOT-SOURCE-HIDDEN]        | toto-macau-16        |      17.91 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 5, "max_allowed_days": 14, "latest_result_date": "2026-06-09"}
+ Missouri Evening [NOT-SOURCE-HIDDEN]     | missouri-evening     |      20.00 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 4, "max_allowed_days": 14, "latest_result_date": "2026-06-10"}
+ Toto Macau 13 [NOT-SOURCE-HIDDEN]        | toto-macau-13        |      20.00 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 4, "max_allowed_days": 14, "latest_result_date": "2026-06-10"}
+ Oregon9                                  | oregon9              |      20.00 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-15", "freshness_days": 1, "max_allowed_days": 14, "latest_result_date": "2026-06-14"}
+ Illinois Evening [NOT-SOURCE-HIDDEN]     | illinois-evening     |      20.00 | ["BBFS_BLOCKED_BY_PREDICTION_GATE: holdout 2D/3D terlalu rendah."] | {"jakarta_today": "2026-06-14", "freshness_days": 4, "max_allowed_days": 14, "latest_result_date": "2026-06-10"}
+(8 rows)
+
