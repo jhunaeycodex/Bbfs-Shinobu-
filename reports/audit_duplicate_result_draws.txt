@@ -1,0 +1,84 @@
+AUDIT DUPLIKAT DATA RESULT
+Generated: 2026-06-15 14:58:17 WIB
+Mode: READ ONLY - tidak hapus/tidak ubah data
+
+=== 1. DATABASE SUMMARY ===
+ total_results | valid_4d | invalid_4d | tanggal_awal | tanggal_akhir 
+---------------+----------+------------+--------------+---------------
+        151865 |   151799 |         66 | 2022-01-02   | 2026-06-15
+(1 row)
+
+
+=== 2. DUPLIKAT SAME MARKET + SAME DATE ===
+ duplicate_date_groups | extra_rows | exact_same_result_groups | conflict_result_groups 
+-----------------------+------------+--------------------------+------------------------
+                     0 |          0 |                        0 |                      0
+(1 row)
+
+
+=== 3. DUPLIKAT EXACT SAME MARKET + DATE + RESULT ===
+ exact_duplicate_groups | exact_extra_rows 
+------------------------+------------------
+                      0 |                0
+(1 row)
+
+
+=== 4. CONFLICT SAME MARKET + DATE BUT DIFFERENT RESULT ===
+ conflict_groups | conflict_rows 
+-----------------+---------------
+               0 |             0
+(1 row)
+
+
+=== 5. DUPLIKAT BY ACTIVE / INACTIVE MARKET ===
+ market_status | duplicate_date_groups | extra_rows | exact_groups | conflict_groups 
+---------------+-----------------------+------------+--------------+-----------------
+(0 rows)
+
+
+=== 6. TOP DUPLIKAT GROUPS SAME MARKET + DATE ===
+ is_active | code | name | draw_date | rows_on_date | distinct_result | results 
+-----------+------+------+-----------+--------------+-----------------+---------
+(0 rows)
+
+
+=== 7. TOP EXACT DUPLICATE GROUPS SAME MARKET + DATE + RESULT ===
+ is_active | code | name | draw_date | result | duplicate_rows | first_created | last_created | sources 
+-----------+------+------+-----------+--------+----------------+---------------+--------------+---------
+(0 rows)
+
+
+=== 8. CONFLICT DETAIL SAME MARKET + DATE DIFFERENT RESULT ===
+ is_active | code | name | draw_date | result | source | created_at | updated_at | id 
+-----------+------+------+-----------+--------+--------+------------+------------+----
+(0 rows)
+
+
+=== 9. DUPLIKAT YANG AKAN AMAN DIBERSIHKAN NANTI ===
+Kriteria aman nanti: same market_id + same draw_date + same result, sisakan 1 row terbaru/terpilih.
+ candidate_exact_duplicate_rows_to_remove_later 
+------------------------------------------------
+                                              0
+(1 row)
+
+
+=== 10. UNIQUE / INDEX CHECK ===
+              indexname               |                                                      indexdef                                                      
+--------------------------------------+--------------------------------------------------------------------------------------------------------------------
+ idx_result_draws_date                | CREATE INDEX idx_result_draws_date ON public.result_draws USING btree (draw_date DESC)
+ idx_result_draws_market_date         | CREATE INDEX idx_result_draws_market_date ON public.result_draws USING btree (market_id, draw_date DESC)
+ result_draws_market_id_draw_date_key | CREATE UNIQUE INDEX result_draws_market_id_draw_date_key ON public.result_draws USING btree (market_id, draw_date)
+ result_draws_pkey                    | CREATE UNIQUE INDEX result_draws_pkey ON public.result_draws USING btree (id)
+(4 rows)
+
+
+=== 11. CSV EXPORT DUPLIKAT RINGKAS ===
+COPY 0
+COPY 0
+-rw-r--r-- 1 postgres postgres 69 Jun 15 14:58 /opt/bbfs-github-sync/reports/duplicate_result_conflicts.csv
+-rw-r--r-- 1 postgres postgres 67 Jun 15 14:58 /opt/bbfs-github-sync/reports/duplicate_result_draw_groups.csv
+
+=== 12. KESIMPULAN ===
+DUPLICATE_AUDIT_ONLY=true
+NO_DELETE_DONE=true
+NEXT_SAFE_STEP: review conflict groups first; only exact duplicates can be cleaned automatically after approval.
