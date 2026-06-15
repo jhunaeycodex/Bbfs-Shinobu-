@@ -1,0 +1,130 @@
+AUDIT MARKET YANG SEHARUSNYA 1000+ RESULT
+Generated: 2026-06-15 13:27:01 WIB
+Mode: READ ONLY - tidak mengubah database
+
+=== TARGET MARKET ===
+Tennesse Morning / Tennesse Mor
+Texas Evening / Texas Eve
+Texas Morning / Texas Mor
+Singapore
+
+=== 1. CARI SEMUA MARKET MIRIP TARGET ===
+                  id                  |       code       |                 name                 | is_active | total_result | valid_4d | invalid_4d | tanggal_awal | tanggal_akhir 
+--------------------------------------+------------------+--------------------------------------+-----------+--------------+----------+------------+--------------+---------------
+ baa35443-a5aa-4b5a-a79f-f59c51e1350f | sgp-singapore    | SGP | Singapore [NOT-SOURCE-HIDDEN]  | f         |         1155 |     1155 |          0 | 2023-04-10   | 2026-06-07
+ 24bb09e5-1ce0-4daf-ba4e-72fa941815c5 | singapore        | Singapore                            | t         |           20 |       20 |          0 | 2026-05-16   | 2026-06-14
+ 79434808-80ef-4b9d-b65b-5a4ee0cce8f9 | singapore-25     | Singapore 25                         | t         |           10 |        9 |          1 | 2026-05-15   | 2026-06-14
+ 0b7e34aa-0e84-4d4b-9e61-d97683640303 | tennesse-eve     | Tennesse Eve                         | t         |           32 |       32 |          0 | 2026-05-15   | 2026-06-15
+ 83b753a0-ef10-461a-bdc3-4aac1f9b8481 | tennesse-evening | Tennesse Evening [NOT-SOURCE-HIDDEN] | f         |         1620 |     1620 |          0 | 2022-01-03   | 2026-06-10
+ 61e11c51-69b1-4347-8bbc-0986889cc02d | tennesse-mid     | Tennesse Mid                         | t         |           28 |       28 |          0 | 2026-05-15   | 2026-06-14
+ 7a7fccc4-7fa0-4b20-8ff4-665fe8797d9c | tennesse-midday  | Tennesse Midday [NOT-SOURCE-HIDDEN]  | f         |         1389 |     1389 |          0 | 2022-08-22   | 2026-06-10
+ 4443987d-b202-4bcf-a7da-5f53e699050e | tennesse-mor     | Tennesse Mor                         | t         |           26 |       25 |          1 | 2026-05-15   | 2026-06-14
+ f8347a51-c19d-45fd-822a-089a4b3a103f | tennesse-morning | Tennesse Morning [NOT-SOURCE-HIDDEN] | f         |         1363 |     1363 |          0 | 2022-09-16   | 2026-06-09
+ 57775554-dea4-467f-86c8-13fe4c0c356f | texas-day        | Texas Day                            | t         |         1392 |     1392 |          0 | 2022-08-22   | 2026-06-14
+ 7867f69e-29ec-4225-b7a3-16e0d37a5fe3 | texas-eve        | Texas Eve                            | t         |           27 |       27 |          0 | 2026-05-15   | 2026-06-14
+ d3cc9145-ff1e-4f6e-b6d9-7ef8875ee386 | texas-evening    | Texas Evening [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 |          0 | 2022-08-22   | 2026-06-10
+ bf7cb5ee-bbb2-44a5-8dc4-127fd1db332f | texas-mor        | Texas Mor                            | t         |           27 |       26 |          1 | 2026-05-15   | 2026-06-14
+ 4460197e-3fb2-4b35-a615-ae5a00015493 | texas-morning    | Texas Morning [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 |          0 | 2022-08-22   | 2026-06-09
+ 6f902025-6bb5-4c7b-a2f0-6fabeaf1133c | texas-night      | Texas Night                          | t         |         1392 |     1392 |          0 | 2022-08-22   | 2026-06-14
+(15 rows)
+
+
+=== 2. RESULT TARGET AKTIF SAAT INI ===
+                  id                  |     code     |     name     | is_active | total_result | tanggal_awal | tanggal_akhir 
+--------------------------------------+--------------+--------------+-----------+--------------+--------------+---------------
+ 24bb09e5-1ce0-4daf-ba4e-72fa941815c5 | singapore    | Singapore    | t         |           20 | 2026-05-16   | 2026-06-14
+ 79434808-80ef-4b9d-b65b-5a4ee0cce8f9 | singapore-25 | Singapore 25 | t         |           10 | 2026-05-15   | 2026-06-14
+ 4443987d-b202-4bcf-a7da-5f53e699050e | tennesse-mor | Tennesse Mor | t         |           26 | 2026-05-15   | 2026-06-14
+ 7867f69e-29ec-4225-b7a3-16e0d37a5fe3 | texas-eve    | Texas Eve    | t         |           27 | 2026-05-15   | 2026-06-14
+ bf7cb5ee-bbb2-44a5-8dc4-127fd1db332f | texas-mor    | Texas Mor    | t         |           27 | 2026-05-15   | 2026-06-14
+(5 rows)
+
+
+=== 3. CEK DUPLIKAT RESULT PER TANGGAL DI TARGET ===
+ code | name | draw_date | duplicate_count | results 
+------+------+-----------+-----------------+---------
+(0 rows)
+
+
+=== 4. DISTRIBUSI BULANAN TARGET AKTIF ===
+     code     |     name     |  bulan  | jumlah 
+--------------+--------------+---------+--------
+ singapore    | Singapore    | 2026-05 |     11
+ singapore    | Singapore    | 2026-06 |      9
+ singapore-25 | Singapore 25 | 2026-05 |      5
+ singapore-25 | Singapore 25 | 2026-06 |      5
+ tennesse-mor | Tennesse Mor | 2026-05 |     14
+ tennesse-mor | Tennesse Mor | 2026-06 |     12
+ texas-eve    | Texas Eve    | 2026-05 |     15
+ texas-eve    | Texas Eve    | 2026-06 |     12
+ texas-mor    | Texas Mor    | 2026-05 |     14
+ texas-mor    | Texas Mor    | 2026-06 |     13
+(10 rows)
+
+
+=== 5. CEK TABEL ALIAS - STRUKTUR KOLOM ===
+      column_name      |        data_type         
+-----------------------+--------------------------
+ id                    | uuid
+ source_name           | text
+ source_value          | text
+ source_code           | text
+ canonical_market_id   | uuid
+ canonical_market_code | text
+ canonical_market_name | text
+ source_url            | text
+ is_active             | boolean
+ notes                 | text
+ created_at            | timestamp with time zone
+ updated_at            | timestamp with time zone
+(12 rows)
+
+
+=== 6. CEK ALIAS TARGET DARI market_source_aliases ===
+                  id                  | source_name  | source_value | source_code  |         canonical_market_id          | canonical_market_code | canonical_market_name |                          source_url                           | is_active | notes |          created_at           |          updated_at           
+--------------------------------------+--------------+--------------+--------------+--------------------------------------+-----------------------+-----------------------+---------------------------------------------------------------+-----------+-------+-------------------------------+-------------------------------
+ 179960c2-2fb2-4bf3-a8c4-db40cec4815f | tennesse-eve | tennesse-eve | tennesse-eve | 0b7e34aa-0e84-4d4b-9e61-d97683640303 | tennesse-eve          | Tennesse Eve          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ 1f291cae-9b92-4dac-ba3b-af45ba8d6605 | texas-mor    | texas-mor    | texas-mor    | bf7cb5ee-bbb2-44a5-8dc4-127fd1db332f | texas-mor             | Texas Mor             | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ 3e4a14e7-f5cd-4a09-84bf-bc615b1c25da | tennesse-mid | tennesse-mid | tennesse-mid | 61e11c51-69b1-4347-8bbc-0986889cc02d | tennesse-mid          | Tennesse Mid          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ 6940945c-344a-42cd-8a16-0ba46314c903 | texas-day    | texas-day    | texas-day    | 57775554-dea4-467f-86c8-13fe4c0c356f | texas-day             | Texas Day             | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ 87123944-15e8-4c6a-8f4d-dc73cf1298da | singapore    | singapore    | singapore    | 24bb09e5-1ce0-4daf-ba4e-72fa941815c5 | singapore             | Singapore             | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ d2e817c3-ddff-4b8b-9487-2a933c2ca3c3 | singapore-25 | singapore-25 | singapore-25 | 79434808-80ef-4b9d-b65b-5a4ee0cce8f9 | singapore-25          | Singapore 25          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ e3a12962-1c3d-4bca-a08a-beb0cf6e9fef | texas-eve    | texas-eve    | texas-eve    | 7867f69e-29ec-4225-b7a3-16e0d37a5fe3 | texas-eve             | Texas Eve             | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ eb111ff8-7932-4d20-a592-aca7b9785fc8 | texas-night  | texas-night  | texas-night  | 6f902025-6bb5-4c7b-a2f0-6fabeaf1133c | texas-night           | Texas Night           | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+ f3a1221e-ab12-47fa-94cd-b01757928485 | tennesse-mor | tennesse-mor | tennesse-mor | 4443987d-b202-4bcf-a7da-5f53e699050e | tennesse-mor          | Tennesse Mor          | https://prediksi90.angka-alexis.pro/?page=data-keluaran-togel | t         |       | 2026-06-15 03:03:01.150833+07 | 2026-06-15 03:14:36.839251+07
+(9 rows)
+
+
+=== 7. CEK APA ADA RESULT LAMA DI MARKET INACTIVE MIRIP TARGET ===
+                  id                  |       code       |                 name                 | is_active | total_result | tanggal_awal | tanggal_akhir 
+--------------------------------------+------------------+--------------------------------------+-----------+--------------+--------------+---------------
+ 83b753a0-ef10-461a-bdc3-4aac1f9b8481 | tennesse-evening | Tennesse Evening [NOT-SOURCE-HIDDEN] | f         |         1620 | 2022-01-03   | 2026-06-10
+ 7a7fccc4-7fa0-4b20-8ff4-665fe8797d9c | tennesse-midday  | Tennesse Midday [NOT-SOURCE-HIDDEN]  | f         |         1389 | 2022-08-22   | 2026-06-10
+ d3cc9145-ff1e-4f6e-b6d9-7ef8875ee386 | texas-evening    | Texas Evening [NOT-SOURCE-HIDDEN]    | f         |         1388 | 2022-08-22   | 2026-06-10
+ 4460197e-3fb2-4b35-a615-ae5a00015493 | texas-morning    | Texas Morning [NOT-SOURCE-HIDDEN]    | f         |         1388 | 2022-08-22   | 2026-06-09
+ f8347a51-c19d-45fd-822a-089a4b3a103f | tennesse-morning | Tennesse Morning [NOT-SOURCE-HIDDEN] | f         |         1363 | 2022-09-16   | 2026-06-09
+ baa35443-a5aa-4b5a-a79f-f59c51e1350f | sgp-singapore    | SGP | Singapore [NOT-SOURCE-HIDDEN]  | f         |         1155 | 2023-04-10   | 2026-06-07
+(6 rows)
+
+
+=== 8. CEK IMPORT BATCH TERKAIT TARGET ===
+   table_name   
+----------------
+ import_batches
+ import_errors
+(2 rows)
+
+
+=== 9. SOURCE ALIAS CONFLICT TERKAIT TARGET JIKA ADA ===
+          table_name           
+-------------------------------
+ market_source_alias_conflicts
+(1 row)
+
+ERROR:  column "source_market_name" does not exist
+LINE 1: ...arket_source_alias_conflicts WHERE LOWER(COALESCE(source_mar...
+                                                             ^
+
+=== 10. KESIMPULAN DIBACA MANUAL ===
+Jika tidak ada market inactive dengan 1000+ result, berarti data historis 1000+ belum ada di DB saat ini dan harus diimport/fetch range lama.
+Jika ada market inactive dengan 1000+ result, nanti perlu merge market_id ke market aktif, bukan fetch ulang.
