@@ -1,11 +1,11 @@
 + echo 'MERGE INACTIVE HISTORY TO ACTIVE RESULTS'
 MERGE INACTIVE HISTORY TO ACTIVE RESULTS
-+ echo 'Generated: 2026-06-15 13:58:37 WIB'
-Generated: 2026-06-15 13:58:37 WIB
-+ echo 'Backup table: result_draws_merge_backup_20260615_135837'
-Backup table: result_draws_merge_backup_20260615_135837
-+ echo 'Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_135837.csv'
-Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_135837.csv
++ echo 'Generated: 2026-06-15 14:00:09 WIB'
+Generated: 2026-06-15 14:00:09 WIB
++ echo 'Backup table: result_draws_merge_backup_20260615_140009'
+Backup table: result_draws_merge_backup_20260615_140009
++ echo 'Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_140009.csv'
+Backup CSV: /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_140009.csv
 + echo 'Mode: insert missing historical rows to active markets; do not delete inactive rows'
 Mode: insert missing historical rows to active markets; do not delete inactive rows
 + echo
@@ -32,16 +32,16 @@ sgp-singapore     -> singapore
        code       |                 name                 | is_active | total_result | valid_4d | tanggal_awal | tanggal_akhir 
 ------------------+--------------------------------------+-----------+--------------+----------+--------------+---------------
  sgp-singapore    | SGP | Singapore [NOT-SOURCE-HIDDEN]  | f         |         1155 |     1155 | 2023-04-10   | 2026-06-07
- singapore        | Singapore                            | t         |           20 |       20 | 2026-05-16   | 2026-06-14
- tennesse-eve     | Tennesse Eve                         | t         |           32 |       32 | 2026-05-15   | 2026-06-15
+ singapore        | Singapore                            | t         |         1159 |     1159 | 2023-04-10   | 2026-06-14
+ tennesse-eve     | Tennesse Eve                         | t         |         1625 |     1625 | 2022-01-03   | 2026-06-15
  tennesse-evening | Tennesse Evening [NOT-SOURCE-HIDDEN] | f         |         1620 |     1620 | 2022-01-03   | 2026-06-10
- tennesse-mid     | Tennesse Mid                         | t         |           28 |       28 | 2026-05-15   | 2026-06-14
+ tennesse-mid     | Tennesse Mid                         | t         |         1393 |     1393 | 2022-08-22   | 2026-06-14
  tennesse-midday  | Tennesse Midday [NOT-SOURCE-HIDDEN]  | f         |         1389 |     1389 | 2022-08-22   | 2026-06-10
- tennesse-mor     | Tennesse Mor                         | t         |           26 |       25 | 2026-05-15   | 2026-06-14
+ tennesse-mor     | Tennesse Mor                         | t         |         1368 |     1367 | 2022-09-16   | 2026-06-14
  tennesse-morning | Tennesse Morning [NOT-SOURCE-HIDDEN] | f         |         1363 |     1363 | 2022-09-16   | 2026-06-09
- texas-eve        | Texas Eve                            | t         |           27 |       27 | 2026-05-15   | 2026-06-14
+ texas-eve        | Texas Eve                            | t         |         1392 |     1392 | 2022-08-22   | 2026-06-14
  texas-evening    | Texas Evening [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 | 2022-08-22   | 2026-06-10
- texas-mor        | Texas Mor                            | t         |           27 |       26 | 2026-05-15   | 2026-06-14
+ texas-mor        | Texas Mor                            | t         |         1393 |     1392 | 2022-08-22   | 2026-06-14
  texas-morning    | Texas Morning [NOT-SOURCE-HIDDEN]    | f         |         1388 |     1388 | 2022-08-22   | 2026-06-09
 (12 rows)
 
@@ -49,12 +49,12 @@ sgp-singapore     -> singapore
 
 + echo '=== CREATE BACKUP TABLE + CSV ==='
 === CREATE BACKUP TABLE + CSV ===
-+ sudo -u postgres psql -d bbfs_production -v backup_table=result_draws_merge_backup_20260615_135837 -c 'CREATE TABLE "result_draws_merge_backup_20260615_135837" AS SELECT r.*,m.code AS market_code,m.name AS market_name,m.is_active AS market_is_active,now() AS backed_up_at FROM result_draws r JOIN markets m ON m.id=r.market_id WHERE m.code IN ('\''tennesse-evening'\'','\''tennesse-midday'\'','\''tennesse-morning'\'','\''texas-evening'\'','\''texas-morning'\'','\''sgp-singapore'\'','\''tennesse-eve'\'','\''tennesse-mid'\'','\''tennesse-mor'\'','\''texas-eve'\'','\''texas-mor'\'','\''singapore'\'');'
-SELECT 8463
-+ sudo -u postgres psql -d bbfs_production -c '\copy (SELECT * FROM "result_draws_merge_backup_20260615_135837") TO '\''/opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_135837.csv'\'' CSV HEADER'
-COPY 8463
-+ ls -lh /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_135837.csv
--rw-rw-r-- 1 postgres postgres 4.1M Jun 15 13:58 /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_135837.csv
++ sudo -u postgres psql -d bbfs_production -v backup_table=result_draws_merge_backup_20260615_140009 -c 'CREATE TABLE "result_draws_merge_backup_20260615_140009" AS SELECT r.*,m.code AS market_code,m.name AS market_name,m.is_active AS market_is_active,now() AS backed_up_at FROM result_draws r JOIN markets m ON m.id=r.market_id WHERE m.code IN ('\''tennesse-evening'\'','\''tennesse-midday'\'','\''tennesse-morning'\'','\''texas-evening'\'','\''texas-morning'\'','\''sgp-singapore'\'','\''tennesse-eve'\'','\''tennesse-mid'\'','\''tennesse-mor'\'','\''texas-eve'\'','\''texas-mor'\'','\''singapore'\'');'
+SELECT 16633
++ sudo -u postgres psql -d bbfs_production -c '\copy (SELECT * FROM "result_draws_merge_backup_20260615_140009") TO '\''/opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_140009.csv'\'' CSV HEADER'
+COPY 16633
++ ls -lh /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_140009.csv
+-rw-rw-r-- 1 postgres postgres 12M Jun 15 14:00 /opt/bbfs-github-sync/reports/result_draws_merge_backup_20260615_140009.csv
 + echo
 
 + echo '=== OVERLAP / CONFLICT BEFORE MERGE ==='
@@ -62,12 +62,12 @@ COPY 8463
 + sudo -u postgres psql -d bbfs_production -c 'WITH map(old_code,new_code) AS (VALUES ('\''tennesse-evening'\'','\''tennesse-eve'\''),('\''tennesse-midday'\'','\''tennesse-mid'\''),('\''tennesse-morning'\'','\''tennesse-mor'\''),('\''texas-evening'\'','\''texas-eve'\''),('\''texas-morning'\'','\''texas-mor'\''),('\''sgp-singapore'\'','\''singapore'\'')), resolved AS (SELECT om.id old_id,nm.id new_id,om.code old_code,nm.code new_code FROM map JOIN markets om ON om.code=old_code JOIN markets nm ON nm.code=new_code) SELECT old_code,new_code,COUNT(*) FILTER (WHERE n.id IS NULL) AS missing_to_insert,COUNT(*) FILTER (WHERE n.id IS NOT NULL AND n.result=o.result) AS overlap_same,COUNT(*) FILTER (WHERE n.id IS NOT NULL AND n.result IS DISTINCT FROM o.result) AS overlap_diff FROM resolved x JOIN result_draws o ON o.market_id=x.old_id AND o.result ~ '\''^[0-9]{4}$'\'' LEFT JOIN result_draws n ON n.market_id=x.new_id AND n.draw_date=o.draw_date GROUP BY old_code,new_code ORDER BY new_code;'
      old_code     |   new_code   | missing_to_insert | overlap_same | overlap_diff 
 ------------------+--------------+-------------------+--------------+--------------
- sgp-singapore    | singapore    |              1139 |           16 |            0
- tennesse-evening | tennesse-eve |              1593 |           27 |            0
- tennesse-midday  | tennesse-mid |              1365 |           24 |            0
- tennesse-morning | tennesse-mor |              1342 |           21 |            0
- texas-evening    | texas-eve    |              1365 |           23 |            0
- texas-morning    | texas-mor    |              1366 |           22 |            0
+ sgp-singapore    | singapore    |                 0 |         1155 |            0
+ tennesse-evening | tennesse-eve |                 0 |         1620 |            0
+ tennesse-midday  | tennesse-mid |                 0 |         1389 |            0
+ tennesse-morning | tennesse-mor |                 0 |         1363 |            0
+ texas-evening    | texas-eve    |                 0 |         1388 |            0
+ texas-morning    | texas-mor    |                 0 |         1388 |            0
 (6 rows)
 
 + echo
@@ -76,7 +76,7 @@ COPY 8463
 === INSERT MISSING HISTORY ===
 + sudo -u postgres psql -d bbfs_production -v ON_ERROR_STOP=1
 BEGIN
-INSERT 0 8170
+INSERT 0 0
 COMMIT
 + echo
 
