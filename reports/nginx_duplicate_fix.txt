@@ -1,0 +1,23 @@
+NGINX DUPLICATE FIX Mon Jun 15 12:31:57 PM WIB 2026
+
+=== BEFORE ===
+2026/06/15 12:31:57 [warn] 53345#53345: conflicting server name "jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:31:57 [warn] 53345#53345: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:31:57 [warn] 53345#53345: conflicting server name "jhunaey.my.id" on 0.0.0.0:443, ignored
+2026/06/15 12:31:57 [warn] 53345#53345: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:443, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== MOVE DUPLICATE BACKUP FILE ===
+MOVED duplicate backup to /root/nginx-disabled-backup/
+
+=== AFTER TEST ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== RELOAD ===
+active
+
+=== FINAL MATCHES ===
+/etc/nginx/sites-enabled/default:3:    server_name jhunaey.my.id www.jhunaey.my.id;
+/etc/nginx/sites-enabled/default:10:    server_name jhunaey.my.id www.jhunaey.my.id;
