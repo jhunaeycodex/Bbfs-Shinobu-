@@ -338,7 +338,7 @@
 
     if (metaEl) {
       metaEl.innerHTML =
-        '<span class="bbfs-home-status hold">HOLD</span> ' +
+        '<span class="bbfs-home-status HOLD">HOLD</span> ' +
         esc(market) +
         ' · Confidence ' + esc(confidence) + '%' +
         ' · ' + esc(note);

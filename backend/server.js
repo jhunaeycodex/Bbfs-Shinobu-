@@ -1592,25 +1592,12 @@ function finalGate(draws, latestDrawDate, score, holdout) {
 
   confidence = Number(Math.max(0, Math.min(99, confidence)).toFixed(2));
 
-  // Gate V2:
+  // Gate V2 Final:
   // HOLD hanya untuk error fatal.
-  // Warning tidak mengunci BBFS, hanya menentukan AMAN/WASPADA.
+  // Warning tidak mengunci BBFS.
+  // AMAN jika confidence >= 45, selain itu WASPADA.
   if (canShow) {
     if (confidence >= 45) {
-      predictionStatus = 'BBFS_READY';
-      userStatus = 'AMAN';
-    } else {
-      predictionStatus = 'BBFS_READY_WITH_WARNING';
-      userStatus = 'WASPADA';
-    }
-  }
-
-  // BBFS Gate V2:
-  // - HOLD hanya untuk error fatal.
-  // - Warning tidak mengunci BBFS.
-  // - Status AMAN/WASPADA ditentukan dari confidence akhir.
-  if (canShow) {
-    if (confidence >= 55) {
       predictionStatus = 'BBFS_READY';
       userStatus = 'AMAN';
     } else {

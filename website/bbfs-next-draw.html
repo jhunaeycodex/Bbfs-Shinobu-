@@ -276,7 +276,7 @@ async function loadLatestRows(){
   if(!j.ok){show(j);return}
   document.getElementById('latestRows').innerHTML=j.data.map(x=>{
     const ev=x.evaluation_json||{};
-    const bbfs=x.can_show_prediction?x.bbfs_digits:'HOLD';
+    const bbfs=x.bbfs_digits||x.payload?.bbfs?.audit_digits||x.payload?.bbfs?.digits||'HOLD';
     return '<tr><td>'+x.market_name+'</td><td>'+x.next_draw_date+'</td><td>'+x.user_status+'<br><span class="small">'+x.prediction_status+'</span></td><td>'+Number(x.confidence).toFixed(2)+'%</td><td><b>'+bbfs+'</b></td><td>'+d4(x.latest_result)+'<br><span class="small">'+x.latest_result_date+'</span></td><td>'+(ev.status||'WAITING_RESULT')+'</td></tr>';
   }).join('');
 }
