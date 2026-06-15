@@ -1,5 +1,5 @@
 BBFS HOLD LATEST REPORT
-Generated: 2026-06-15 11:46:01 WIB
+Generated: 2026-06-15 11:51:57 WIB
 
 === DISTRIBUSI LATEST PER PASARAN ===
  user_status |        prediction_status        | can_show_prediction | jumlah | avg_confidence | min_confidence | max_confidence 
