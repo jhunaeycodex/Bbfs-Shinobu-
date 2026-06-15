@@ -1,0 +1,171 @@
+AUDIT FINAL SINKRONISASI SISTEM
+Generated: 2026-06-15 14:53:23 WIB
+Mode: READ ONLY - baseline final setelah merge + frontend dynamic lock
+
+=== 1. SERVICE STATUS ===
+bbfs-backend=active
+nginx=active
+
+=== 2. DATABASE GLOBAL SUMMARY ===
+ total_markets | active_markets | inactive_markets 
+---------------+----------------+------------------
+           139 |             88 |               51
+(1 row)
+
+ total_results | valid_4d | invalid_4d | tanggal_awal | tanggal_akhir 
+---------------+----------+------------+--------------+---------------
+        151865 |   151799 |         66 | 2022-01-02   | 2026-06-15
+(1 row)
+
+
+=== 3. ACTIVE RESULT COUNT BUCKETS ===
+ active_market | zero_result | below_30 | below_1000 | gte_1000 
+---------------+-------------+----------+------------+----------
+            88 |           0 |        7 |         33 |       55
+(1 row)
+
+        code        |        name        | total_result | tanggal_awal | tanggal_akhir 
+--------------------+--------------------+--------------+--------------+---------------
+ singapore-25       | Singapore 25       |           10 | 2026-05-15   | 2026-06-14
+ jepang             | Jepang             |           25 | 2026-05-16   | 2026-06-14
+ kingkong-23        | Kingkong 23        |           28 | 2026-05-15   | 2026-06-14
+ lima               | Lima               |           28 | 2026-05-15   | 2026-06-14
+ freetown           | Freetown           |           29 | 2026-05-15   | 2026-06-15
+ mongolia           | Mongolia           |           29 | 2026-05-15   | 2026-06-14
+ north-korea        | North Korea        |           29 | 2026-05-15   | 2026-06-14
+ bogota             | Bogota             |           30 | 2026-05-15   | 2026-06-14
+ boston             | Boston             |           30 | 2026-05-15   | 2026-06-14
+ jakarta            | Jakarta            |           30 | 2026-05-15   | 2026-06-14
+ nusa               | Nusa               |           30 | 2026-05-15   | 2026-06-14
+ pennsylvania-eve   | Pennsylvania Eve   |           30 | 2026-05-15   | 2026-06-15
+ portland           | Portland           |           30 | 2026-05-15   | 2026-06-14
+ thailand-lotteries | Thailand Lotteries |           30 | 2026-05-15   | 2026-06-14
+ vietnam            | Vietnam            |           30 | 2026-05-15   | 2026-06-14
+ wisconsin          | Wisconsin          |           30 | 2026-05-15   | 2026-06-15
+ atlanta            | Atlanta            |           31 | 2026-05-15   | 2026-06-15
+ buffalo4d          | Buffalo4d          |           31 | 2026-05-15   | 2026-06-14
+ germany            | Germany            |           31 | 2026-05-15   | 2026-06-15
+ kingkong-17        | Kingkong 17        |           31 | 2026-05-15   | 2026-06-14
+ kingston           | Kingston           |           31 | 2026-05-15   | 2026-06-15
+ korea              | Korea              |           31 | 2026-05-15   | 2026-06-14
+ kupang             | Kupang             |           31 | 2026-05-15   | 2026-06-15
+ moscow             | Moscow             |           31 | 2026-05-15   | 2026-06-15
+ munchen            | Munchen            |           31 | 2026-05-15   | 2026-06-14
+ newyork-mid        | Newyork Mid        |           31 | 2026-05-15   | 2026-06-14
+ nusa-toto          | Nusa Toto          |           31 | 2026-05-15   | 2026-06-14
+ oslo-pools         | Oslo Pools         |           31 | 2026-05-15   | 2026-06-14
+ phoenix4d          | Phoenix4d          |           31 | 2026-05-15   | 2026-06-14
+ rhode-island       | Rhode Island       |           31 | 2026-05-15   | 2026-06-15
+ delaware-day       | Delaware Day       |           32 | 2026-05-15   | 2026-06-15
+ delaware-night     | Delaware Night     |           32 | 2026-05-15   | 2026-06-15
+ pennsylvania-day   | Pennsylvania Day   |           32 | 2026-05-15   | 2026-06-15
+(33 rows)
+
+
+=== 4. ACTIVE LATEST BEHIND > 2 DAYS ===
+ code | name | total_result | latest_date | hari_tertinggal 
+------+------+--------------+-------------+-----------------
+(0 rows)
+
+
+=== 5. DB VS API LATEST MATCH ===
+LATEST_CHECK|singapore|DB=2026-06-14|4048|API=2026-06-14|4048|MATCH
+LATEST_CHECK|florida-eve|DB=2026-06-15|1250|API=2026-06-15|1250|MATCH
+LATEST_CHECK|ohio-eve|DB=2026-06-15|4429|API=2026-06-15|4429|MATCH
+LATEST_CHECK|totomacau-22|DB=2026-06-14|6481|API=2026-06-14|6481|MATCH
+LATEST_CHECK|taiwan|DB=2026-06-14|6353|API=2026-06-14|6353|MATCH
+LATEST_CHECK|tennesse-eve|DB=2026-06-15|9547|API=2026-06-15|9547|MATCH
+LATEST_CHECK|texas-eve|DB=2026-06-14|7099|API=2026-06-14|7099|MATCH
+
+=== 6. API ENDPOINT HEALTH ===
+URL=https://jhunaey.my.id/api/markets
+ok=True keys=ok,data bytes=13099
+URL=https://jhunaey.my.id/api/results/latest?limit=1&market_code=singapore
+ok=True keys=ok,data bytes=347
+URL=https://jhunaey.my.id/api/results/latest?limit=1&market_code=florida-eve
+ok=True keys=ok,data bytes=343
+URL=https://jhunaey.my.id/api/public/bbfs-final-dashboard?limit=60
+ok=True keys=ok,data bytes=56418
+URL=https://jhunaey.my.id/api/public/bbfs-final-dashboard?market_code=singapore&limit=60
+ok=True keys=ok,data bytes=56471
+
+=== 7. BBFS DATABASE EVIDENCE ===
+            table_name            
+----------------------------------
+ bbfs_final_next_draw_predictions
+ bbfs_predictions
+ digit_scores
+ markets
+ prediction_runs
+ result_draws
+(6 rows)
+
+ final_prediction_rows |         latest_update         
+-----------------------+-------------------------------
+                   183 | 2026-06-15 14:53:27.994031+07
+(1 row)
+
+1720:      data_source: 'PostgreSQL result_draws, result valid 4D Prize 1.',
+2076:app.get('/api/public/bbfs-final-dashboard', async (req, res) => {
+292:        (SELECT COUNT(*)::int FROM result_draws) AS results,
+488:    FROM result_draws r
+571:      (SELECT COUNT(*)::int FROM result_draws) AS total_results,
+572:      (SELECT MAX(draw_date) FROM result_draws) AS latest_draw_date,
+795:      FROM result_draws r
+845:      FROM result_draws r
+893:        FROM result_draws
+1061:        DELETE FROM result_draws
+1677:    FROM result_draws
+1876:      FROM result_draws
+2084:        FROM result_draws r
+1105:    CREATE TABLE IF NOT EXISTS bbfs_final_next_draw_predictions (
+1134:    ON bbfs_final_next_draw_predictions (market_id, next_draw_date DESC)
+1139:    ON bbfs_final_next_draw_predictions (prediction_status, can_show_prediction)
+1763:    INSERT INTO bbfs_final_next_draw_predictions (
+1858:    FROM bbfs_final_next_draw_predictions p
+1935:      UPDATE bbfs_final_next_draw_predictions
+2051:      FROM bbfs_final_next_draw_predictions p
+
+=== 8. FRONTEND DYNAMIC LOCK EVIDENCE ===
+FRONTEND_FILE|index.html|file|495821 bytes|2026-06-15 10:54:33.922584451 +0700
+FRONTEND_FILE|result-center.html|symlink->index.html|10 bytes|2026-06-15 14:46:18.131224149 +0700
+FRONTEND_FILE|auto-arsip.html|symlink->index.html|10 bytes|2026-06-15 14:46:18.133224180 +0700
+FRONTEND_FILE|data.js|file|226 bytes|2026-06-15 14:46:18.124224042 +0700
+FRONTEND_FILE|result-card-live.js|file|6334 bytes|2026-06-14 22:05:26.048944619 +0700
+FRONTEND_FILE|bbfs-home-final.js|file|15104 bytes|2026-06-15 11:40:07.952065232 +0700
+
+index script refs:
+312:<script src="/result-card-live.js?v=card-result-final-2"></script>
+313:<script src="/bbfs-home-final.js?v=auditdigits1"></script>
+314:<script src="/menu-direct-links.js?v=direct-result-bbfs-1"></script>
+
+result-card-live API refs:
+2:const API_MARKETS="/api/markets",API_LATEST="/api/results/latest?limit=1";
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+31:async function loadMarkets(){const sel=$("bbfs-result-card-select");try{const r=await fetch(API_MARKETS,{cache:"no-store"}),j=await r.json();if(!j.ok||!Array.isArray(j.data))throw Error("API pasaran gagal");const saved=localStorage.getItem("bbfs_result_card_market")||"";sel.innerHTML='<option value="">Semua pasaran / terbaru</option>'+j.data.map(m=>{const code=String(m.code||""),name=String(m.name||m.code||"");return '<option value="'+code.replace(/"/g,"&quot;")+'">'+name+"</option>"}).join("");if(saved&&j.data.some(m=>m.code===saved))sel.value=saved;sel.onchange=()=>{localStorage.setItem("bbfs_result_card_market",sel.value);loadLatest()}}catch(e){sel.innerHTML='<option value="">Gagal memuat pasaran</option>'}}
+32:async function loadLatest(){const sel=$("bbfs-result-card-select"),market=sel?sel.value:"",url=market?"/api/results/latest?limit=1&market_code="+encodeURIComponent(market):API_LATEST;try{const r=await fetch(url,{cache:"no-store"}),j=await r.json();if(!j.ok)throw Error(j.error||"API result gagal");const row=Array.isArray(j.data)?j.data[0]:null;if(!row){$("bbfs-result-card-period").textContent="-";$("bbfs-result-card-market").textContent=market||"-";$("bbfs-result-card-number").textContent="----";$("bbfs-result-card-updated").textContent="-";$("bbfs-result-card-2d").textContent="-";$("bbfs-result-card-3d").textContent="-";return}const r4=to4D(row.result_4d||row.result),t=timeID(row.result_time),u=t?dateID(row.draw_date)+" "+t:dateID(row.draw_date);$("bbfs-result-card-period").textContent=dateOnly(row.draw_date);$("bbfs-result-card-market").textContent=row.market_name||row.market_code||"-";$("bbfs-result-card-number").textContent=r4;$("bbfs-result-card-updated").textContent=u;$("bbfs-result-card-2d").textContent=r4.slice(-2);$("bbfs-result-card-3d").textContent=r4.slice(-3)}catch(e){$("bbfs-result-card-updated").textContent="Gagal ambil data"}}
+
+bbfs-home-final API refs:
+2:  const API = "/api/public/bbfs-final-dashboard?limit=60";
+3:  const MARKET_API = "/api/markets";
+217:      const r = await fetch(MARKET_API, { cache: "no-store" });
+417:      const r = await fetch(url, { cache: "no-store" });
+
+data.js lock content:
+// BBFS Shinobi static data disabled.
+// Frontend locked to API/database source only.
+// Do not place result/prediction arrays here.
+window.BBFS_STATIC_DATA_DISABLED = true;
+window.BBFS_DATA_SOURCE_LOCK = 'API_DATABASE_ONLY';
+
+=== 9. LIVE URL CHECK ===
+URL_CHECK|https://jhunaey.my.id/|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/result-center.html|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/auto-arsip.html|http=200|bytes=495821
+URL_CHECK|https://jhunaey.my.id/data.js|http=200|bytes=226
+
+=== 10. FINAL CONCLUSION FLAGS ===
+RESULT_DB_API_SYNC=CHECK_SECTION_5_ALL_MATCH_EXPECTED
+BBFS_DB_SOURCE=PostgreSQL result_draws via backend finalGeneratePrediction
+FRONTEND_DYNAMIC_LOCK=data.js static disabled; active JS fetches /api with no-store
+REMAINING_WORK=invalid_4d_66; active_below_1000 list; optional wisconsin-eve mapping
