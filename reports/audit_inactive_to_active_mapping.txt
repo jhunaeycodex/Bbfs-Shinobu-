@@ -1,0 +1,146 @@
+AUDIT MAPPING HISTORY INACTIVE KE MARKET AKTIF
+Generated: 2026-06-15 14:12:30 WIB
+Mode: READ ONLY - tidak mengubah database
+
+=== 1. CANDIDATE MAPPING INACTIVE 1000+ -> ACTIVE ===
+        old_code        |                  old_name                  | total_old |  old_awal  | old_akhir  | candidate_active_code |   active_code   |   active_name   
+------------------------+--------------------------------------------+-----------+------------+------------+-----------------------+-----------------+-----------------
+ magnum-cambodia        | Magnum Cambodia [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-03 | 2026-06-10 | cambodia              | cambodia        | Cambodia
+ north-carolina-day     | North Carolina Day [NOT-SOURCE-HIDDEN]     |      1620 | 2022-01-03 | 2026-06-10 | carolina-day          | carolina-day    | Carolina Day
+ north-carolina-evening | North Carolina Evening [NOT-SOURCE-HIDDEN] |      1620 | 2022-01-03 | 2026-06-10 | carolina-eve          | carolina-eve    | Carolina Eve
+ chinapools             | Chinapools [NOT-SOURCE-HIDDEN]             |      1619 | 2022-01-04 | 2026-06-10 | china                 | china           | China
+ florida-evening        | Florida Evening [NOT-SOURCE-HIDDEN]        |      1621 | 2022-01-02 | 2026-06-10 | florida-eve           | florida-eve     | Florida Eve
+ florida-midday         | Florida Midday [NOT-SOURCE-HIDDEN]         |      1620 | 2022-01-03 | 2026-06-10 | florida-mid           | florida-mid     | Florida Mid
+ georgia-evening        | Georgia Evening [NOT-SOURCE-HIDDEN]        |      1621 | 2022-01-02 | 2026-06-10 | georgia-eve           | georgia-eve     | Georgia Eve
+ georgia-midday         | Georgia Midday [NOT-SOURCE-HIDDEN]         |      1618 | 2022-01-04 | 2026-06-09 | georgia-mid           | georgia-mid     | Georgia Mid
+ hongkong-lotto         | Hongkong Lotto [NOT-SOURCE-HIDDEN]         |      1616 | 2022-01-04 | 2026-06-07 | hongkong              | hongkong        | Hongkong
+ illinois-evening       | Illinois Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | illinois-eve          | illinois-eve    | Illinois Eve
+ illinois-midday        | Illinois Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10 | illinois-mid          | illinois-mid    | Illinois Mid
+ indiana-evening        | Indiana Evening [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10 | indiana-eve           | indiana-eve     | Indiana Eve
+ indiana-midday         | Indiana Midday [NOT-SOURCE-HIDDEN]         |      1619 | 2022-01-04 | 2026-06-10 | indiana-mid           | indiana-mid     | Indiana Mid
+ kentucky-evening       | Kentucky Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | kentucky-eve          | kentucky-eve    | Kentucky Eve
+ kentucky-midday        | Kentucky Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10 | kentucky-mid          | kentucky-mid    | Kentucky Mid
+ maryland-evening       | Maryland Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | maryland-eve          | maryland-eve    | Maryland Eve
+ maryland-midday        | Maryland Midday [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-04 | 2026-06-10 | maryland-mid          | maryland-mid    | Maryland Mid
+ michigan-evening       | Michigan Evening [NOT-SOURCE-HIDDEN]       |      1621 | 2022-01-02 | 2026-06-10 | michigan-eve          | michigan-eve    | Michigan Eve
+ michigan-midday        | Michigan Midday [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-04 | 2026-06-10 | michigan-mid          | michigan-mid    | Michigan Mid
+ missouri-evening       | Missouri Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | missouri-eve          | missouri-eve    | Missouri Eve
+ missouri-midday        | Missouri Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10 | missouri-mid          | missouri-mid    | Missouri Mid
+ new-jersey-evening     | New Jersey Evening [NOT-SOURCE-HIDDEN]     |      1615 | 2022-01-08 | 2026-06-10 | newjersey-eve         | newjersey-eve   | Newjersey Eve
+ new-jersey-midday      | New Jersey Midday [NOT-SOURCE-HIDDEN]      |      1616 | 2022-01-04 | 2026-06-10 | newjersey-mid         | newjersey-mid   | Newjersey Mid
+ new-york-evening       | New York Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | newyork-eve           | newyork-eve     | Newyork Eve
+ wisconsin-evening      | Wisconsin Evening [NOT-SOURCE-HIDDEN]      |      1568 | 2022-02-23 | 2026-06-10 | wisconsin-eve         | NO_ACTIVE_MATCH | NO_ACTIVE_MATCH
+ ohio-evening           | Ohio Evening [NOT-SOURCE-HIDDEN]           |      1209 | 2023-02-18 | 2026-06-10 | ohio-eve              | ohio-eve        | Ohio Eve
+ ohio-midday            | Ohio Midday [NOT-SOURCE-HIDDEN]            |      1208 | 2023-02-18 | 2026-06-09 | ohio-mid              | ohio-mid        | Ohio Mid
+ sgp-singapore          | SGP | Singapore [NOT-SOURCE-HIDDEN]        |      1155 | 2023-04-10 | 2026-06-07 | singapore             | singapore       | Singapore
+ sydney-lotto           | Sydney Lotto [NOT-SOURCE-HIDDEN]           |      1619 | 2022-01-04 | 2026-06-10 | sydney                | sydney          | Sydney
+ tennesse-evening       | Tennesse Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10 | tennesse-eve          | tennesse-eve    | Tennesse Eve
+ tennesse-midday        | Tennesse Midday [NOT-SOURCE-HIDDEN]        |      1389 | 2022-08-22 | 2026-06-10 | tennesse-mid          | tennesse-mid    | Tennesse Mid
+ tennesse-morning       | Tennesse Morning [NOT-SOURCE-HIDDEN]       |      1363 | 2022-09-16 | 2026-06-09 | tennesse-mor          | tennesse-mor    | Tennesse Mor
+ texas-evening          | Texas Evening [NOT-SOURCE-HIDDEN]          |      1388 | 2022-08-22 | 2026-06-10 | texas-eve             | texas-eve       | Texas Eve
+ texas-morning          | Texas Morning [NOT-SOURCE-HIDDEN]          |      1388 | 2022-08-22 | 2026-06-09 | texas-mor             | texas-mor       | Texas Mor
+ toto-macau-00          | Toto Macau 00 [NOT-SOURCE-HIDDEN]          |      1393 | 2022-08-22 | 2026-06-14 | totomacau-00          | totomacau-00    | Toto Macau 00
+ toto-macau-13          | Toto Macau 13 [NOT-SOURCE-HIDDEN]          |      1624 | 2022-01-03 | 2026-06-14 | totomacau-13          | totomacau-13    | Toto Macau 13
+ toto-macau-16          | Toto Macau 16 [NOT-SOURCE-HIDDEN]          |      1624 | 2022-01-03 | 2026-06-14 | totomacau-16          | totomacau-16    | Toto Macau 16
+ toto-macau-19          | Toto Macau 19 [NOT-SOURCE-HIDDEN]          |      1622 | 2022-01-04 | 2026-06-14 | totomacau-19          | totomacau-19    | Toto Macau 19
+ toto-macau-22          | Toto Macau 22 [NOT-SOURCE-HIDDEN]          |      1622 | 2022-01-04 | 2026-06-14 | totomacau-22          | totomacau-22    | Toto Macau 22
+ toto-macau-23          | Toto Macau 23 [NOT-SOURCE-HIDDEN]          |      1049 | 2023-08-01 | 2026-06-14 | totomacau-23          | totomacau-23    | Toto Macau 23
+ washington-dc-evening  | Washington Dc Evening [NOT-SOURCE-HIDDEN]  |      1620 | 2022-01-03 | 2026-06-10 | washington-eve        | washington-eve  | Washington Eve
+ washington-dc-midday   | Washington Dc Midday [NOT-SOURCE-HIDDEN]   |      1620 | 2022-01-03 | 2026-06-10 | washington-mid        | washington-mid  | Washington Mid
+(42 rows)
+
+
+=== 2. CANDIDATE MATCH + INSERT/OVERLAP SUMMARY ===
+        old_code        |    new_code    | total_old | missing_to_insert | overlap_same | overlap_diff 
+------------------------+----------------+-----------+-------------------+--------------+--------------
+ toto-macau-22          | totomacau-22   |      1622 |              1596 |           26 |            0
+ florida-evening        | florida-eve    |      1621 |              1595 |           26 |            0
+ georgia-evening        | georgia-eve    |      1621 |              1595 |           26 |            0
+ toto-macau-13          | totomacau-13   |      1624 |              1595 |           29 |            0
+ toto-macau-16          | totomacau-16   |      1624 |              1595 |           29 |            0
+ indiana-evening        | indiana-eve    |      1620 |              1594 |           26 |            0
+ kentucky-evening       | kentucky-eve   |      1620 |              1594 |           26 |            0
+ kentucky-midday        | kentucky-mid   |      1620 |              1594 |           26 |            0
+ michigan-evening       | michigan-eve   |      1621 |              1594 |           27 |            0
+ missouri-midday        | missouri-mid   |      1620 |              1594 |           26 |            0
+ toto-macau-19          | totomacau-19   |      1622 |              1594 |           28 |            0
+ washington-dc-evening  | washington-eve |      1620 |              1594 |           26 |            0
+ washington-dc-midday   | washington-mid |      1620 |              1594 |           26 |            0
+ chinapools             | china          |      1619 |              1593 |           26 |            0
+ florida-midday         | florida-mid    |      1620 |              1593 |           26 |            1
+ illinois-evening       | illinois-eve   |      1620 |              1593 |           27 |            0
+ illinois-midday        | illinois-mid   |      1620 |              1593 |           27 |            0
+ magnum-cambodia        | cambodia       |      1619 |              1593 |           26 |            0
+ maryland-evening       | maryland-eve   |      1620 |              1593 |           27 |            0
+ missouri-evening       | missouri-eve   |      1620 |              1593 |           27 |            0
+ new-york-evening       | newyork-eve    |      1620 |              1593 |           27 |            0
+ north-carolina-day     | carolina-day   |      1620 |              1593 |           27 |            0
+ north-carolina-evening | carolina-eve   |      1620 |              1593 |           27 |            0
+ sydney-lotto           | sydney         |      1619 |              1593 |           26 |            0
+ georgia-midday         | georgia-mid    |      1618 |              1592 |           26 |            0
+ hongkong-lotto         | hongkong       |      1616 |              1592 |           24 |            0
+ indiana-midday         | indiana-mid    |      1619 |              1592 |           27 |            0
+ maryland-midday        | maryland-mid   |      1619 |              1592 |           27 |            0
+ michigan-midday        | michigan-mid   |      1619 |              1592 |           27 |            0
+ new-jersey-midday      | newjersey-mid  |      1616 |              1591 |           25 |            0
+ new-jersey-evening     | newjersey-eve  |      1615 |              1588 |           27 |            0
+ toto-macau-00          | totomacau-00   |      1393 |              1362 |           31 |            0
+ ohio-evening           | ohio-eve       |      1209 |              1182 |           27 |            0
+ ohio-midday            | ohio-mid       |      1208 |              1182 |           26 |            0
+ toto-macau-23          | totomacau-23   |      1049 |              1018 |           30 |            0
+ sgp-singapore          | singapore      |      1155 |                 0 |         1155 |            0
+ tennesse-evening       | tennesse-eve   |      1620 |                 0 |         1620 |            0
+ tennesse-midday        | tennesse-mid   |      1389 |                 0 |         1389 |            0
+ tennesse-morning       | tennesse-mor   |      1363 |                 0 |         1363 |            0
+ texas-evening          | texas-eve      |      1388 |                 0 |         1388 |            0
+ texas-morning          | texas-mor      |      1388 |                 0 |         1388 |            0
+(41 rows)
+
+
+=== 3. ACTIVE <1000 YANG PUNYA CANDIDATE HISTORY INACTIVE ===
+  active_code   |  active_name   | active_total | active_awal | active_akhir |        old_code        |                  old_name                  | old_total |  old_awal  | old_akhir  
+----------------+----------------+--------------+-------------+--------------+------------------------+--------------------------------------------+-----------+------------+------------
+ totomacau-22   | Toto Macau 22  |           26 | 2026-05-15  | 2026-06-14   | toto-macau-22          | Toto Macau 22 [NOT-SOURCE-HIDDEN]          |      1622 | 2022-01-04 | 2026-06-14
+ totomacau-19   | Toto Macau 19  |           28 | 2026-05-15  | 2026-06-14   | toto-macau-19          | Toto Macau 19 [NOT-SOURCE-HIDDEN]          |      1622 | 2022-01-04 | 2026-06-14
+ china          | China          |           29 | 2026-05-15  | 2026-06-14   | chinapools             | Chinapools [NOT-SOURCE-HIDDEN]             |      1619 | 2022-01-04 | 2026-06-10
+ hongkong       | Hongkong       |           29 | 2026-05-15  | 2026-06-14   | hongkong-lotto         | Hongkong Lotto [NOT-SOURCE-HIDDEN]         |      1616 | 2022-01-04 | 2026-06-07
+ indiana-eve    | Indiana Eve    |           29 | 2026-05-15  | 2026-06-14   | indiana-evening        | Indiana Evening [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10
+ kentucky-eve   | Kentucky Eve   |           29 | 2026-05-15  | 2026-06-14   | kentucky-evening       | Kentucky Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10
+ totomacau-13   | Toto Macau 13  |           29 | 2026-05-15  | 2026-06-14   | toto-macau-13          | Toto Macau 13 [NOT-SOURCE-HIDDEN]          |      1624 | 2022-01-03 | 2026-06-14
+ totomacau-16   | Toto Macau 16  |           29 | 2026-05-15  | 2026-06-14   | toto-macau-16          | Toto Macau 16 [NOT-SOURCE-HIDDEN]          |      1624 | 2022-01-03 | 2026-06-14
+ cambodia       | Cambodia       |           30 | 2026-05-15  | 2026-06-14   | magnum-cambodia        | Magnum Cambodia [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-03 | 2026-06-10
+ illinois-eve   | Illinois Eve   |           30 | 2026-05-15  | 2026-06-14   | illinois-evening       | Illinois Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10
+ kentucky-mid   | Kentucky Mid   |           30 | 2026-05-15  | 2026-06-14   | kentucky-midday        | Kentucky Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10
+ missouri-mid   | Missouri Mid   |           30 | 2026-05-15  | 2026-06-15   | missouri-midday        | Missouri Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10
+ newjersey-eve  | Newjersey Eve  |           30 | 2026-05-15  | 2026-06-14   | new-jersey-evening     | New Jersey Evening [NOT-SOURCE-HIDDEN]     |      1615 | 2022-01-08 | 2026-06-10
+ newjersey-mid  | Newjersey Mid  |           30 | 2026-05-15  | 2026-06-15   | new-jersey-midday      | New Jersey Midday [NOT-SOURCE-HIDDEN]      |      1616 | 2022-01-04 | 2026-06-10
+ sydney         | Sydney         |           30 | 2026-05-15  | 2026-06-14   | sydney-lotto           | Sydney Lotto [NOT-SOURCE-HIDDEN]           |      1619 | 2022-01-04 | 2026-06-10
+ washington-eve | Washington Eve |           30 | 2026-05-15  | 2026-06-15   | washington-dc-evening  | Washington Dc Evening [NOT-SOURCE-HIDDEN]  |      1620 | 2022-01-03 | 2026-06-10
+ carolina-day   | Carolina Day   |           31 | 2026-05-15  | 2026-06-15   | north-carolina-day     | North Carolina Day [NOT-SOURCE-HIDDEN]     |      1620 | 2022-01-03 | 2026-06-10
+ florida-eve    | Florida Eve    |           31 | 2026-05-15  | 2026-06-15   | florida-evening        | Florida Evening [NOT-SOURCE-HIDDEN]        |      1621 | 2022-01-02 | 2026-06-10
+ georgia-eve    | Georgia Eve    |           31 | 2026-05-15  | 2026-06-15   | georgia-evening        | Georgia Evening [NOT-SOURCE-HIDDEN]        |      1621 | 2022-01-02 | 2026-06-10
+ georgia-mid    | Georgia Mid    |           31 | 2026-05-15  | 2026-06-14   | georgia-midday         | Georgia Midday [NOT-SOURCE-HIDDEN]         |      1618 | 2022-01-04 | 2026-06-09
+ illinois-mid   | Illinois Mid   |           31 | 2026-05-15  | 2026-06-15   | illinois-midday        | Illinois Midday [NOT-SOURCE-HIDDEN]        |      1620 | 2022-01-03 | 2026-06-10
+ indiana-mid    | Indiana Mid    |           31 | 2026-05-15  | 2026-06-15   | indiana-midday         | Indiana Midday [NOT-SOURCE-HIDDEN]         |      1619 | 2022-01-04 | 2026-06-10
+ maryland-mid   | Maryland Mid   |           31 | 2026-05-15  | 2026-06-14   | maryland-midday        | Maryland Midday [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-04 | 2026-06-10
+ missouri-eve   | Missouri Eve   |           31 | 2026-05-15  | 2026-06-15   | missouri-evening       | Missouri Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10
+ ohio-mid       | Ohio Mid       |           31 | 2026-05-15  | 2026-06-14   | ohio-midday            | Ohio Midday [NOT-SOURCE-HIDDEN]            |      1208 | 2023-02-18 | 2026-06-09
+ totomacau-23   | Toto Macau 23  |           31 | 2026-05-15  | 2026-06-14   | toto-macau-23          | Toto Macau 23 [NOT-SOURCE-HIDDEN]          |      1049 | 2023-08-01 | 2026-06-14
+ washington-mid | Washington Mid |           31 | 2026-05-15  | 2026-06-15   | washington-dc-midday   | Washington Dc Midday [NOT-SOURCE-HIDDEN]   |      1620 | 2022-01-03 | 2026-06-10
+ carolina-eve   | Carolina Eve   |           32 | 2026-05-15  | 2026-06-15   | north-carolina-evening | North Carolina Evening [NOT-SOURCE-HIDDEN] |      1620 | 2022-01-03 | 2026-06-10
+ florida-mid    | Florida Mid    |           32 | 2026-05-15  | 2026-06-15   | florida-midday         | Florida Midday [NOT-SOURCE-HIDDEN]         |      1620 | 2022-01-03 | 2026-06-10
+ maryland-eve   | Maryland Eve   |           32 | 2026-05-15  | 2026-06-15   | maryland-evening       | Maryland Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10
+ michigan-eve   | Michigan Eve   |           32 | 2026-05-15  | 2026-06-15   | michigan-evening       | Michigan Evening [NOT-SOURCE-HIDDEN]       |      1621 | 2022-01-02 | 2026-06-10
+ michigan-mid   | Michigan Mid   |           32 | 2026-05-15  | 2026-06-15   | michigan-midday        | Michigan Midday [NOT-SOURCE-HIDDEN]        |      1619 | 2022-01-04 | 2026-06-10
+ newyork-eve    | Newyork Eve    |           32 | 2026-05-15  | 2026-06-15   | new-york-evening       | New York Evening [NOT-SOURCE-HIDDEN]       |      1620 | 2022-01-03 | 2026-06-10
+ ohio-eve       | Ohio Eve       |           32 | 2026-05-15  | 2026-06-15   | ohio-evening           | Ohio Evening [NOT-SOURCE-HIDDEN]           |      1209 | 2023-02-18 | 2026-06-10
+ totomacau-00   | Toto Macau 00  |           32 | 2026-05-15  | 2026-06-15   | toto-macau-00          | Toto Macau 00 [NOT-SOURCE-HIDDEN]          |      1393 | 2022-08-22 | 2026-06-14
+(35 rows)
+
+
+=== 4. CANDIDATE INACTIVE 1000+ TANPA MATCH AKTIF ===
+     old_code      |               old_name                | total_old |  old_awal  | old_akhir  | candidate_active_code 
+-------------------+---------------------------------------+-----------+------------+------------+-----------------------
+ wisconsin-evening | Wisconsin Evening [NOT-SOURCE-HIDDEN] |      1568 | 2022-02-23 | 2026-06-10 | wisconsin-eve
+(1 row)
+
