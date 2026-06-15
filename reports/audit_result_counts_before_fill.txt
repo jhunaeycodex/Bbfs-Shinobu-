@@ -1,0 +1,155 @@
+AUDIT JUMLAH RESULT SEBELUM LENGKAPI
+Generated: 2026-06-15 13:01:44 WIB
+Mode: READ ONLY - tidak mengubah database
+
+=== 1. RINGKASAN TOTAL RESULT ===
+ total_result | market_punya_result | tanggal_awal | tanggal_akhir | valid_4d | invalid_4d 
+--------------+---------------------+--------------+---------------+----------+------------
+        89561 |                 138 | 2022-01-02   | 2026-06-15    |    89495 |         66
+(1 row)
+
+
+=== 2. RINGKASAN MARKET ===
+ total_market | active_market | inactive_market 
+--------------+---------------+-----------------
+          139 |            88 |              51
+(1 row)
+
+
+=== 3. JUMLAH RESULT PER MARKET AKTIF - PALING SEDIKIT DI ATAS ===
+        code        |        name        | total_result | valid_4d | invalid_4d | tanggal_awal | tanggal_akhir | tertinggal_hari | result_30_hari | result_90_hari 
+--------------------+--------------------+--------------+----------+------------+--------------+---------------+-----------------+----------------+----------------
+ singapore-25       | Singapore 25       |           10 |        9 |          1 | 2026-05-15   | 2026-06-14    |               1 |              9 |             10
+ singapore          | Singapore          |           20 |       20 |          0 | 2026-05-16   | 2026-06-14    |               1 |             20 |             20
+ jepang             | Jepang             |           25 |       25 |          0 | 2026-05-16   | 2026-06-14    |               1 |             25 |             25
+ tennesse-mor       | Tennesse Mor       |           26 |       25 |          1 | 2026-05-15   | 2026-06-14    |               1 |             25 |             26
+ totomacau-22       | Toto Macau 22      |           26 |       26 |          0 | 2026-05-15   | 2026-06-14    |               1 |             25 |             26
+ texas-eve          | Texas Eve          |           27 |       27 |          0 | 2026-05-15   | 2026-06-14    |               1 |             26 |             27
+ texas-mor          | Texas Mor          |           27 |       26 |          1 | 2026-05-15   | 2026-06-14    |               1 |             26 |             27
+ kingkong-23        | Kingkong 23        |           28 |       28 |          0 | 2026-05-15   | 2026-06-14    |               1 |             27 |             28
+ lima               | Lima               |           28 |       28 |          0 | 2026-05-15   | 2026-06-14    |               1 |             27 |             28
+ tennesse-mid       | Tennesse Mid       |           28 |       28 |          0 | 2026-05-15   | 2026-06-14    |               1 |             27 |             28
+ totomacau-19       | Toto Macau 19      |           28 |       28 |          0 | 2026-05-15   | 2026-06-14    |               1 |             27 |             28
+ china              | China              |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ hongkong           | Hongkong           |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ indiana-eve        | Indiana Eve        |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ kentucky-eve       | Kentucky Eve       |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ mongolia           | Mongolia           |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ north-korea        | North Korea        |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ totomacau-13       | Toto Macau 13      |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ totomacau-16       | Toto Macau 16      |           29 |       29 |          0 | 2026-05-15   | 2026-06-14    |               1 |             28 |             29
+ freetown           | Freetown           |           29 |       29 |          0 | 2026-05-15   | 2026-06-15    |               0 |             28 |             29
+ bogota             | Bogota             |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ boston             | Boston             |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ cambodia           | Cambodia           |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ illinois-eve       | Illinois Eve       |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ jakarta            | Jakarta            |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ kentucky-mid       | Kentucky Mid       |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ newjersey-eve      | Newjersey Eve      |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ nusa               | Nusa               |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ portland           | Portland           |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ sydney             | Sydney             |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ thailand-lotteries | Thailand Lotteries |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ vietnam            | Vietnam            |           30 |       30 |          0 | 2026-05-15   | 2026-06-14    |               1 |             29 |             30
+ missouri-mid       | Missouri Mid       |           30 |       30 |          0 | 2026-05-15   | 2026-06-15    |               0 |             29 |             30
+ newjersey-mid      | Newjersey Mid      |           30 |       30 |          0 | 2026-05-15   | 2026-06-15    |               0 |             29 |             30
+ pennsylvania-eve   | Pennsylvania Eve   |           30 |       30 |          0 | 2026-05-15   | 2026-06-15    |               0 |             29 |             30
+ washington-eve     | Washington Eve     |           30 |       30 |          0 | 2026-05-15   | 2026-06-15    |               0 |             29 |             30
+ wisconsin          | Wisconsin          |           30 |       30 |          0 | 2026-05-15   | 2026-06-15    |               0 |             29 |             30
+ buffalo4d          | Buffalo4d          |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ georgia-mid        | Georgia Mid        |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ kingkong-17        | Kingkong 17        |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ korea              | Korea              |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ maryland-mid       | Maryland Mid       |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ munchen            | Munchen            |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ newyork-mid        | Newyork Mid        |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ nusa-toto          | Nusa Toto          |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ ohio-mid           | Ohio Mid           |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ oslo-pools         | Oslo Pools         |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ phoenix4d          | Phoenix4d          |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ totomacau-23       | Toto Macau 23      |           31 |       31 |          0 | 2026-05-15   | 2026-06-14    |               1 |             30 |             31
+ atlanta            | Atlanta            |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ carolina-day       | Carolina Day       |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ florida-eve        | Florida Eve        |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ georgia-eve        | Georgia Eve        |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ germany            | Germany            |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ illinois-mid       | Illinois Mid       |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ indiana-mid        | Indiana Mid        |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ kingston           | Kingston           |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ kupang             | Kupang             |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ missouri-eve       | Missouri Eve       |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ moscow             | Moscow             |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ rhode-island       | Rhode Island       |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ washington-mid     | Washington Mid     |           31 |       31 |          0 | 2026-05-15   | 2026-06-15    |               0 |             30 |             31
+ carolina-eve       | Carolina Eve       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ delaware-day       | Delaware Day       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ delaware-night     | Delaware Night     |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ florida-mid        | Florida Mid        |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ maryland-eve       | Maryland Eve       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ michigan-eve       | Michigan Eve       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ michigan-mid       | Michigan Mid       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ newyork-eve        | Newyork Eve        |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ ohio-eve           | Ohio Eve           |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ pennsylvania-day   | Pennsylvania Day   |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ tennesse-eve       | Tennesse Eve       |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ totomacau-00       | Toto Macau 00      |           32 |       32 |          0 | 2026-05-15   | 2026-06-15    |               0 |             31 |             32
+ california         | California         |         1323 |     1323 |          0 | 2022-10-31   | 2026-06-14    |               1 |             30 |             90
+ pcso               | Pcso               |         1373 |     1372 |          1 | 2022-09-11   | 2026-06-14    |               1 |             30 |             90
+ texas-day          | Texas Day          |         1392 |     1392 |          0 | 2022-08-22   | 2026-06-14    |               1 |             29 |             89
+ texas-night        | Texas Night        |         1392 |     1392 |          0 | 2022-08-22   | 2026-06-14    |               1 |             29 |             89
+ bullseye           | Bullseye           |         1623 |     1623 |          0 | 2022-01-04   | 2026-06-14    |               1 |             30 |             90
+ japan              | Japan              |         1623 |     1623 |          0 | 2022-01-04   | 2026-06-14    |               1 |             30 |             90
+ oregon-13-00-wib   | Oregon 13:00 Wib   |         1623 |     1623 |          0 | 2022-01-04   | 2026-06-14    |               1 |             30 |             90
+ taiwan             | Taiwan             |         1623 |     1623 |          0 | 2022-01-04   | 2026-06-14    |               1 |             30 |             90
+ virginia-day       | Virginia Day       |         1623 |     1623 |          0 | 2022-01-04   | 2026-06-15    |               0 |             30 |             90
+ georgia-night      | Georgia Night      |         1624 |     1624 |          0 | 2022-01-03   | 2026-06-14    |               1 |             30 |             90
+ virginia-night     | Virginia Night     |         1624 |     1624 |          0 | 2022-01-03   | 2026-06-14    |               1 |             30 |             90
+ oregon-04-00-wib   | Oregon 04:00 Wib   |         1625 |     1625 |          0 | 2022-01-03   | 2026-06-15    |               0 |             31 |             91
+ oregon-07-00-wib   | Oregon 07:00 Wib   |         1625 |     1625 |          0 | 2022-01-03   | 2026-06-15    |               0 |             31 |             91
+ oregon-10-00-wib   | Oregon 10:00 Wib   |         1625 |     1625 |          0 | 2022-01-03   | 2026-06-15    |               0 |             31 |             91
+(88 rows)
+
+
+=== 4. MARKET AKTIF KURANG DARI 30 RESULT ===
+     code     |     name      | total_result | tanggal_awal | tanggal_akhir 
+--------------+---------------+--------------+--------------+---------------
+ singapore-25 | Singapore 25  |           10 | 2026-05-15   | 2026-06-14
+ singapore    | Singapore     |           20 | 2026-05-16   | 2026-06-14
+ jepang       | Jepang        |           25 | 2026-05-16   | 2026-06-14
+ tennesse-mor | Tennesse Mor  |           26 | 2026-05-15   | 2026-06-14
+ totomacau-22 | Toto Macau 22 |           26 | 2026-05-15   | 2026-06-14
+ texas-eve    | Texas Eve     |           27 | 2026-05-15   | 2026-06-14
+ texas-mor    | Texas Mor     |           27 | 2026-05-15   | 2026-06-14
+ kingkong-23  | Kingkong 23   |           28 | 2026-05-15   | 2026-06-14
+ lima         | Lima          |           28 | 2026-05-15   | 2026-06-14
+ tennesse-mid | Tennesse Mid  |           28 | 2026-05-15   | 2026-06-14
+ totomacau-19 | Toto Macau 19 |           28 | 2026-05-15   | 2026-06-14
+ china        | China         |           29 | 2026-05-15   | 2026-06-14
+ freetown     | Freetown      |           29 | 2026-05-15   | 2026-06-15
+ hongkong     | Hongkong      |           29 | 2026-05-15   | 2026-06-14
+ indiana-eve  | Indiana Eve   |           29 | 2026-05-15   | 2026-06-14
+ kentucky-eve | Kentucky Eve  |           29 | 2026-05-15   | 2026-06-14
+ mongolia     | Mongolia      |           29 | 2026-05-15   | 2026-06-14
+ north-korea  | North Korea   |           29 | 2026-05-15   | 2026-06-14
+ totomacau-13 | Toto Macau 13 |           29 | 2026-05-15   | 2026-06-14
+ totomacau-16 | Toto Macau 16 |           29 | 2026-05-15   | 2026-06-14
+(20 rows)
+
+
+=== 5. MARKET AKTIF TIDAK PUNYA RESULT TERBARU <= 2 HARI ===
+ code | name | total_result | latest_tanggal | tertinggal_hari 
+------+------+--------------+----------------+-----------------
+(0 rows)
+
+
+=== 6. MARKET AKTIF RESULT 30 HARI KURANG DARI 10 ===
+     code     |     name     | result_30_hari | total_result | latest_tanggal 
+--------------+--------------+----------------+--------------+----------------
+ singapore-25 | Singapore 25 |              9 |           10 | 2026-06-14
+(1 row)
+
+
+=== 7. SOURCE ALIAS COVERAGE MARKET AKTIF ===
+ERROR:  column a.source_market_name does not exist
+LINE 1: ...code,m.name,COUNT(a.id) AS alias_count,STRING_AGG(a.source_m...
+                                                             ^
