@@ -1,0 +1,30 @@
+BBFS HOLD ACTIVE ONLY REPORT
+Generated: 2026-06-15 11:54:11 WIB
+
+=== ACTIVE MARKET DISTRIBUTION ===
+ user_status |    prediction_status    | can_show_prediction | jumlah | avg_confidence | min_confidence | max_confidence 
+-------------+-------------------------+---------------------+--------+----------------+----------------+----------------
+ AMAN        | BBFS_READY              | t                   |     38 |          56.39 |          45.84 |          73.98
+ WASPADA     | BBFS_READY_WITH_WARNING | t                   |     50 |          31.89 |          11.11 |          44.86
+(2 rows)
+
+
+=== ACTIVE HOLD DETAIL ===
+ name | code | is_active | user_status | prediction_status | can_show_prediction | confidence | errors 
+------+------+-----------+-------------+-------------------+---------------------+------------+--------
+(0 rows)
+
+
+=== INACTIVE HOLD DETAIL ===
+                   name                   |         code         | is_active | user_status |        prediction_status        | can_show_prediction | confidence |          updated_at           
+------------------------------------------+----------------------+-----------+-------------+---------------------------------+---------------------+------------+-------------------------------
+ Hongkong Lotto [NOT-SOURCE-HIDDEN]       | hongkong-lotto       | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      10.86 | 2026-06-14 22:42:45.034175+07
+ Toto Macau 00 [NOT-SOURCE-HIDDEN]        | toto-macau-00        | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      16.37 | 2026-06-14 22:42:47.864403+07
+ Washington Dc Midday [NOT-SOURCE-HIDDEN] | washington-dc-midday | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      17.18 | 2026-06-14 22:42:48.468014+07
+ Toto Macau 16 [NOT-SOURCE-HIDDEN]        | toto-macau-16        | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      17.91 | 2026-06-14 22:42:48.120402+07
+ Missouri Evening [NOT-SOURCE-HIDDEN]     | missouri-evening     | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:46.033704+07
+ Toto Macau 13 [NOT-SOURCE-HIDDEN]        | toto-macau-13        | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:47.911565+07
+ Oregon9                                  | oregon9              | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-15 09:09:45.377224+07
+ Illinois Evening [NOT-SOURCE-HIDDEN]     | illinois-evening     | f         | HOLD        | BBFS_BLOCKED_BY_PREDICTION_GATE | f                   |      20.00 | 2026-06-14 22:42:45.093843+07
+(8 rows)
+
