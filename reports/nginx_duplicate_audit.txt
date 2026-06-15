@@ -1,0 +1,36 @@
+NGINX DUPLICATE AUDIT Mon Jun 15 12:31:02 PM WIB 2026
+
+=== nginx -t ===
+2026/06/15 12:31:02 [warn] 53282#53282: conflicting server name "jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:31:02 [warn] 53282#53282: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:80, ignored
+2026/06/15 12:31:02 [warn] 53282#53282: conflicting server name "jhunaey.my.id" on 0.0.0.0:443, ignored
+2026/06/15 12:31:02 [warn] 53282#53282: conflicting server name "www.jhunaey.my.id" on 0.0.0.0:443, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+=== files sites-enabled ===
+/etc/nginx/conf.d:
+total 4
+drwxr-xr-x 2 root root    6 Jun  9 18:45 .
+drwxr-xr-x 8 root root 4096 Jun 14 19:44 ..
+
+/etc/nginx/sites-enabled:
+total 8
+drwxr-xr-x 2 root root   73 Jun 15 10:54 .
+drwxr-xr-x 8 root root 4096 Jun 14 19:44 ..
+lrwxrwxrwx 1 root root   34 Jun 14 19:34 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  879 Jun 15 10:54 default.before_cache_fix_20260615_105433.bak
+
+=== domain config matches ===
+/etc/nginx/sites-enabled/default:2:    listen 80;
+/etc/nginx/sites-enabled/default:3:    server_name jhunaey.my.id www.jhunaey.my.id;
+/etc/nginx/sites-enabled/default:9:    listen 443 ssl;
+/etc/nginx/sites-enabled/default:10:    server_name jhunaey.my.id www.jhunaey.my.id;
+/etc/nginx/sites-enabled/default:12:    root /var/www/jhunaey.my.id;
+/etc/nginx/sites-enabled/default:21:        proxy_pass http://127.0.0.1:3001;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:2:    listen 80;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:3:    server_name jhunaey.my.id www.jhunaey.my.id;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:9:    listen 443 ssl;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:10:    server_name jhunaey.my.id www.jhunaey.my.id;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:12:    root /var/www/jhunaey.my.id;
+/etc/nginx/sites-enabled/default.before_cache_fix_20260615_105433.bak:21:        proxy_pass http://127.0.0.1:3001;
